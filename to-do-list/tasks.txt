@@ -1,0 +1,3 @@
+'https://api.petfinder.com/v2/animals' --> devuelve un array con todos los animales?
+`https://api.petfinder.com/v2/types/${animalType}` --> si le pongo dog me devuelve un array con los tipos de caracteristicas o filtros de los perros
+`https://api.petfinder.com/v2/animals?type=${animalType}` --> me devuelve un array de objetos según la especie que busquemos

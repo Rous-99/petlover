@@ -3,6 +3,9 @@
 const key='yCTWxvIK9RPRLhRxrjefKcqgcfn2gy3scxvQ8omqd18Pw9QpMO';
 const secret='aB19kPT14oQ4UdEQ42SRmUaEPh1lUqvpYFzlSpB0';
 
+let animalType='Dog'; //solo trabajo con la búsqueda de perros
+let gender='male';
+
 //creo las variables en las que voy a almacenar los valores del token que obtenga
 let token, tokenType, expires;
 
@@ -34,7 +37,7 @@ function getToken(){
 getToken().then(resp => console.log(resp));
 
 function getAnimals() {
-    return fetch('https://api.petfinder.com/v2/animals',{
+    return fetch(`https://api.petfinder.com/v2/animals?type=${animalType}`,{ //devuelve un array de objetos
         headers: {
         'Authorization': tokenType + ' ' + token,
         'Content-Type': 'application/x-www/form-urlencoded'
@@ -46,6 +49,8 @@ function getAnimals() {
     })
     .catch(err => console.log("wrong", err))
 }
+
+
 
 let makecall=function(){
     // If current token is invalid, get a new one
@@ -59,7 +64,17 @@ let makecall=function(){
 
     //if the current token is valid, get pets
     console.log("token still valid");
-    getAnimals().then(resp => console.log(resp));
+    // getAnimals().then(resp => console.log(resp));
+    getAnimals().then(resp=>{ //para obtener un array en vez de un objeto
+        const mappedResult= Object.keys(resp).map(key => {
+            const value=resp[key]
+            console.log(key, '->' , value)
+        })
+        // return mappedResult;
+        let filterRes=mappedResult.filter(key => key.id==='60222763');
+        console.log(filterRes);
+    })
+    
 }
 
 let btn=document.querySelector('#refresh');
