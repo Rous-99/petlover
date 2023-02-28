@@ -68,7 +68,7 @@ let makecall=function(){
     getAnimals().then(resp=>{ //para obtener un array en vez de un objeto
         const mappedResult= Object.keys(resp).map(key => {
             const dogs=resp[key]
-            console.log(key, '->' , dogs)
+            // console.log(key, '->' , dogs)
             if (key==='animals'){
                 dogs.forEach(perro => { //recorro el array de objetos de perros
                     if (perro['size']==='Medium'){
