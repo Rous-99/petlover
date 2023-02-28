@@ -67,12 +67,17 @@ let makecall=function(){
     // getAnimals().then(resp => console.log(resp));
     getAnimals().then(resp=>{ //para obtener un array en vez de un objeto
         const mappedResult= Object.keys(resp).map(key => {
-            const value=resp[key]
-            console.log(key, '->' , value)
+            const dogs=resp[key]
+            console.log(key, '->' , dogs)
+            if (key==='animals'){
+                dogs.forEach(perro => { //recorro el array de objetos de perros
+                    if (perro['size']==='Medium'){
+                        console.log(perro);
+                    }
+                });
+            }
         })
         // return mappedResult;
-        let filterRes=mappedResult.filter(key => key.id==='60222763');
-        console.log(filterRes);
     })
     
 }
