@@ -75,6 +75,7 @@ let makecall=function(){
                         console.log(perro);
                     }
                 });
+                // return dogs;
             }
         })
         // return mappedResult;
@@ -82,5 +83,20 @@ let makecall=function(){
     
 }
 
+// async function getFemaleDogs(){
+//     console.log(await getAnimals());
+//     // dogs.forEach(perro => {
+//     //     if (perro['size']==='Medium'){
+//     //         console.log(perro);
+//     //     }
+//     // })
+// }
+
+
+
+
 let btn=document.querySelector('#refresh');
 btn.addEventListener('click', makecall);
+// let searchFemale=document.querySelector('#female');
+// searchFemale.addEventListener('click', getFemaleDogs());
+// getFemaleDogs();
