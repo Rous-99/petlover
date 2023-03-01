@@ -81,14 +81,28 @@ let makecall=function(){
                         let breed=perro.breeds['primary'];
                         output+=`
                         <div class="dog">
-                            <img src="${photo}" alt="">
-                            <p class="name">${perro.name}</p>
-                            <p class="age">${perro.age}</p>
-                            <p class="gender">${perro.gender}</p>
-                            <p class="size">${perro.size}</p>
-                            <p class="breeds">${breed}</p>
+                            <img class="dog__photo" src="${photo}" alt="">
+                            <div class="dog__info">
+                                <p class="name">${perro.name}</p>
+                                <div class="info__description">
+                                    <p class="info__p">Age</p>
+                                    <p class="age">${perro.age}</p>
+                                </div>
+                                <div class="info__description">
+                                    <p class="info__p">Gender</p>
+                                    <p class="gender">${perro.gender}</p>
+                                </div>
+                                <div class="info__description">
+                                    <p class="info__p">Size</p>
+                                    <p class="size">${perro.size}</p>
+                                </div>
+                                <div class="info__description">
+                                    <p class="info__p">Breed</p>
+                                    <p class="breeds">${breed}</p>
+                                </div>
+                            </div>
                         </div>
-                    `
+                        `
                     }
                     
                     
