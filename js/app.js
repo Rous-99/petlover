@@ -5,9 +5,12 @@ const secret='aB19kPT14oQ4UdEQ42SRmUaEPh1lUqvpYFzlSpB0';
 
 let animalType='Dog'; //solo trabajo con la búsqueda de perros
 let gender='male';
+let dogsContainer=document.querySelector('#dogs');
 
 //creo las variables en las que voy a almacenar los valores del token que obtenga
 let token, tokenType, expires;
+
+let output="";
 
 // Call the API
 // This is a POST request, because we need the API to generate a new token for us
@@ -71,10 +74,30 @@ let makecall=function(){
             // console.log(key, '->' , dogs)
             if (key==='animals'){
                 dogs.forEach(perro => { //recorro el array de objetos de perros
-                    if (perro['size']==='Medium'){
-                        console.log(perro);
+                    //añado un template a html para cada perro
+                    if(perro.photos.length>0){
+                        console.log("tengo foto");
+                        let photo=perro.photos[0].large;
+                        let breed=perro.breeds['primary'];
+                        output+=`
+                        <div class="dog">
+                            <img src="${photo}" alt="">
+                            <p class="name">${perro.name}</p>
+                            <p class="age">${perro.age}</p>
+                            <p class="gender">${perro.gender}</p>
+                            <p class="size">${perro.size}</p>
+                            <p class="breeds">${breed}</p>
+                        </div>
+                    `
                     }
+                    
+                    
+                    // if (perro['size']==='Medium'){
+                    //     // console.log(perro);
+                    // }
+                    console.log(perro);
                 });
+                dogsContainer.innerHTML=output;
                 // return dogs;
             }
         })
@@ -97,6 +120,7 @@ let makecall=function(){
 
 let btn=document.querySelector('#refresh');
 btn.addEventListener('click', makecall);
+
 // let searchFemale=document.querySelector('#female');
 // searchFemale.addEventListener('click', getFemaleDogs());
 // getFemaleDogs();
