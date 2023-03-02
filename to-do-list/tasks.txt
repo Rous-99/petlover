@@ -2,4 +2,6 @@
 `https://api.petfinder.com/v2/types/${animalType}` --> si le pongo dog me devuelve un array con los tipos de caracteristicas o filtros de los perros
 `https://api.petfinder.com/v2/animals?type=${animalType}` --> me devuelve un array de objetos según la especie que busquemos
 
+https://mybrandnewlogo.com/es/generador-de-paleta-de-colores --> GENERADOR PALETA DE COLORES 
+
 https://www.youtube.com/watch?v=o6bLYYStZss PARA AÑADIR LOS ANIMALES AL HTML
