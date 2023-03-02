@@ -113,8 +113,16 @@ function getAnimals() {
     
     console.log(dogPage1,dogPage2,dogPage3,dogPage4,dogPage5);  
    
-    return Promise.all([dogPage1,dogPage2,dogPage3,dogPage4,dogPage5]).then(resp => console.log(resp))
-                                            .catch(err => console.log(err));
+    const res= Promise.all([dogPage1,dogPage2,dogPage3,dogPage4,dogPage5])
+                            .then(responses => {
+                                responses.forEach ( response => {
+                                    console.log(response);
+                                })
+                            })
+                            // .then(resp => console.log(resp))
+                            // .catch(err => console.log(err));
+
+    console.log(res);
     // let promesas=urlPages.forEach(urlPage => {
     //     fetch(`${urlPage[0]}`,{
     //         headers: {
@@ -136,69 +144,123 @@ function getAnimals() {
 
 
 
-let makecall=function(){
-    // If current token is invalid, get a new one
+let makecall= function putInfo(){
+    //If current token is invalid, get a new one
 	if (!expires || expires - new Date().getTime() < 1) {
 		console.log('new call');
 		getToken().then(function () {
-			getAnimals().then(resp => console.log(resp));
-		});
-        return;
-	}
-    //if the current token is valid, get pets
-    console.log("token still valid");
-    // getAnimals().then(resp => console.log(resp));
-    getAnimals().then(resp=>{ //para obtener un array en vez de un objeto
-        const mappedResult= Object.keys(resp).map(key => {
-            const dogs=resp[key]
-            console.log(key, '->' , dogs)
-            if (key==='animals'){
-                dogs.forEach(perro => { //recorro el array de objetos de perros
-                    //añado un template a html para cada perro
-                    if(perro.photos.length>0){
-                        console.log("tengo foto");
-                        let photo=perro.photos[0].large;
-                        let breed=perro.breeds['primary'];
-                        output+=`
-                        <div class="dog">
-                            <img class="dog__photo" src="${photo}" alt="">
-                            <div class="dog__info">
-                                <p class="name">${perro.name}</p>
-                                <div class="info__description">
-                                    <p class="info__p">Age</p>
-                                    <p class="age">${perro.age}</p>
-                                </div>
-                                <div class="info__description">
-                                    <p class="info__p">Gender</p>
-                                    <p class="gender">${perro.gender}</p>
-                                </div>
-                                <div class="info__description">
-                                    <p class="info__p">Size</p>
-                                    <p class="size">${perro.size}</p>
-                                </div>
-                                <div class="info__description">
-                                    <p class="info__p">Breed</p>
-                                    <p class="breeds">${breed}</p>
-                                </div>
-                            </div>
-                        </div>
-                        `
-                    }
-                    
-                    
-                    // if (perro['size']==='Medium'){
-                    //     // console.log(perro);
-                    // }
-                    console.log(perro);
-                });
-                dogsContainer.innerHTML=output;
-                // return dogs;
-            }
+			// getAnimals();
         })
+    }else{
+        const objectArray= getAnimals();
+        console.log(objectArray);
+        
+        // console.log(objectArray);
+        // const mappedResult= objectArray.map(key => {
+        //             const dogs=resp[key];
+        //             console.log(key, '->' , dogs);
+        // })
         // return mappedResult;
-    })
-    
+    }
 }
+        //     const mappedResult= Object.keys(getAnimals()).map(key => {
+        //         const dogs=resp[key];
+        //         console.log(key, '->' , dogs);
+        //         if (key==='animals'){
+        //             dogs.forEach(perro => {
+        //                 if(perro.photos.length>0){
+        //                     console.log("tengo foto");
+        //                     let photo=perro.photos[0].large;
+        //                     let breed=perro.breeds['primary'];
+        //                     output+=`
+        //                      <div class="dog">
+        //                         <img class="dog__photo" src="${photo}" alt="">
+        //                         <div class="dog__info">
+        //                             <p class="name">${perro.name}</p>
+        //                             <div class="info__description">
+        //                                 <p class="info__p">Age</p>
+        //                                 <p class="age">${perro.age}</p>
+        //                             </div>
+        //                             <div class="info__description">
+        //                                 <p class="info__p">Gender</p>
+        //                                 <p class="gender">${perro.gender}</p>
+        //                             </div>
+        //                             <div class="info__description">
+        //                                 <p class="info__p">Size</p>
+        //                                 <p class="size">${perro.size}</p>
+        //                             </div>
+        //                             <div class="info__description">
+        //                                 <p class="info__p">Breed</p>
+        //                                 <p class="breeds">${breed}</p>
+        //                             </div>
+        //                         </div>
+        //                     </div>
+        //                     `
+        //                 }
+                        
+        //             })
+        //             dogsContainer.innerHTML=output;
+        //             console.log(mappedResult)
+        //         }
+		//     })
+        // })
+    
+	        
+//     //if the current token is valid, get pets
+    
+    
+//     // getAnimals().then(resp => console.log(resp));
+//     getAnimals().then(resp=>{ //para obtener un array en vez de un objeto
+//         const mappedResult= Object.keys(resp).map(key => {
+//             const dogs=resp[key]
+//             console.log(key, '->' , dogs)
+//             if (key==='animals'){
+//                 dogs.forEach(perro => { //recorro el array de objetos de perros
+//                     //añado un template a html para cada perro
+//                     if(perro.photos.length>0){
+//                         console.log("tengo foto");
+//                         let photo=perro.photos[0].large;
+//                         let breed=perro.breeds['primary'];
+//                         output+=`
+//                         <div class="dog">
+//                             <img class="dog__photo" src="${photo}" alt="">
+//                             <div class="dog__info">
+//                                 <p class="name">${perro.name}</p>
+//                                 <div class="info__description">
+//                                     <p class="info__p">Age</p>
+//                                     <p class="age">${perro.age}</p>
+//                                 </div>
+//                                 <div class="info__description">
+//                                     <p class="info__p">Gender</p>
+//                                     <p class="gender">${perro.gender}</p>
+//                                 </div>
+//                                 <div class="info__description">
+//                                     <p class="info__p">Size</p>
+//                                     <p class="size">${perro.size}</p>
+//                                 </div>
+//                                 <div class="info__description">
+//                                     <p class="info__p">Breed</p>
+//                                     <p class="breeds">${breed}</p>
+//                                 </div>
+//                             </div>
+//                         </div>
+//                         `
+//                     }
+                    
+                    
+//                     // if (perro['size']==='Medium'){
+//                     //     // console.log(perro);
+//                     // }
+//                     console.log(perro);
+//                 });
+//                 dogsContainer.innerHTML=output;
+//                 // return dogs;
+//             }
+//         })
+//         // return mappedResult;
+//     })
+    
+// }
 
 // async function getFemaleDogs(){
 //     console.log(await getAnimals());
