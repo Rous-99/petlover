@@ -40,18 +40,99 @@ function getToken(){
 getToken().then(resp => console.log(resp));
 
 function getAnimals() {
-    return fetch(`https://api.petfinder.com/v2/animals?type=${animalType}`,{ //devuelve un array de objetos
-        headers: {
-        'Authorization': tokenType + ' ' + token,
-        'Content-Type': 'application/x-www/form-urlencoded'
+    const urlPages=[];
+    const pages=[1,2,3,4,5,6];
+    for (let i=1; i<pages.length; i++){
+        console.log(i);
+        let url=`https://api.petfinder.com/v2/animals?page=${i}&type=${animalType}`;
+        urlPages.push(url);
     }
-    })
-    .then(resp => resp.json())
-    .then(data => {
-        return data;
-    })
-    .catch(err => console.log("wrong", err))
+    console.log(urlPages);
+    console.log(urlPages[0]);
+    console.log(urlPages[1]);
+    console.log(urlPages[2]);
+    console.log(urlPages[3]);
+    console.log(urlPages[4]);
+
+    const dogPage1= fetch(urlPages[0],{
+        headers: {
+            'Authorization': tokenType + ' ' + token,
+            'Content-Type': 'application/x-www/form-urlencoded'
+        }
+        }).then(resp => resp.json())
+        .then(data => {
+            return data;
+        })
+        .catch(err => console.log("wrong", err))
+
+    const dogPage2=fetch(urlPages[1],{
+        headers: {
+            'Authorization': tokenType + ' ' + token,
+            'Content-Type': 'application/x-www/form-urlencoded'
+        }
+        }).then(resp => resp.json())
+        .then(data => {
+            return data;
+        })
+        .catch(err => console.log("wrong", err))
+    
+
+    const dogPage3=fetch(urlPages[2],{
+        headers: {
+            'Authorization': tokenType + ' ' + token,
+            'Content-Type': 'application/x-www/form-urlencoded'
+        }
+        }).then(resp => resp.json())
+        .then(data => {
+            return data;
+        })
+        .catch(err => console.log("wrong", err))
+    
+
+    const dogPage4=fetch(urlPages[3],{
+        headers: {
+            'Authorization': tokenType + ' ' + token,
+            'Content-Type': 'application/x-www/form-urlencoded'
+        }
+        }).then(resp => resp.json())
+        .then(data => {
+            return data;
+        })
+        .catch(err => console.log("wrong", err))
+    
+    const dogPage5=fetch(urlPages[4],{
+        headers: {
+            'Authorization': tokenType + ' ' + token,
+            'Content-Type': 'application/x-www/form-urlencoded'
+        }
+        }).then(resp => resp.json())
+        .then(data => {
+            return data;
+        })
+        .catch(err => console.log("wrong", err))
+    
+    console.log(dogPage1,dogPage2,dogPage3,dogPage4,dogPage5);  
+   
+    return Promise.all([dogPage1,dogPage2,dogPage3,dogPage4,dogPage5]).then(resp => console.log(resp))
+                                            .catch(err => console.log(err));
+    // let promesas=urlPages.forEach(urlPage => {
+    //     fetch(`${urlPage[0]}`,{
+    //         headers: {
+    //             'Authorization': tokenType + ' ' + token,
+    //             'Content-Type': 'application/x-www/form-urlencoded'
+    //         }
+    //     }).then(resp => resp.json())
+    //      .then(data => {
+    //         return data;
+    //     })
+    //     .catch(err => console.log("wrong", err))
+    // })
 }
+
+    // console.log(promesas);
+    // return response;
+    // Promise.all(promesas).then(data => console.log(data));
+
 
 
 
@@ -64,14 +145,13 @@ let makecall=function(){
 		});
         return;
 	}
-
     //if the current token is valid, get pets
     console.log("token still valid");
     // getAnimals().then(resp => console.log(resp));
     getAnimals().then(resp=>{ //para obtener un array en vez de un objeto
         const mappedResult= Object.keys(resp).map(key => {
             const dogs=resp[key]
-            // console.log(key, '->' , dogs)
+            console.log(key, '->' , dogs)
             if (key==='animals'){
                 dogs.forEach(perro => { //recorro el array de objetos de perros
                     //añado un template a html para cada perro
@@ -137,4 +217,4 @@ btn.addEventListener('click', makecall);
 
 // let searchFemale=document.querySelector('#female');
 // searchFemale.addEventListener('click', getFemaleDogs());
-// getFemaleDogs();
+// getFemaleDogs()
