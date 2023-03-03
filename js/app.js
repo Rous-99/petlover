@@ -40,7 +40,7 @@ function getToken(){
 getToken().then(resp => console.log(resp));
 
 function getAnimals() {
-    return fetch(`https://api.petfinder.com/v2/animals?page=1type=${animalType}`,{ //devuelve un array de objetos
+    return fetch(`https://api.petfinder.com/v2/animals?page=1&type=${animalType}`,{ //devuelve un array de objetos
         headers: {
         'Authorization': tokenType + ' ' + token,
         'Content-Type': 'application/x-www/form-urlencoded'
@@ -53,6 +53,41 @@ function getAnimals() {
     .catch(err => console.log("wrong", err))
 }
 
+async function getPage1(){
+    return (await fetch(`https://api.petfinder.com/v2/animals?page=1&type=${animalType}`,{ //devuelve un array de objetos
+        headers: {
+            'Authorization': tokenType + ' ' + token,
+            'Content-Type': 'application/x-www/form-urlencoded'
+        }
+        }).then(resp => resp.json())
+        .then(data => {
+            return data;
+        })
+        .catch(err => console.log("wrong", err))
+    )
+}   
+async function getPage2(){
+    return (await fetch(`https://api.petfinder.com/v2/animals?page=2&type=${animalType}`,{ //devuelve un array de objetos
+        headers: {
+        'Authorization': tokenType + ' ' + token,
+        'Content-Type': 'application/x-www/form-urlencoded'
+
+        }
+        }).then(resp => resp.json())
+        .then(data => {
+            return data;
+        })
+        .catch(err => console.log("wrong", err))
+    )
+}
+    // return (await Promise.all([fetchPage1,fetchPage2]).then(values =>console.log(values)));
+
+// async function getDogs(){
+//     let dogsPage1=await getPage1();
+//     let dogsPage2=await getPage2();
+//     console.log(dogsPage1);
+//     console.log(dogsPage2);
+// }
 
 
 let makecall=function(){
@@ -60,63 +95,66 @@ let makecall=function(){
 	if (!expires || expires - new Date().getTime() < 1) {
 		console.log('new call');
 		getToken().then(function () {
-			getAnimals().then(resp => console.log(resp));
+			// getAnimals().then(resp => console.log(resp));
+            getDogs().then(resp => console.log(resp));
 		});
         return;
 	}
 
     //if the current token is valid, get pets
     console.log("token still valid");
+    getDogs().then(resp => console.log(resp));
+
     // getAnimals().then(resp => console.log(resp));
-    getAnimals().then(resp=>{ //para obtener un array en vez de un objeto
-        const mappedResult= Object.keys(resp).map(key => {
-            const dogs=resp[key]
-            // console.log(key, '->' , dogs)
-            if (key==='animals'){
-                dogs.forEach(perro => { //recorro el array de objetos de perros
-                    //añado un template a html para cada perro
-                    if(perro.photos.length>0){
-                        console.log("tengo foto");
-                        let photo=perro.photos[0].large;
-                        let breed=perro.breeds['primary'];
-                        output+=`
-                        <div class="dog">
-                            <img class="dog__photo" src="${photo}" alt="">
-                            <div class="dog__info">
-                                <p class="name">${perro.name}</p>
-                                <div class="info__description">
-                                    <p class="info__p">Age</p>
-                                    <p class="age">${perro.age}</p>
-                                </div>
-                                <div class="info__description">
-                                    <p class="info__p">Gender</p>
-                                    <p class="gender">${perro.gender}</p>
-                                </div>
-                                <div class="info__description">
-                                    <p class="info__p">Size</p>
-                                    <p class="size">${perro.size}</p>
-                                </div>
-                                <div class="info__description">
-                                    <p class="info__p">Breed</p>
-                                    <p class="breeds">${breed}</p>
-                                </div>
-                            </div>
-                        </div>
-                        `
-                    }
+    // getAnimals().then(resp=>{ //para obtener un array en vez de un objeto
+    //     const mappedResult= Object.keys(resp).map(key => {
+    //         const dogs=resp[key]
+    //         // console.log(key, '->' , dogs)
+    //         if (key==='animals'){
+    //             dogs.forEach(perro => { //recorro el array de objetos de perros
+    //                 //añado un template a html para cada perro
+    //                 if(perro.photos.length>0){
+    //                     console.log("tengo foto");
+    //                     let photo=perro.photos[0].large;
+    //                     let breed=perro.breeds['primary'];
+    //                     output+=`
+    //                     <div class="dog">
+    //                         <img class="dog__photo" src="${photo}" alt="">
+    //                         <div class="dog__info">
+    //                             <p class="name">${perro.name}</p>
+    //                             <div class="info__description">
+    //                                 <p class="info__p">Age</p>
+    //                                 <p class="age">${perro.age}</p>
+    //                             </div>
+    //                             <div class="info__description">
+    //                                 <p class="info__p">Gender</p>
+    //                                 <p class="gender">${perro.gender}</p>
+    //                             </div>
+    //                             <div class="info__description">
+    //                                 <p class="info__p">Size</p>
+    //                                 <p class="size">${perro.size}</p>
+    //                             </div>
+    //                             <div class="info__description">
+    //                                 <p class="info__p">Breed</p>
+    //                                 <p class="breeds">${breed}</p>
+    //                             </div>
+    //                         </div>
+    //                     </div>
+    //                     `
+    //                 }
                     
                     
-                    // if (perro['size']==='Medium'){
-                    //     // console.log(perro);
-                    // }
-                    console.log(perro);
-                });
-                dogsContainer.innerHTML=output;
-                // return dogs;
-            }
-        })
-        // return mappedResult;
-    })
+    //                 // if (perro['size']==='Medium'){
+    //                 //     // console.log(perro);
+    //                 // }
+    //                 console.log(perro);
+    //             });
+    //             dogsContainer.innerHTML=output;
+    //             // return dogs;
+    //         }
+    //     })
+    //     // return mappedResult;
+    // })
     
 }
 
@@ -130,10 +168,37 @@ let makecall=function(){
 // }
 
 
+const fetchData = async () => {
+    try {
+      const responsesJSON = await Promise.all([
+          fetch(`https://api.petfinder.com/v2/animals?page=1&type=${animalType}`),
+          fetch(`https://api.petfinder.com/v2/animals?page=2&type=${animalType}`)
+      ]);
+      const [todoOne, todoTwo] = await Promise.all(responsesJSON.map(r => r.json()));
+      console.log(todoOne, 'todoOne');
+      console.log(todoTwo, 'todoTwo');
+    } catch (err) {
+      throw err;
+    }
+  };
+  
+fetchData();
+
+
 
 
 let btn=document.querySelector('#refresh');
-btn.addEventListener('click', makecall);
+btn.addEventListener('click', async()=>{
+    let dogsPage1=await getPage1();
+    let dogsPage2=await getPage2();
+    console.log(dogsPage1);
+    console.log(dogsPage2);
+});
+    // let dogsPage1=await getPage1();
+    // let dogsPage2=await getPage2();
+    // console.log(dogsPage1);
+    // console.log(dogsPage2);
+
 
 // let searchFemale=document.querySelector('#female');
 // searchFemale.addEventListener('click', getFemaleDogs());
