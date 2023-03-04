@@ -8,9 +8,33 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <button id="refresh">Refresh</button>
-    <button id="female">Female dogs</button>
+    <header class="header__main">
+        <nav class="header__nav">
+            <img src="./img/dog.png" alt="" class="nav__logo">
+            <div class="nav__elements">
+                <li class="nav__li"><a href="./adoptFilter.html" class="nav__li__a">Adoptar</a></li>
+                <li class="nav__li"><a href="#" class="nav__li__a">Favoritos</a></li>
+                <li class="nav__li"><a href="#" class="nav__li__a">Formulario</a></li>
+            </div>
+        </nav>
+    </header>
+    <section class="main__section">
+        <section class="main__photo">
+            
+        </section>
+        <section class="main__title">
+            <h1>You can't buy love but you can rescue it!</h1>
+            <button id="showDogs">Show all dogs</button>
+        </section>
+    </section>
+    <section class="carrusel">
+        <h2>Good dogs needing good homes</h2>
+        <!--añadir carrusel de fotos-->
+    </section>
+    
     <div id="dogs"></div>
-    <script src="./js/app.js"></script>
+
+    <!-- <button id="showDogs">Show all dogs</button> -->
+    <script src="./js/main.js" type="module"></script>
 </body>
 </html>

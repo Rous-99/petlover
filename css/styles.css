@@ -21,6 +21,47 @@ body{
     font-size: 15px;
 }
 
+/*-----------------------------MAIN PAGE-----------------------------------------------*/
+.header__main{
+    background-color:var(--var-color1);
+    width: 100%;
+    height: 90px;
+}
+
+.header__nav{
+    display: flex;
+    justify-content: space-between;
+    /* background-color: yellow; */
+    padding: 30px;
+}
+
+.nav__elements{
+    display: flex;
+    gap: 30px;
+    flex-basis: 60%;
+}
+
+.nav__logo{ /*se le estan aplicando los estilos de la imagen*/
+    width: 40px;
+    height: 40px;
+    background-color: red;
+}
+
+.nav__li{
+    list-style: none;
+    text-transform: uppercase;
+}
+
+.nav__li__a{
+    text-decoration: none;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    letter-spacing: .2rem;
+    font-size: 1.3rem;
+}
+
+/*-----------------------------------DOGS CARDS-------------------------------------------*/
 #dogs{
     /* background-color: aqua; */
     display: grid;
@@ -46,8 +87,9 @@ body{
 
 img{
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height:50%;
+    object-fit:cover;
+    object-position: 40% 10%;
     border-radius: 10px 10px 0 0;
 }
 
@@ -105,3 +147,41 @@ img{
     width: 100%;
     display: block;
 } */
+/*---------------------------ADOPT PAGE HTML -----------------------------------------------------*/
+
+.adopt{
+    height: 40vh;
+    width: 100vw;
+    background-color: var(--var-color3);
+}
+
+.adopt__select{
+    /* background-color: #727b7b; */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    gap: 10px;
+}
+
+.adopt__title{
+    color: white;
+    font-family: 'Poppins',sans-serif;
+    font-size: 4rem;
+    text-align: center;
+}
+
+.breed__select{
+    width: 150px;
+    padding: 10px;
+    background-color:#061d21;
+    color: white;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-family: 'Raleway', sans-serif;
+    font-size: .7rem;
+    font-weight: 600;
+    align-self: center;
+}
