@@ -10,17 +10,38 @@
 <body>
     <header></header>
     <main>
-        <button id="showDogs">Show all dogs</button>
+        <button id="añadir">Prueba</button>
         <section class="adopt">
             <div class="adopt__select">
                 <h1 class="adopt__title">ADOPT</h1>
-                <select name="adopt__filter" id="adopt__filter" class="breed__select">
+                <select name="adopt__filter" id="adopt__filter" class="breed__select" onchange="changeDog()">
                     <option value="">Select the breed</option>
-                    <option value="" class="breed__option"></option>
                 </select>
+            </div>
+            <div class="dog">
+                <img class="dog__photo" src="" alt="">
+                <div class="dog__info">
+                    <p class="name"></p>
+                    <div class="info__description">
+                        <p class="info__p">Lifespan</p>
+                        <p class="age"></p>
+                    </div>
+                    <div class="info__description">
+                        <p class="info__p">Temperament</p>
+                        <p class="gender"></p>
+                    </div>
+                    <div class="info__description">
+                        <p class="info__p">Height</p>
+                        <p class="size"></p>
+                    </div>
+                    <div class="info__description">
+                        <p class="info__p">Weight</p>
+                        <p class="breeds"></p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
-    <script src="./js/main.js"></script>
+    <script src="./js/filterDogs.js"></script>
 </body>
 </html>

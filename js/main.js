@@ -26,8 +26,7 @@ const fetchDogs= async () =>{
     const responseJson= await response.json();
     console.log(response); //devuelve la respuesta de la promesa
     console.log(responseJson); //devuelve la data en formato json
-    // showAlldogs(responseJson);
-    breedSelect(responseJson);
+    showAlldogs(responseJson);
 }
 
 const showAlldogs = (dogs) => {
@@ -68,30 +67,6 @@ const showAlldogs = (dogs) => {
     });
 }
 
-const breedSelect=(dogs) =>{
-    console.log("dog loaded", dogs);
-    const breeds=[];
-    const select=document.querySelector('.breed__select');
-    console.log(select);
-    const dogsBreedsOptions=dogs.map(dog =>{
-        breeds.push(dog.name);
-        // const breedOption=document.querySelector('.breed__option');
-        // breedOption.textContent=dog.name;
-        // breedOption.value=dog.name;
-        // console.log(breedOption);
-    })
-    // console.log(dogsBreedsOptions);
-    console.log("razas",breeds);
-    // dogsBreedsOptions.forEach(breedOption => {
-    //     select.appendChild(breedOption);
-    // })
-    breeds.forEach(raza =>{
-        const breedOption=document.querySelector('.breed__option');
-        breedOption.textContent=raza;
-        breedOption.value=raza;
-        select.appendChild(raza[2]);
-    })
-}   
 
 let btnAllDogs=document.getElementById('showDogs');
 btnAllDogs.addEventListener("click",async () =>{
