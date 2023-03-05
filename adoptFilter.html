@@ -8,12 +8,21 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <header></header>
+    <header class="header__main">
+        <nav class="header__nav">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAiFJREFUWEftmP1R20AQxd+rAFxBSAehgiQVQCoIqQA6SKggdABUEKgg0AF0ABVgV/Ayjzl5pEPSrYJkPIN2xuM/7m73d3v7ZRNbLtxyPrwfQEknAHYAXJJ8GOtlRvOgpBsAnxPYN5JXY0BOBbgE8JGkv18lUwEa6gxA7sUVybshxFMCdnEY8EcU9C0ADe6n/xqBfCvAMGQDUNIXAOfpbfwMzsyQZFmcnzlNMWn9f3oUujw17OaAFwC+JwWuZ0chOgAFwEWV0YV9NtewmwP+AvAzQd2S9I1DUjC8rouSHH8u6F3SsJsD2mPVE1vBfiSQvTHgGYfLJwC7hRtfkzys9uSAPvxUU+DbHpG8LrlRkuvecWlfYL3RhV5ksaT6Mwf0YUlyIcm37kuAiC4X8oaHW8uMJHeAg4jGtGc/1TYX4b74Kqk8JWkHraWzDg705HPmpYnmd4miY/3RMZr37z5AZ/DfAcbcGW4k1UtV9PhtivUXY9qYgFZuyIcUjwYtPbfBLkh6b6uMCWgDznp3gitJDnZntl/iQ836ylBeiwy2YwNWHE4ygz7Pg5L2Eij6vNXmwqkAK2+6OPvj7jBoDmwt1PUbpMFhSJKUEmJQ65wBW9w5e7AUY6X1jXjwHoB/oJfEY1Xe8jYCGDLSUQFCZ/ObD62DISMzYGpPbdPM7ME5Bl8bHkM86Frmea4udySLdVDSf58NA5Yq8abWR/vzaCrgrQf8B3IsLDj93nHvAAAAAElFTkSuQmCC" class="nav__logo"/>
+            <!-- <img src="./img/bxs-dog.svg" alt="" class="nav__logo"> -->
+            <div class="nav__elements">
+                <li class="nav__li"><a href="./adoptFilter.html" class="nav__li__a">Adoptar</a></li>
+                <li class="nav__li"><a href="#" class="nav__li__a">Favoritos</a></li>
+                <li class="nav__li"><a href="#" class="nav__li__a">Formulario</a></li>
+            </div>
+        </nav>
+    </header>
     <main>
-        <button id="añadir">Prueba</button>
         <section class="adopt">
             <div class="adopt__select">
-                <h1 class="adopt__title">ADOPT</h1>
+                <h1 class="adopt__title">ADOPT ME</h1>
                 <select name="adopt__filter" id="adopt__filter" class="breed__select" onchange="changeDog()">
                     <option value="">Select the breed</option>
                 </select>
@@ -24,24 +33,25 @@
                     <p class="name"></p>
                     <div class="info__description">
                         <p class="info__p">Lifespan</p>
-                        <p class="age"></p>
+                        <p class="lifespan"></p>
                     </div>
                     <div class="info__description">
                         <p class="info__p">Temperament</p>
-                        <p class="gender"></p>
+                        <p class="temperament"></p>
                     </div>
                     <div class="info__description">
                         <p class="info__p">Height</p>
-                        <p class="size"></p>
+                        <p class="height"></p>
                     </div>
                     <div class="info__description">
                         <p class="info__p">Weight</p>
-                        <p class="breeds"></p>
+                        <p class="weight"></p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
+    <button id="añadir">Prueba</button>
     <script src="./js/filterDogs.js"></script>
 </body>
 </html>

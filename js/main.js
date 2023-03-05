@@ -46,19 +46,19 @@ const showAlldogs = (dogs) => {
                                     <p class="name">${breed}</p>
                                     <div class="info__description">
                                         <p class="info__p">Lifespan</p>
-                                        <p class="age">${lifeSpan}</p>
+                                        <p class="lifespan">${lifeSpan}</p>
                                     </div>
                                     <div class="info__description">
                                         <p class="info__p">Temperament</p>
-                                        <p class="gender">${description}</p>
+                                        <p class="temperament">${description}</p>
                                     </div>
                                     <div class="info__description">
                                         <p class="info__p">Height</p>
-                                        <p class="size">${height} cm</p>
+                                        <p class="height">${height} cm</p>
                                     </div>
                                     <div class="info__description">
                                         <p class="info__p">Weight</p>
-                                        <p class="breeds">${weight} kg</p>
+                                        <p class="weight">${weight} kg</p>
                                     </div>
                                 </div>
                             </div>

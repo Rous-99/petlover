@@ -8,6 +8,10 @@ let baseAPIUrl="https://api.thedogAPI.com/v1";
 
 let dogPhoto=document.querySelector('.dog__photo');
 let dogBreed=document.querySelector('.name');
+let lifeSpanHTML=document.querySelector('.lifespan');
+let temperamentHTML=document.querySelector('.temperament');
+let heightHTML=document.querySelector('.height');
+let weightHTML=document.querySelector('.weight');
 
 
 var myHeaders = new Headers();
@@ -49,19 +53,37 @@ const breedSelect=(dogs) =>{
    
 }   
 
-const setDog = (imageUrl, breeds) => {
-    dogPhoto.setAttribute('src', imageUrl);
-    dogBreed.innerText=breeds[0];
+const setDog = async (imageUrl) => {
+    // dogPhoto.setAttribute('src', imageUrl);
+    const response=await fetch(baseAPIUrl + `/images/${imageUrl}`,requestOptions);
+    const responseJson=await response.json();
+    let dogPhotoById=responseJson.url;
+    console.log(dogPhotoById);
+    dogPhoto.setAttribute('src', dogPhotoById);
+}
+
+const setDescription = (temperament, lifespan, height, weight) =>{
+    console.log(lifespan,weight,height,temperament);
+    lifeSpanHTML.innerText=lifespan;
+    temperamentHTML.innerText=temperament;
+    heightHTML.innerText=height + " cm";
+    weightHTML.innerText=weight + " kg";
 }
 
 
 const getDog= async (dogID) => {
-    const [data]= await fetch(baseAPIUrl + '/images/search?include_breed=1&breed_id='+ dogID)
-                        .then((data) => data.json());
-    const {url:imageUrl, breeds}=data;
-    let breed=breeds[0];
-    console.log(breed);
-    setDog(imageUrl, breed); /*SEPARAR LA INFORMACION EN OTRA FUNCION Y PASARLE LOS PARAMETROS SIGUIENDO EL VIDEO */
+    //hacemos unpacking del array
+    const response = await fetch(baseAPIUrl+`/breeds/${dogID}`, requestOptions);
+    const responseJson=await response.json();
+    console.log(responseJson);
+    let dogLifespan=responseJson.life_span;
+    let weight=responseJson["weight"].metric;
+    let height=responseJson["height"].metric;
+    let temperament=responseJson.temperament;
+    let imageID=responseJson.reference_image_id;
+    console.log(dogLifespan, weight,height,temperament,imageID);
+    setDescription(temperament,dogLifespan,height,weight);
+    setDog(imageID);   
 }
 
 
