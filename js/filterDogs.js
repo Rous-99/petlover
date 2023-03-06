@@ -33,12 +33,33 @@ const fetchDogs= async () =>{
     console.log(response); //devuelve la respuesta de la promesa
     console.log(responseJson); //devuelve la data en formato json
     breedSelect(responseJson);
+    lifeSpanSelect(responseJson);
+}
+
+const lifeSpanSelect = (dogs) => {
+    console.log("dogs loaded");
+    const lifespan=[];
+    const lifeSpanSelect=document.querySelector('#lifespan__filter');
+    console.log(lifeSpanSelect);
+    const lifespanOptions=dogs.map( dog => {
+        lifespan.push(dog.life_span);
+    })
+    console.log(lifespan);
+    const lifespanFilter=[];
+    //filtro las que se repiten
+    lifespan.forEach((item)=>{
+        if(!lifespanFilter.includes(item)){
+            lifespanFilter.push(item);
+        }
+    })
+    console.log(lifespanFilter);
+
 }
 
 const breedSelect=(dogs) =>{
     console.log("dog loaded", dogs);
     const breeds=[];
-    const select=document.querySelector('.breed__select');
+    const select=document.querySelector('#breed__filter');
     console.log(select);
     const dogsBreedsOptions=dogs.map(dog =>{
         breeds.push(dog.name);
