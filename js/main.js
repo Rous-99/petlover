@@ -68,8 +68,12 @@ const showAlldogs = (dogs) => {
 }
 
 
-let btnAllDogs=document.getElementById('showDogs');
-btnAllDogs.addEventListener("click",async () =>{
+document.addEventListener('DOMContentLoaded', async() => {
     await fetchDogs();
-});
+})
+
+// let btnAllDogs=document.getElementById('showDogs');
+// btnAllDogs.addEventListener("click",async () =>{
+//     await fetchDogs();
+// });
 
