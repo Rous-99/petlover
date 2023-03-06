@@ -6,7 +6,16 @@ const secret='aB19kPT14oQ4UdEQ42SRmUaEPh1lUqvpYFzlSpB0';
 let output="";
 let dogsContainer=document.querySelector('#dogs');
 let animalType='Dog'; //solo trabajo con la búsqueda de perros
+let indicePagina=1;
 
+
+let buttonNext=document.querySelector('.next');
+let buttonAnt=document.querySelector('.ant')
+
+buttonNext.addEventListener('click', async() => {
+    indicePagina+=1;
+    await getToken(); //funciona pero necesito que cuando cargue la siguiente pagina se borre la anterior
+})
 
 const getToken=async() =>{
     const tokenResponse= await fetch('https://api.petfinder.com/v2/oauth2/token', {
@@ -27,13 +36,14 @@ const getToken=async() =>{
 
 
 const fetchDogs= async (tokenType,tokenAcces) =>{
-   const dogsReponse= await fetch(`https://api.petfinder.com/v2/animals?page=1&type=${animalType}`,{ //devuelve un array de objetos
+   const dogsReponse= await fetch(`https://api.petfinder.com/v2/animals?type=${animalType}&location=texas&distance=50&page=${indicePagina}`,{ //devuelve un array de objetos
     headers: {
     'Authorization': tokenType + ' ' + tokenAcces,
     'Content-Type': 'application/x-www/form-urlencoded'
     }
     });
     const dogsJson=await dogsReponse.json();
+    console.log(dogsJson);
     const dogInfo=dogsJson.animals;
     console.log(dogInfo);
     showAlldogs(dogInfo);
