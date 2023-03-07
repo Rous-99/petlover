@@ -24,14 +24,33 @@
         <section class="adopt">
             <div class="adopt__select">
                 <h1 class="adopt__title">ADOPT ME</h1>
-                <select name="adopt__filter" id="breed__filter" class="breed__select" onchange="changeDog()">
-                    <option value="">Select the breed</option>
-                </select>
-                <select name="adopt__filter" id="lifespan__filter" class="breed__select" onchange="changeDog()">
-                    <option value="">Select the gender</option>
-                    <option value="Female">Female</option>
-                    <option value="Male">Male</option>
-                </select>
+                <div class="adopt__container">
+                    <div class="adopt__filter">
+                        <span><img src="./img/dog(1).png"> SIZE</span>
+                        <select name="adopt__filter" id="breed__filter" class="breed__select" onchange="changeDogBySize()">
+                            <option value="small">Small</option>
+                            <option value="medium">Medium</option>
+                            <option value="large">Large</option>
+                            <option value="xlarge">Extralarge</option>
+                        </select>
+                    </div>
+                    <div class="adopt__filter">
+                        <span><img src="./img/gender.png"> GENDER</span>
+                        <select name="adopt__filter" id="lifespan__filter" class="breed__select" onchange="changeDogByGender()">
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                        </select>
+                    </div>
+                    <div class="adopt__filter">
+                        <span><img src="./img/age.png"> AGE</span>
+                        <select name="adopt__filter" id="lifespan__filter" class="breed__select" onchange="changeDogByAge()">
+                            <option value="baby">Baby</option>
+                            <option value="young">Young</option>
+                            <option value="adult">Adult</option>
+                            <option value="senior">Senior</option>
+                        </select>
+                    </div>
+                </div>
             </div>
             <!-- <div class="dog">
                 <img class="dog__photo" src="" alt="">

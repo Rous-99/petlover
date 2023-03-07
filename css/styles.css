@@ -215,10 +215,16 @@ body{
     height: 100%;
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction:column;
     justify-content: center;
     align-content: center;
     gap: 10px;
+}
+
+.adopt__container{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
 .adopt__title{
@@ -226,6 +232,18 @@ body{
     font-family: 'Poppins',sans-serif;
     font-size: 4rem;
     text-align: center;
+}
+
+.adopt__filter{
+    /* background-color: #68c0c3; */
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    gap: 15px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    letter-spacing: .2rem;
+    font-size: 1.4rem;
 }
 
 .breed__select{
