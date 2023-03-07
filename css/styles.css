@@ -246,7 +246,21 @@ body{
     font-size: 1.4rem;
 }
 
-.breed__select{
+.filter__title{
+    /* background-color: #68c0c3; */
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.filter__span{
+    font-size: 1.7rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+}
+
+
+.dog__select{
     width: 250px;
     height: 50px;
     padding: 10px;
@@ -254,11 +268,27 @@ body{
     color: white;
     border-radius: 5px;
     text-transform: uppercase;
-    font-family: 'Raleway', sans-serif;
-    font-size: .7rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size:1rem;
     font-weight: 900;
     align-self: center;
 }
+
+/*AÑADIR ESTILOS DE LAS OPCIONES, NO FUNCIONA, CREO QUE HAY QUE PONER CLASE A TODAS LAS ETIQUETAS OPTION*/
+/* .dog__select option{
+    font-family: 'Montserrat', sans-serif;
+    font-size:1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.dog__select option:hover{
+    font-family: 'Montserrat', sans-serif;
+    font-size:1.4rem;
+    background-color: black;
+    font-weight: 400;
+    text-transform: uppercase;
+} */
 
 .hide{
     display: none;
