@@ -95,6 +95,56 @@ const showFilterDogs = (filterDogs) =>{
     })
 
 }
+//sin terminar
+const breedOptions=async() =>{
+    let newToken=await getToken();
+    const tokenType=tokenJson.token_type;
+    const tokenAcces=tokenJson.access_token;
+    const tokenExpires=tokenJson.expires_in;
+    const dogsReponse= await fetch(`https://api.petfinder.com/v2/animals?type=${animalType}&location=texas&distance=50&page=${indicePagina}`,{ //devuelve un array de objetos
+    headers: {
+    'Authorization': tokenType + ' ' + tokenAcces,
+    'Content-Type': 'application/x-www/form-urlencoded'
+    }
+    }); //son 7 páginas y 130 perros en total
+    const dogsJson=await dogsReponse.json();
+    console.log(dogsJson);
+    // const breeds=[];
+    const selectBreed=document.querySelector('#breed__filter');
+    console.log(selectBreed);
+
+
+    // const Breedptions=dogsJson.map( dog => {
+    //     lifespan.push(dog.life_span);
+    // })
+    
+    const breed=[];
+    //filtro las que se repiten
+    dogsJson.forEach((page)=>{
+        page.forEach((dog) =>{
+            if(!lifespanFilter.includes(item)){
+                lifespanFilter.push(item);
+            }
+        })
+    })
+    console.log(lifespanFilter);
+
+
+    // const dogsBreedsOptions=dogs.map(dog =>{
+    //     breeds.push(dog.name);
+    //     const breedOption=document.createElement('option');
+    //     breedOption.textContent=dog.name;
+    //     breedOption.value=dog.id; /*asi podemos acceder al objeto perro por la id */
+    //     return breedOption;
+    // })
+    // console.log(dogsBreedsOptions);
+    // console.log("razas",breeds);
+    // dogsBreedsOptions.forEach(option => {
+    //     select.appendChild(option);
+    // })
+   
+}   
+
 
 const filterDogsByAge = async(age) =>{
     console.log("desde la funcion",age);
@@ -218,7 +268,7 @@ const changeDogByAge = () => {
     filterDogsByAge(event.target.value);
 }
 //get the breeds when the page has loaded
-// document.addEventListener('DOMContentLoaded', async() => {
-//     await fetchDogs();
-//     // dogsContainer.classList.add('hide');
-// })
+document.addEventListener('DOMContentLoaded', async() => {
+    await breedOptions();
+    // dogsContainer.classList.add('hide');
+})

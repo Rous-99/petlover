@@ -274,21 +274,9 @@ body{
     align-self: center;
 }
 
+ 
 /*AÑADIR ESTILOS DE LAS OPCIONES, NO FUNCIONA, CREO QUE HAY QUE PONER CLASE A TODAS LAS ETIQUETAS OPTION*/
-/* .dog__select option{
-    font-family: 'Montserrat', sans-serif;
-    font-size:1rem;
-    font-weight: 400;
-    text-transform: uppercase;
-}
-
-.dog__select option:hover{
-    font-family: 'Montserrat', sans-serif;
-    font-size:1.4rem;
-    background-color: black;
-    font-weight: 400;
-    text-transform: uppercase;
-} */
+/*mirar en task una pagina que lo explica*/
 
 .hide{
     display: none;

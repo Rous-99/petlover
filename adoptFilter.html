@@ -30,7 +30,7 @@
                             <img src="./img/dog(1).png">
                             <span class="filter__span"> SIZE</span>
                         </div>
-                        <select name="adopt__filter" id="breed__filter" class="dog__select" onchange="changeDogBySize()">
+                        <select name="adopt__filter" id="size__filter" class="dog__select" onchange="changeDogBySize()">
                             <option value="small">Small</option>
                             <option value="medium">Medium</option>
                             <option value="large">Large</option>
@@ -42,7 +42,7 @@
                             <img src="./img/gender.png">
                             <span class="filter__span"> GENDER</span>
                         </div>
-                        <select name="adopt__filter" id="lifespan__filter" class="dog__select" onchange="changeDogByGender()">
+                        <select name="adopt__filter" id="gender_filter" class="dog__select" onchange="changeDogByGender()">
                             <option value="Female">Female</option>
                             <option value="Male">Male</option>
                         </select>
@@ -52,11 +52,19 @@
                             <img src="./img/age.png">
                             <span class="filter__span"> AGE</span>
                         </div>
-                        <select name="adopt__filter" id="lifespan__filter" class="dog__select" onchange="changeDogByAge()">
+                        <select name="adopt__filter" id="age__filter" class="dog__select" onchange="changeDogByAge()">
                             <option value="baby">Baby</option>
                             <option value="young">Young</option>
                             <option value="adult">Adult</option>
                             <option value="senior">Senior</option>
+                        </select>
+                    </div>
+                    <div class="adopt__filter">
+                        <div class="filter__title">
+                            <img src="./img/age.png">
+                            <span class="filter__span"> BREED</span>
+                        </div>
+                        <select name="adopt__filter" id="breed__filter" class="dog__select" onchange="changeDogByBreed()">
                         </select>
                     </div>
                 </div>
