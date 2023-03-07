@@ -27,8 +27,10 @@
                 <select name="adopt__filter" id="breed__filter" class="breed__select" onchange="changeDog()">
                     <option value="">Select the breed</option>
                 </select>
-                <select name="adopt__filter" id="lifespan__filter" class="breed__select">
-                    <option value="">Select the lifespan</option>
+                <select name="adopt__filter" id="lifespan__filter" class="breed__select" onchange="changeDog()">
+                    <option value="">Select the gender</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
                 </select>
             </div>
             <!-- <div class="dog">
@@ -56,6 +58,6 @@
             <div id="dogs"></div>
         </section>
     </main>
-    <script src="./js/filterDogs.js"></script>
+    <script src="./js/filterDogs copy.js"></script>
 </body>
 </html>

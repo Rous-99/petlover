@@ -41,7 +41,7 @@ const fetchDogs= async (tokenType,tokenAcces) =>{
     'Authorization': tokenType + ' ' + tokenAcces,
     'Content-Type': 'application/x-www/form-urlencoded'
     }
-    });
+    }); //son 7 páginas y 133 perros en total
     const dogsJson=await dogsReponse.json();
     console.log(dogsJson);
     const dogInfo=dogsJson.animals;
