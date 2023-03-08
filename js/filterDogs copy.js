@@ -58,6 +58,15 @@ const showFilterDogs = (filterDogs) =>{
                         let photo=dog['primary_photo_cropped'].large;
                         let age=dog.age;
                         let breed=dog['breeds'].primary;
+                        let mixed=dog['breeds'].mixed;
+                        console.log(mixed);
+                        let mixedValue="";
+                        if (mixed===true){
+                            mixedValue="Yes";
+                        }else{
+                            mixedValue="No";
+                        }
+            
                         let gender=dog.gender;
                         let Name=dog.name;
                         let size=dog.size;
@@ -86,6 +95,10 @@ const showFilterDogs = (filterDogs) =>{
                                     <p class="info__p">Size</p>
                                     <p class="weight">${size}</p>
                                 </div>
+                                <div class="info__description">
+                                    <p class="info__p">Mixed</p>
+                                    <p class="weight">${mixedValue}</p>
+                                </div>
                             </div>
                         </div>
                         `
@@ -101,50 +114,59 @@ const breedOptions=async() =>{
     const tokenType=tokenJson.token_type;
     const tokenAcces=tokenJson.access_token;
     const tokenExpires=tokenJson.expires_in;
-    const dogsReponse= await fetch(`https://api.petfinder.com/v2/animals?type=${animalType}&location=texas&distance=50&page=${indicePagina}`,{ //devuelve un array de objetos
-    headers: {
-    'Authorization': tokenType + ' ' + tokenAcces,
-    'Content-Type': 'application/x-www/form-urlencoded'
-    }
-    }); //son 7 páginas y 130 perros en total
-    const dogsJson=await dogsReponse.json();
-    console.log(dogsJson);
-    // const breeds=[];
     const selectBreed=document.querySelector('#breed__filter');
     console.log(selectBreed);
-
-
-    // const Breedptions=dogsJson.map( dog => {
-    //     lifespan.push(dog.life_span);
-    // })
-    
     const breed=[];
-    //filtro las que se repiten
-    dogsJson.forEach((page)=>{
-        page.forEach((dog) =>{
-            if(!lifespanFilter.includes(item)){
-                lifespanFilter.push(item);
+    //son 7 paginas
+    for(let indexPage=1;indexPage<=7; indexPage++){
+        const dogsReponse= await fetch(`https://api.petfinder.com/v2/animals?type=${animalType}&location=texas&distance=50&page=${indexPage}`,{ //devuelve un array de objetos
+         headers: {
+            'Authorization': tokenType + ' ' + tokenAcces,
+            'Content-Type': 'application/x-www/form-urlencoded'
+        }
+        }); //son 7 páginas y 130 perros en total
+        const dogsJson=await dogsReponse.json();
+        console.log(dogsJson);
+        const dogsOnly=dogsJson["animals"];
+        console.log(dogsOnly);
+        dogsOnly.forEach((dog)=>{
+            // console.log(dog);
+            if(dog.photos.length>0) {//si tiene foto 
+                let dogBreed=dog["breeds"].primary;
+                if(!breed.includes(dogBreed)){
+                    breed.push(dogBreed);
+                }
             }
+          
         })
+    }
+
+    console.log(breed); //me salen 29 razas
+
+    breed.forEach(breed => {
+        const option=document.createElement('option');
+        option.innerText=breed;
+        option.value=breed;
+        selectBreed.appendChild(option);
     })
-    console.log(lifespanFilter);
-
-
-    // const dogsBreedsOptions=dogs.map(dog =>{
-    //     breeds.push(dog.name);
-    //     const breedOption=document.createElement('option');
-    //     breedOption.textContent=dog.name;
-    //     breedOption.value=dog.id; /*asi podemos acceder al objeto perro por la id */
-    //     return breedOption;
-    // })
-    // console.log(dogsBreedsOptions);
-    // console.log("razas",breeds);
-    // dogsBreedsOptions.forEach(option => {
-    //     select.appendChild(option);
-    // })
-   
 }   
 
+const filterDogsByBreed = async(breed) => {
+    console.log("desde la funcion",breed);
+    let currentPage=1;
+    let filterDogs=[];
+    let dogJson=await getDogByBreed(breed, currentPage)
+    // console.log(dogsJson);
+    let numPag=dogsJson["pagination"].total_pages;
+    console.log(numPag);
+    for(let indPag=1;indPag<=numPag;indPag++){
+        let dogJson=await getDogByBreed(breed, indPag);
+        console.log(dogsJson);
+        filterDogs.push(dogJson["animals"]);
+    }
+    console.log(filterDogs);
+    showFilterDogs(filterDogs); 
+}
 
 const filterDogsByAge = async(age) =>{
     console.log("desde la funcion",age);
@@ -250,6 +272,22 @@ const getDogByGender= async(gender,currentPage) =>{
     return dogsJson=await dogsReponse.json();
 }  
 
+const getDogByBreed = async(breed,currentPage) => {
+    let newToken=await getToken();
+    // console.log("token del fetch",newToken);
+    const tokenType=tokenJson.token_type;
+    const tokenAcces=tokenJson.access_token;
+    const tokenExpires=tokenJson.expires_in;
+    console.log(tokenType,tokenAcces,tokenExpires);
+    const dogsReponse= await fetch(`https://api.petfinder.com/v2/animals?type=${animalType}&breed=${breed}&location=texas&distance=50&page=${currentPage}`,{ //devuelve un array de objetos
+     headers: {
+     'Authorization': tokenType + ' ' + tokenAcces,
+     'Content-Type': 'application/x-www/form-urlencoded'
+     }
+    }); //son 7 páginas y 133 perros en total
+
+    return dogsJson=await dogsReponse.json();
+}
 
 const changeDogByGender = () => {
     //AÑADIR ALGO QUE RESETEE EL CONTENEDOR DOGS PARA QUE NO SE AÑADAN DEBAJO LOS NUEVOS FILTROS
@@ -267,8 +305,13 @@ const changeDogByAge = () => {
     console.log(event.target.value);
     filterDogsByAge(event.target.value);
 }
+
+const changeDogByBreed = () => {
+    console.log(event.target.value);
+    filterDogsByBreed(event.target.value);
+}
 //get the breeds when the page has loaded
 document.addEventListener('DOMContentLoaded', async() => {
-    await breedOptions();
+    await breedOptions(); //SOLUCIONAR EL TIEMPO DE ESPERA
     // dogsContainer.classList.add('hide');
 })
