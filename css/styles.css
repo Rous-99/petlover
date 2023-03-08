@@ -205,10 +205,12 @@ body{
 /*---------------------------ADOPT PAGE HTML -----------------------------------------------------*/
 
 .adopt{
-    height: 40vh;
+    height: 60vh;
     width: 100vw;
     background-color: var(--var-color5);
 }
+
+
 
 .adopt__select{
     /* background-color: #727b7b; */
@@ -275,6 +277,28 @@ body{
     align-self: center;
 }
 
+.btn__container{
+    /* background-color: #68c0c3; */
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.btn__filterAll{
+    margin: 20px 0;
+    background-color: var(--var-color4);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 200px;
+    height: 60px;
+    cursor: pointer;
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1rem;
+
+}
  
 /*AÑADIR ESTILOS DE LAS OPCIONES, NO FUNCIONA, CREO QUE HAY QUE PONER CLASE A TODAS LAS ETIQUETAS OPTION*/
 /*mirar en task una pagina que lo explica*/

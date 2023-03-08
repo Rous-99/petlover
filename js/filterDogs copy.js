@@ -41,6 +41,13 @@ const getToken=async() =>{
 //      console.log(dogInfo);
 // }
 
+const clearDiv= () =>{
+    let pruebaDiv=document.querySelector('.prueba');
+    console.log(pruebaDiv)
+    pruebaDiv.innerHTML='bye';
+    let dogs=document.querySelector('#dogs');
+    dogs.innerHTML='';
+}
 
 const showFilterDogs = (filterDogs) =>{
     console.log("perros filtrados", filterDogs);
@@ -150,6 +157,68 @@ const breedOptions=async() =>{
     })
 }   
 
+const showDogsByMixed = (dogs) =>{
+    dogs.forEach(dog =>{
+        if(dog.photos.length>0){
+            let dogID=dog.url;
+            let photo=dog['primary_photo_cropped'].large;
+            let age=dog.age;
+            let breed=dog['breeds'].primary;
+            let mixed=dog['breeds'].mixed;
+            let breed2="";
+            console.log(mixed);
+            let mixedValue="";
+            if (mixed===true){
+                mixedValue="Yes";
+                breed2=dog['breeds'].secondary;
+                if (breed2===null){
+                    breed2="";
+                }
+            }else{
+                mixedValue="No";
+            }
+
+            let gender=dog.gender;
+            let Name=dog.name;
+            let size=dog.size;
+            let description=dog["tags"];
+            console.log(dog);
+            console.log(dogID,photo,age,breed,gender,Name,description, size); 
+
+            output+=`
+            <div class="dog">
+                <img class="dog__photo" src="${photo}" alt="">
+                <div class="dog__info">
+                    <p class="name">${Name}</p>
+                    <div class="info__description">
+                        <p class="info__p">Age</p>
+                        <p class="lifespan">${age}</p>
+                    </div>
+                    <div class="info__description">
+                        <p class="info__p">Breed</p>
+                        <p class="breed">${breed}</p>
+                        <p class="breed">${breed2}</p>
+                    </div>
+                    <div class="info__description">
+                        <p class="info__p">Gender</p>
+                        <p class="height">${gender}</p>
+                    </div>
+                    <div class="info__description">
+                        <p class="info__p">Size</p>
+                        <p class="weight">${size}</p>
+                    </div>
+                    <div class="info__description">
+                        <p class="info__p">Mixed</p>
+                        <p class="weight">${mixedValue}</p>
+                    </div>
+                </div>
+            </div>
+            `
+            dogsContainer.innerHTML=output;
+        }   
+    });
+}
+
 const filterDogsByMixed= async (option) =>{
     let newToken=await getToken();
     const tokenType=tokenJson.token_type;
@@ -170,7 +239,7 @@ const filterDogsByMixed= async (option) =>{
         console.log(dogsOnly);
         dogsOnly.forEach((dog)=>{
             // console.log(dog);
-            if(dog['bredds'].mixed===true) {//si tiene foto 
+            if(dog['breeds'].mixed===true) {//si tiene foto 
                mixed.push(dog);
             }
             else{
@@ -180,8 +249,13 @@ const filterDogsByMixed= async (option) =>{
         });
     }
     //añadir el codigo para que si la opcion es mixed enseñe esos perros que estan en el array mixed, y si es la otra opcion muestre los otros perros.
-    console.log(mixed);
-    console.log(nomixed);
+    console.log("mixed",mixed);
+    console.log("no mixed",nomixed);
+    if(option==="mixed"){
+        showDogsByMixed(mixed);
+    }else{
+        showDogsByMixed(nomixed);
+    }
        
 }
 
@@ -325,6 +399,7 @@ const getDogByBreed = async(breed,currentPage) => {
 
 const changeDogByGender = () => {
     //AÑADIR ALGO QUE RESETEE EL CONTENEDOR DOGS PARA QUE NO SE AÑADAN DEBAJO LOS NUEVOS FILTROS
+    clearDiv();
     console.log(event.target.value);
     filterDogsByGender(event.target.value);
     // dogsContainer.classList.remove('hide');//cuando cargue la primera selección ya no necesito esconderlo
@@ -347,9 +422,20 @@ const changeDogByBreed = () => {
 
 const changeDogByMixed = () => {
     console.log(event.target.value);
+    // clearDiv();
+    filterDogsByMixed(event.target.value);
 }
 //get the breeds when the page has loaded
 document.addEventListener('DOMContentLoaded', async() => {
     await breedOptions(); //SOLUCIONAR EL TIEMPO DE ESPERA
     // dogsContainer.classList.add('hide');
 })
+
+let genderSelect=document.querySelector('#gender_filter');
+// genderSelect.addEventListener("change", () => {
+//     let pruebaDiv=document.querySelector('.prueba');
+//     console.log(pruebaDiv)
+//     pruebaDiv.innerHTML='';
+//     let dogs=document.querySelector('#dogs');
+//     dogs.innerHTML='';
+// })
