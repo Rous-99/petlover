@@ -59,10 +59,15 @@ const showAlldogs = (dogs) => {
             let age=dog.age;
             let breed=dog['breeds'].primary;
             let mixed=dog['breeds'].mixed;
+            let breed2="";
             console.log(mixed);
             let mixedValue="";
             if (mixed===true){
                 mixedValue="Yes";
+                breed2=dog['breeds'].secondary;
+                if (breed2===null){
+                    breed2="";
+                }
             }else{
                 mixedValue="No";
             }
@@ -84,7 +89,9 @@ const showAlldogs = (dogs) => {
                     </div>
                     <div class="info__description">
                         <p class="info__p">Breed</p>
-                        <p class="temperament">${breed}</p>
+                        <p class="breed">${breed}</p>
+                        <p class="breed">${breed2}</p>
+
                     </div>
                     <div class="info__description">
                         <p class="info__p">Gender</p>
