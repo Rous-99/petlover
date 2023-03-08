@@ -58,6 +58,14 @@ const showAlldogs = (dogs) => {
             let photo=dog['primary_photo_cropped'].large;
             let age=dog.age;
             let breed=dog['breeds'].primary;
+            let mixed=dog['breeds'].mixed;
+            console.log(mixed);
+            let mixedValue="";
+            if (mixed===true){
+                mixedValue="Yes";
+            }else{
+                mixedValue="No";
+            }
             let gender=dog.gender;
             let Name=dog.name;
             let size=dog.size;
@@ -85,6 +93,10 @@ const showAlldogs = (dogs) => {
                     <div class="info__description">
                         <p class="info__p">Size</p>
                         <p class="weight">${size}</p>
+                    </div>
+                    <div class="info__description">
+                        <p class="info__p">Mixed</p>
+                        <p class="weight">${mixedValue}</p>
                     </div>
                 </div>
             </div>
