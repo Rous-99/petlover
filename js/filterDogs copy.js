@@ -1,12 +1,14 @@
 
+
 console.log("start");
 const key='yCTWxvIK9RPRLhRxrjefKcqgcfn2gy3scxvQ8omqd18Pw9QpMO';
 const secret='aB19kPT14oQ4UdEQ42SRmUaEPh1lUqvpYFzlSpB0';
 
 let animalType='Dog'; //solo trabajo con la búsqueda de perros
-let dogsContainer=document.querySelector('#dogs');
+// let dogsContainer=document.querySelector('#dogs');
+// let pruebaDiv=document.querySelector('.prueba');
 let indicePagina=1;
-let output="";
+// let output="";
 
 
 
@@ -22,35 +24,28 @@ const getToken=async() =>{
 }
 
 
-// const fetchDogs= async () =>{ //CREO QUE AQUI SOBRA
-//     let newToken=await getToken();
-//     console.log("token del fetch",newToken);
-//     const tokenType=tokenJson.token_type;
-//     const tokenAcces=tokenJson.access_token;
-//     const tokenExpires=tokenJson.expires_in;
-//     console.log(tokenType,tokenAcces,tokenExpires);
-//     const dogsReponse= await fetch(`https://api.petfinder.com/v2/animals?type=${animalType}&location=texas&distance=50&page=${indicePagina}`,{ //devuelve un array de objetos
-//      headers: {
-//      'Authorization': tokenType + ' ' + tokenAcces,
-//      'Content-Type': 'application/x-www/form-urlencoded'
-//      }
-//      }); //son 7 páginas y 133 perros en total
-//      const dogsJson=await dogsReponse.json();
-//      console.log(dogsJson);
-//      const dogInfo=dogsJson.animals;
-//      console.log(dogInfo);
-// }
+
 
 const clearDiv= () =>{
     let pruebaDiv=document.querySelector('.prueba');
-    console.log(pruebaDiv)
-    pruebaDiv.innerHTML='bye';
-    let dogs=document.querySelector('#dogs');
-    dogs.innerHTML='';
+    // console.log(pruebaDiv)
+    // pruebaDiv.innerHTML='bye';
+    // let dogsContainer=document.querySelector('#dogs');
+    // dogsContainer.innerHTML='';
+    // $("#dogs").empty();
 }
 
 const showFilterDogs = (filterDogs) =>{
+    let dogsContainer=document.querySelector('#dogs');
+    let pruebaDiv=document.querySelector('.prueba');
+    let output="";
     console.log("perros filtrados", filterDogs);
+    console.log(pruebaDiv);
+    console.log(dogsContainer);
+    dogsContainer.innerText='';
+    pruebaDiv.innerHTML='';
+    console.log(pruebaDiv);
+    console.log(dogsContainer);
     filterDogs.forEach(page => {
         page.forEach(dog => {
             if(dog.photos.length>0){
@@ -259,83 +254,14 @@ const filterDogsByMixed= async (option) =>{
        
 }
 
-const filterDogsByBreed = async(breed) => {
-    console.log("desde la funcion",breed);
-    let currentPage=1;
-    let filterDogs=[];
-    let dogJson=await getDogByBreed(breed, currentPage)
-    // console.log(dogsJson);
-    let numPag=dogsJson["pagination"].total_pages;
-    console.log(numPag);
-    for(let indPag=1;indPag<=numPag;indPag++){
-        let dogJson=await getDogByBreed(breed, indPag);
-        console.log(dogsJson);
-        filterDogs.push(dogJson["animals"]);
-    }
-    console.log(filterDogs);
-    showFilterDogs(filterDogs); 
-}
-
-const filterDogsByAge = async(age) =>{
-    console.log("desde la funcion",age);
-    let currentPage=1;
-    let filterDogs=[];
-    let dogJson=await getDogByAge(age, currentPage)
-    // console.log(dogsJson);
-    let numPag=dogsJson["pagination"].total_pages;
-    console.log(numPag);
-    for(let indPag=1;indPag<=numPag;indPag++){
-        let dogJson=await getDogByAge(age, indPag);
-        console.log(dogsJson);
-        filterDogs.push(dogJson["animals"]);
-    }
-    console.log(filterDogs);
-    showFilterDogs(filterDogs); 
-}
- 
-
-const filterDogsBySize = async(size) =>{
-    console.log("desde la funcion",size);
-    let currentPage=1;
-    let filterDogs=[];
-    let dogJson=await getDogBySize(size, currentPage)
-    // console.log(dogsJson);
-    let numPag=dogsJson["pagination"].total_pages;
-    console.log(numPag);
-    for(let indPag=1;indPag<=numPag;indPag++){
-        let dogJson=await getDogBySize(size, indPag);
-        console.log(dogsJson);
-        filterDogs.push(dogJson["animals"]);
-    }
-    console.log(filterDogs);
-    showFilterDogs(filterDogs); 
-}
- 
-const filterDogsByGender= async (gender) => {
-    console.log("desde la funcion",gender);
-    let currentPage=1;
-    let filterDogs=[];
-    let dogJson=await getDogByGender(gender, currentPage)
-    console.log(dogsJson);
-    let numPag=dogsJson["pagination"].total_pages;
-    console.log(numPag);
-    for(let indPag=1;indPag<=numPag;indPag++){
-        let dogJson=await getDogByGender(gender, indPag);
-        console.log(dogsJson);
-        filterDogs.push(dogJson["animals"]);
-    }
-    console.log(filterDogs);
-    showFilterDogs(filterDogs);
-}
-
-const getDogByAge= async(age,currentPage) =>{
+const getDogByFilter= async(valueFilter,paramSearch,currentPage) =>{
     let newToken=await getToken();
     // console.log("token del fetch",newToken);
     const tokenType=tokenJson.token_type;
     const tokenAcces=tokenJson.access_token;
     const tokenExpires=tokenJson.expires_in;
     console.log(tokenType,tokenAcces,tokenExpires);
-    const dogsReponse= await fetch(`https://api.petfinder.com/v2/animals?type=${animalType}&age=${age}&location=texas&distance=50&page=${currentPage}`,{ //devuelve un array de objetos
+    const dogsReponse= await fetch(`https://api.petfinder.com/v2/animals?type=${animalType}&${paramSearch}=${valueFilter}&location=texas&distance=50&page=${currentPage}`,{ //devuelve un array de objetos
      headers: {
      'Authorization': tokenType + ' ' + tokenAcces,
      'Content-Type': 'application/x-www/form-urlencoded'
@@ -345,79 +271,44 @@ const getDogByAge= async(age,currentPage) =>{
     return dogsJson=await dogsReponse.json();
 }  
 
-
-const getDogBySize= async(size,currentPage) =>{
-    let newToken=await getToken();
-    // console.log("token del fetch",newToken);
-    const tokenType=tokenJson.token_type;
-    const tokenAcces=tokenJson.access_token;
-    const tokenExpires=tokenJson.expires_in;
-    console.log(tokenType,tokenAcces,tokenExpires);
-    const dogsReponse= await fetch(`https://api.petfinder.com/v2/animals?type=${animalType}&size=${size}&location=texas&distance=50&page=${currentPage}`,{ //devuelve un array de objetos
-     headers: {
-     'Authorization': tokenType + ' ' + tokenAcces,
-     'Content-Type': 'application/x-www/form-urlencoded'
-     }
-    }); //son 7 páginas y 133 perros en total
-
-    return dogsJson=await dogsReponse.json();
-}  
-
-const getDogByGender= async(gender,currentPage) =>{
-    let newToken=await getToken();
-    // console.log("token del fetch",newToken);
-    const tokenType=tokenJson.token_type;
-    const tokenAcces=tokenJson.access_token;
-    const tokenExpires=tokenJson.expires_in;
-    console.log(tokenType,tokenAcces,tokenExpires);
-    const dogsReponse= await fetch(`https://api.petfinder.com/v2/animals?type=${animalType}&gender=${gender}&location=texas&distance=50&page=${currentPage}`,{ //devuelve un array de objetos
-     headers: {
-     'Authorization': tokenType + ' ' + tokenAcces,
-     'Content-Type': 'application/x-www/form-urlencoded'
-     }
-    }); //son 7 páginas y 133 perros en total
-
-    return dogsJson=await dogsReponse.json();
-}  
-
-const getDogByBreed = async(breed,currentPage) => {
-    let newToken=await getToken();
-    // console.log("token del fetch",newToken);
-    const tokenType=tokenJson.token_type;
-    const tokenAcces=tokenJson.access_token;
-    const tokenExpires=tokenJson.expires_in;
-    console.log(tokenType,tokenAcces,tokenExpires);
-    const dogsReponse= await fetch(`https://api.petfinder.com/v2/animals?type=${animalType}&breed=${breed}&location=texas&distance=50&page=${currentPage}`,{ //devuelve un array de objetos
-     headers: {
-     'Authorization': tokenType + ' ' + tokenAcces,
-     'Content-Type': 'application/x-www/form-urlencoded'
-     }
-    }); //son 7 páginas y 133 perros en total
-
-    return dogsJson=await dogsReponse.json();
+const filterDogs = async(valueFilter, paramSearch) =>{
+    console.log("desde la funcion",valueFilter);
+    let currentPage=1;
+    let filterDogs=[];
+    let dogJson=await getDogByFilter(valueFilter,paramSearch,currentPage)
+    // console.log(dogsJson);
+    let numPag=dogsJson["pagination"].total_pages;
+    console.log(numPag);
+    for(let indPag=1;indPag<=numPag;indPag++){
+        let dogJson=await getDogByFilter(valueFilter,paramSearch,indPag);
+        console.log(dogsJson);
+        filterDogs.push(dogJson["animals"]);
+    }
+    console.log(filterDogs);
+    showFilterDogs(filterDogs); 
 }
 
 const changeDogByGender = () => {
-    //AÑADIR ALGO QUE RESETEE EL CONTENEDOR DOGS PARA QUE NO SE AÑADAN DEBAJO LOS NUEVOS FILTROS
-    clearDiv();
+    //AÑADIR AL    
+    // clearDiv();
     console.log(event.target.value);
-    filterDogsByGender(event.target.value);
+    filterDogs(event.target.value,"gender");
     // dogsContainer.classList.remove('hide');//cuando cargue la primera selección ya no necesito esconderlo
 }
 
 const changeDogBySize = () => {
     console.log(event.target.value);
-    filterDogsBySize(event.target.value);
+    filterDogs(event.target.value, "size");
 }
 
 const changeDogByAge = () => {
     console.log(event.target.value);
-    filterDogsByAge(event.target.value);
+    filterDogs(event.target.value, "age");
 }
 
 const changeDogByBreed = () => {
     console.log(event.target.value);
-    filterDogsByBreed(event.target.value);
+    filterDogs(event.target.value, "breed");
 }
 
 const changeDogByMixed = () => {
