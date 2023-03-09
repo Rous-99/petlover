@@ -277,6 +277,12 @@ body{
     align-self: center;
 }
 
+.btns__container{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
 .btn__container{
     /* background-color: #68c0c3; */
     display: flex;

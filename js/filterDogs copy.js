@@ -9,6 +9,11 @@ let animalType='Dog'; //solo trabajo con la búsqueda de perros
 // let pruebaDiv=document.querySelector('.prueba');
 let indicePagina=1;
 // let output="";
+let btnFilterCategory=document.querySelector("#btn__category");
+let btnFilterAll=document.querySelector("#btn__all");
+let btnSize=document.querySelector(".btn__size");
+console.log(btnSize);
+console.log(btnFilterAll);
 
 
 
@@ -42,7 +47,7 @@ const showFilterDogs = (filterDogs) =>{
     console.log("perros filtrados", filterDogs);
     console.log(pruebaDiv);
     console.log(dogsContainer);
-    dogsContainer.innerText='';
+    dogsContainer.innerHTML='';
     pruebaDiv.innerHTML='';
     console.log(pruebaDiv);
     console.log(dogsContainer);
@@ -55,7 +60,7 @@ const showFilterDogs = (filterDogs) =>{
                         let breed=dog['breeds'].primary;
                         let mixed=dog['breeds'].mixed;
                         let breed2="";
-                        console.log(mixed);
+                        // console.log(mixed);
                         let mixedValue="";
                         if (mixed===true){
                             mixedValue="Yes";
@@ -71,8 +76,8 @@ const showFilterDogs = (filterDogs) =>{
                         let Name=dog.name;
                         let size=dog.size;
                         let description=dog["tags"];
-                        console.log(dog);
-                        console.log(dogID,photo,age,breed,gender,Name,description, size); 
+                        // console.log(dog);
+                        // console.log(dogID,photo,age,breed,gender,Name,description, size); 
             
                         output+=`
                         <div class="dog">
@@ -153,6 +158,9 @@ const breedOptions=async() =>{
 }   
 
 const showDogsByMixed = (dogs) =>{
+    let dogsContainer=document.querySelector('#dogs');
+    let output="";
+    dogsContainer.innerHTML='';
     dogs.forEach(dog =>{
         if(dog.photos.length>0){
             let dogID=dog.url;
@@ -281,40 +289,59 @@ const filterDogs = async(valueFilter, paramSearch) =>{
     console.log(numPag);
     for(let indPag=1;indPag<=numPag;indPag++){
         let dogJson=await getDogByFilter(valueFilter,paramSearch,indPag);
-        console.log(dogsJson);
+        // console.log(dogsJson);
         filterDogs.push(dogJson["animals"]);
     }
     console.log(filterDogs);
     showFilterDogs(filterDogs); 
 }
 
+// let btnSize=document.querySelector("#btn__size");
+// console.log(btnSize);
+
 const changeDogByGender = () => {
     //AÑADIR AL    
     // clearDiv();
-    console.log(event.target.value);
-    filterDogs(event.target.value,"gender");
+    let gender=event.target.value;
+    console.log("gender selected was", gender);
+    btnFilterCategory.addEventListener("click",()=>{
+        filterDogs(gender,"gender")
+    });
     // dogsContainer.classList.remove('hide');//cuando cargue la primera selección ya no necesito esconderlo
 }
 
 const changeDogBySize = () => {
-    console.log(event.target.value);
-    filterDogs(event.target.value, "size");
+    let size=event.target.value;
+    console.log("size was selected", size);
+    btnSize.addEventListener("click",()=>{
+        filterDogs(size,"size")
+    });
 }
 
 const changeDogByAge = () => {
-    console.log(event.target.value);
-    filterDogs(event.target.value, "age");
+    let age=event.target.value;
+    console.log("age was selected",age);
+    btnFilterCategory.addEventListener("click",()=>{
+        filterDogs(age,"age")
+    });
 }
 
 const changeDogByBreed = () => {
-    console.log(event.target.value);
-    filterDogs(event.target.value, "breed");
+    let breed=event.target.value;
+    console.log("breed was selected", breed);
+    btnFilterCategory.addEventListener("click",()=>{
+        filterDogs(breed,"breed")
+    });
 }
 
 const changeDogByMixed = () => {
+    let mixed=event.target.value;
     console.log(event.target.value);
     // clearDiv();
-    filterDogsByMixed(event.target.value);
+    btnFilterCategory.addEventListener("click",()=>{
+        filterDogsByMixed(mixed);
+    });
+    
 }
 //get the breeds when the page has loaded
 document.addEventListener('DOMContentLoaded', async() => {
