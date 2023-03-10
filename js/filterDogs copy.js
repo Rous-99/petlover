@@ -15,10 +15,12 @@ let btnSize=document.querySelector(".btn__size");
 let btnGender=document.querySelector(".btn__gender");
 let btnAge=document.querySelector('.btn__age');
 let btnMixed=document.querySelector('.btn__mixed');
+let btnBreed=document.querySelector('.btn__breed');
 console.log(btnSize);
 console.log(btnGender);
 console.log(btnAge);
 console.log(btnMixed);
+console.log(btnBreed);
 console.log(btnFilterAll);
 
 
@@ -53,11 +55,8 @@ const showFilterDogs = (filterDogs) =>{
     let pruebaDiv=document.querySelector('.prueba');
     let output="";
     console.log("perros filtrados", filterDogs);
-    console.log(pruebaDiv);
     console.log(dogsContainer);
     dogsContainer.innerHTML='';
-    pruebaDiv.innerHTML='';
-    console.log(pruebaDiv);
     console.log(dogsContainer);
     filterDogs.forEach(page => {
         page.forEach(dog => {
@@ -156,14 +155,30 @@ const breedOptions=async() =>{
     }
 
     console.log(breed); //me salen 29 razas
+    localStorage.setItem('razas', JSON.stringify(breed));
+    let listaRazas=localStorage.getItem('razas');
+    console.log(listaRazas);
+    // breed.forEach(breed => {
+    //     const option=document.createElement('option');
+    //     option.innerText=breed;
+    //     option.value=breed;
+    //     selectBreed.appendChild(option);
+    // })
+}   
 
-    breed.forEach(breed => {
+function setBreedsOptions(){
+    let razasString= localStorage.getItem('razas');
+    let razas=JSON.parse(razasString);
+    const selectBreed=document.querySelector('#breed__filter');
+    console.log("desde funcion");
+    console.log(razas);
+    razas.forEach(raza => {
         const option=document.createElement('option');
-        option.innerText=breed;
-        option.value=breed;
+        option.innerText=raza;
+        option.value=raza;
         selectBreed.appendChild(option);
     })
-}   
+}
 
 const showDogsByMixed = (dogs) =>{
     let dogsContainer=document.querySelector('#dogs');
@@ -288,12 +303,12 @@ const getDogByFilter= async(valueFilter,paramSearch,currentPage) =>{
 }  
 
 
-const getDogByAllFilters = async(valueSize,valueGender,valueAge,currentPage) =>{
+const getDogByAllFilters = async(valueSize,valueGender,valueAge,valueBreed,currentPage) =>{
     let newToken=await getToken();
     const tokenType=tokenJson.token_type;
     const tokenAcces=tokenJson.access_token;
     const tokenExpires=tokenJson.expires_in;
-    const dogsReponse= await fetch(`https://api.petfinder.com/v2/animals?type=${animalType}&size=${valueSize}&gender=${valueGender}&age=${valueAge}&location=texas&distance=50&page=${currentPage}`,{ //devuelve un array de objetos
+    const dogsReponse= await fetch(`https://api.petfinder.com/v2/animals?type=${animalType}&size=${valueSize}&gender=${valueGender}&age=${valueAge}&breed=${valueBreed}&location=texas&distance=50&page=${currentPage}`,{ //devuelve un array de objetos
     headers: {
     'Authorization': tokenType + ' ' + tokenAcces,
     'Content-Type': 'application/x-www/form-urlencoded'
@@ -319,11 +334,11 @@ const filterDogs = async(valueFilter, paramSearch) =>{
     showFilterDogs(filterDogs); 
 }
 
-const filterDogsByAllFilters = async (valueSize,valueGender,valueAge,valueMixed) => {
-    console.log("desde la funcion", valueSize,valueGender,valueAge,valueGender);
+const filterDogsByAllFilters = async (valueSize,valueGender,valueAge,valueBreed,valueMixed) => {
+    console.log("desde la funcion", valueSize,valueGender,valueAge,valueBreed,valueGender);
     let currentPage=1;
     let dogs=[];
-    let dogJson=await getDogByAllFilters(valueSize,valueGender,valueAge,currentPage);
+    let dogJson=await getDogByAllFilters(valueSize,valueGender,valueAge,valueBreed,currentPage);
     console.log(dogJson);
     //ahora tengo que buscar si la opcion fue mixed y dividir
     const dogsOnly=dogsJson["animals"];
@@ -365,6 +380,13 @@ function changeDogByAge(){
     return age;
 }
 
+function changeDogByBreed(){
+    let breed=document.getElementById('breed__filter').value;
+    console.log("breed was selected", breed);
+    return breed;
+}
+
+
 function changeDogByMixed(){
     let mixed=document.getElementById("mixed__filter").value;
     console.log(mixed);
@@ -375,9 +397,10 @@ function changeDogByAllFilters(){
     let size=document.getElementById('size__filter').value;
     let gender=document.getElementById('gender_filter').value;
     let age=document.getElementById('age__filter').value;
+    let breed=document.getElementById('breed__filter').value;
     let mixed=document.getElementById("mixed__filter").value;
     let values=[];
-    values.push(size,gender,age,mixed);
+    values.push(size,gender,age,breed,mixed);
     return values;
 }
 
@@ -404,6 +427,11 @@ btnAge.addEventListener("click", () => {
     filterDogs(age,"age");
 })
 
+btnBreed.addEventListener("click", () => {
+    let breed=changeDogByBreed();
+    console.log("breed desde boton es ", breed);
+    filterDogs(breed,"breed");
+})
 
 btnMixed.addEventListener("click",()=>{
     let mixed=changeDogByMixed();
@@ -424,18 +452,16 @@ btnFilterAll.addEventListener("click", () => {
 
 
 
-const changeDogByBreed = () => {
-    let breed=event.target.value;
-    console.log("breed was selected", breed);
-    btnFilterCategory.addEventListener("click",()=>{
-        filterDogs(breed,"breed")
-    });
-}
 
+
+
+
+breedOptions();
+setBreedsOptions();
 
 //get the breeds when the page has loaded
 // document.addEventListener('DOMContentLoaded', async() => {
-//     await breedOptions(); //SOLUCIONAR EL TIEMPO DE ESPERA
+//    setBreedsOptions(); //SOLUCIONAR EL TIEMPO DE ESPERA
 //     // dogsContainer.classList.add('hide');
 // })
 
