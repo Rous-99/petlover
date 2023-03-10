@@ -255,7 +255,7 @@ body{
 .adopt{
     height: 60vh;
     width: 100vw;
-    background-color: var(--var-color5);
+    background-color: var(--blue-soft);
 }
 
 
@@ -279,10 +279,11 @@ body{
 }
 
 .adopt__title{
-    color:var(--var-color3);
+    color:black;
     font-family: 'Poppins',sans-serif;
-    font-size: 4rem;
+    font-size: 6rem;
     text-align: center;
+    letter-spacing: 1rem;
 }
 
 .adopt__filter{
@@ -315,7 +316,8 @@ body{
     width: 250px;
     height: 50px;
     padding: 10px;
-    background-color:var(--var-color1);
+    border:none;
+    background-color:var(--var-color3);
     color: white;
     border-radius: 5px;
     text-transform: uppercase;
@@ -340,8 +342,9 @@ body{
 
 .btn__filterAll{
     margin: 20px 0;
-    background-color: var(--var-color4);
-    color: white;
+    border: 1px solid var(--var-color3);
+    background-color: var(--var-color5);
+    color: black;
     padding: 10px;
     border-radius: 10px;
     width: 200px;
