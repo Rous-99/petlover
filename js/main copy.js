@@ -83,27 +83,28 @@ const showAlldogs = (dogs) => {
                 <img class="dog__photo" src="${photo}" alt="">
                 <div class="dog__info">
                     <p class="name">${Name}</p>
-                    <div class="info__description">
-                        <p class="info__p">Age</p>
-                        <p class="lifespan">${age}</p>
-                    </div>
-                    <div class="info__description">
-                        <p class="info__p">Breed</p>
-                        <p class="breed">${breed}</p>
-                        <p class="breed">${breed2}</p>
-
-                    </div>
-                    <div class="info__description">
-                        <p class="info__p">Gender</p>
-                        <p class="height">${gender}</p>
-                    </div>
-                    <div class="info__description">
-                        <p class="info__p">Size</p>
-                        <p class="weight">${size}</p>
-                    </div>
-                    <div class="info__description">
-                        <p class="info__p">Mixed</p>
-                        <p class="weight">${mixedValue}</p>
+                    <div class="info">
+                        <div class="info__description">
+                            <p class="info__p">Age</p>
+                            <p class="lifespan">${age}</p>
+                        </div>
+                        <div class="info__description">
+                            <p class="info__p">Breed</p>
+                            <p class="breed">${breed}</p>
+                            <p class="breed">${breed2}</p>
+                        </div>
+                        <div class="info__description">
+                            <p class="info__p">Gender</p>
+                            <p class="height">${gender}</p>
+                        </div>
+                        <div class="info__description">
+                            <p class="info__p">Size</p>
+                            <p class="weight">${size}</p>
+                        </div>
+                        <div class="info__description">
+                            <p class="info__p">Mixed</p>
+                            <p class="weight">${mixedValue}</p>
+                        </div>
                     </div>
                 </div>
             </div>

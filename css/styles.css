@@ -6,6 +6,12 @@
     --var-color3:#061d21;
     --var-color4:#727b7b;
     --var-color5:#e5e5e5;
+    --yellow-color: #d4d926;
+    --cyan-color:#6fc6a5;
+    --blue-strong:#88d0c7;
+    --blue-soft:#c7dedf;
+    --grey-color:#929598;
+    --brown-color:#b7a570;
 }
 
 
@@ -23,28 +29,33 @@ body{
 
 /*-----------------------------MAIN PAGE-----------------------------------------------*/
 .header__main{
-    background-color:var(--var-color1);
+    background-color:white;
     width: 100%;
-    height: 90px;
+    height: 100%;
 }
 
 .header__nav{
+    /* background-color: #68c0c3; */
+    height: 120px;
     display: flex;
     justify-content: space-between;
+    /* align-content: center; */
     /* background-color: yellow; */
     padding: 30px;
 }
 
 .nav__elements{
     display: flex;
+    align-self: center;
     gap: 30px;
-    flex-basis: 60%;
+    /* flex-basis: 60%; */
 }
 
 .nav__logo{ /*se le estan aplicando los estilos de la imagen*/
     width: 40px;
     height: 40px;
     /* background-color: red; */
+    align-self: center;
 }
 
 .nav__li{
@@ -52,13 +63,23 @@ body{
     text-transform: uppercase;
 }
 
+.nav__li:hover{
+    background-color: var(--yellow-color);
+    padding: 7px;
+    border-radius: 8px;
+}
+
 .nav__li__a{
     text-decoration: none;
-    color: white;
+    color: black;
     font-family: 'Raleway', sans-serif;
     font-weight: 600;
     letter-spacing: .2rem;
     font-size: 1.3rem;
+}
+
+.nav__li__a:hover{
+    color: white;
 }
 
 .main__section{
@@ -78,32 +99,47 @@ body{
 
 .main__title{
     flex-basis: 50%;
-    background-color:var(--var-color5);
+    background-color:var(--yellow-color);
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     font-family: 'Poppins',sans-serif;
-    text-transform: uppercase;
-    font-weight: 600;
-    font-size: 2rem;
     padding: 10px;
+    color:white;
+}
+
+.title__container{
+    margin: 0 auto;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 2rem;
+    /* background-color: #68c0c3; */
+    width: 90%;
+    line-height: 4.2rem;
+    letter-spacing: .5rem;
 }
 
 .button__alldogs{
-    width: 80%;
-    background-color: var(--var-color3);
+    width: 70%;
+    background-color: var(--var-color5);
     padding: 20px;
+    border: none;
     border-radius: 10px;
     font-family: 'Raleway', sans-serif;
-    font-size: 1.2rem;
+    font-weight: 600;
+    font-size: 1.23em;
     align-self: center;
     letter-spacing: .2rem;
+    /* border: 3px solid black; */
+    box-shadow: 20px black;
 }
 
 .a__showDogs{
-    color: white;
+    color:black;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .carrusel__title{
@@ -131,30 +167,43 @@ body{
 .dog{
     /* padding: 10px; */
     box-shadow: 0 5px 5px rgba(0,0,0,0.2);
-    background-color: var(--color-card-dog);
+    background-color: var(--yellow-color);
     margin: 20px auto;
     display: flex;
-    flex-direction: column;
-    width:400px;
-    height: 650px;
+    /* flex-direction: column; */
+    width:500px;
+    /* height: 500px; */
     border-radius: 10px;
+    cursor: pointer;
+}
+
+.dog:hover{
+    transform: scale(1.1);
 }
 
 .dog img{
     width: 100%;
-    height:50%;
+    height:100%;
     object-fit:cover;
-    object-position: 40% 10%;
-    border-radius: 10px 10px 0 0;
+    object-position:center;
+    border-radius: 10px 0 0 10px;
 }
 
+.info{
+    /* background-color: #68c0c3; */
+    justify-content: flex-end;
+}
 .dog__photo{
-    flex-basis: 70%;
+    flex-basis: 50%;
     background-color: red;
 }
 
 .dog__info{
-    flex-basis: 40%;
+    /* background-color: #727b7b; */
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     /* background-color: blue; */
 }
 
@@ -166,10 +215,10 @@ body{
 }
 
 .dog .name{
-    padding-top: 15px;
+    /* padding-top: 15px; */
     text-transform: uppercase;
     font-weight: bold;
-    letter-spacing: .3rem;
+    letter-spacing: .5rem;
     font-size: 1.5rem;
     font-family: 'Poppins',sans-serif;
 }
@@ -178,8 +227,7 @@ body{
     margin-top: 5px;
     margin-bottom:10px;
     /* background-color: yellow; */
-    display: flex;
-    flex-direction: column;
+    
 }
 
 .info__description p{
@@ -193,7 +241,7 @@ body{
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-family: 'Raleway', sans-serif;
     font-weight: 600;
 }
