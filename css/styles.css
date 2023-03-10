@@ -298,6 +298,20 @@ body{
     font-size: 1.4rem;
 }
 
+.adopt__filter button{
+    background-color: var(--yellow-color);
+    padding: 5px;
+    width: 80px;
+    margin: 0 auto;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: .8rem;
+}
+
 .filter__title{
     /* background-color: #68c0c3; */
     display: flex;
