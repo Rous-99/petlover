@@ -12,6 +12,11 @@
     --blue-soft:#c7dedf;
     --grey-color:#929598;
     --brown-color:#b7a570;
+    --blue-new:#555B6E;
+    --green-new:#89B0AE;
+    --green-light-new:#BEE3DB;
+    --white-new:#FAF9F9;
+    --orange-new:#FFD6BA;
 }
 
 
@@ -29,7 +34,7 @@ body{
 
 /*-----------------------------MAIN PAGE-----------------------------------------------*/
 .header__main{
-    background-color:white;
+    background-color:var(--white-new);
     width: 100%;
     height: 100%;
 }
@@ -64,7 +69,7 @@ body{
 }
 
 .nav__li:hover{
-    background-color: var(--yellow-color);
+    background-color: var(--green-new);
     padding: 7px;
     border-radius: 8px;
 }
@@ -99,7 +104,7 @@ body{
 
 .main__title{
     flex-basis: 50%;
-    background-color:var(--yellow-color);
+    background-color:var(--green-new);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -156,7 +161,7 @@ body{
 #dogs{
     /* background-color: aqua; */
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, auto));
+    grid-template-columns: repeat(auto-fit, minmax(450px, auto));
     grid-template-rows: repeat(auto-fit, minmax(200px, auto));
     grid-gap: 50px;
     margin: 50px auto;
@@ -167,7 +172,7 @@ body{
 .dog{
     /* padding: 10px; */
     box-shadow: 0 5px 5px rgba(0,0,0,0.2);
-    background-color: var(--yellow-color);
+    background-color: var(--green-light-new);
     margin: 20px auto;
     display: flex;
     /* flex-direction: column; */
@@ -175,6 +180,7 @@ body{
     /* height: 500px; */
     border-radius: 10px;
     cursor: pointer;
+   
 }
 
 .dog:hover{
@@ -255,7 +261,9 @@ body{
 .adopt{
     height: 60vh;
     width: 100vw;
-    background-color: var(--blue-soft);
+    background-color: var(--white-new);
+    border-top: 4px solid var(--green-new);
+    border-bottom:4px solid var(--green-new);
 }
 
 
@@ -279,7 +287,7 @@ body{
 }
 
 .adopt__title{
-    color:black;
+    color:var(--green-new);
     font-family: 'Poppins',sans-serif;
     font-size: 6rem;
     text-align: center;
@@ -299,17 +307,24 @@ body{
 }
 
 .adopt__filter button{
+    /* border: 2px solid var(--var-color3);  */
     background-color: var(--yellow-color);
+    /* background: none; */
+    border: none;
     padding: 5px;
     width: 80px;
     margin: 0 auto;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
     font-family: 'Raleway', sans-serif;
     text-transform: uppercase;
     font-weight: 600;
     font-size: .8rem;
+    color: var;
+}
+
+.adopt__filter button:hover{
+    transform: scale(1.1);
 }
 
 .filter__title{
@@ -330,15 +345,21 @@ body{
     width: 250px;
     height: 50px;
     padding: 10px;
-    border:none;
-    background-color:var(--var-color3);
-    color: white;
+    border: 4px solid var(--yellow-color);
+    /* background-color:var(--green-new); */
+    background: none;
+    color: var(--var-color3);
     border-radius: 5px;
     text-transform: uppercase;
     font-family: 'Montserrat', sans-serif;
     font-size:1rem;
     font-weight: 900;
     align-self: center;
+}
+
+.dog__select option{
+    background-color: var(--yellow-color);
+    
 }
 
 .btns__container{
@@ -356,9 +377,10 @@ body{
 
 .btn__filterAll{
     margin: 20px 0;
-    border: 1px solid var(--var-color3);
-    background-color: var(--var-color5);
-    color: black;
+    /* border: 1px solid var(--var-color3); */
+    border: none;
+    background-color: var(--green-new);
+    color: white;
     padding: 10px;
     border-radius: 10px;
     width: 200px;
@@ -368,7 +390,10 @@ body{
     text-transform: uppercase;
     font-weight: 600;
     font-size: 1rem;
+}
 
+.btn__filterAll:hover{
+    transform: scale(1.2);
 }
  
 /*AÑADIR ESTILOS DE LAS OPCIONES, NO FUNCIONA, CREO QUE HAY QUE PONER CLASE A TODAS LAS ETIQUETAS OPTION*/
@@ -380,4 +405,41 @@ body{
 
 .show{
     display: block;
+}
+
+/*------------------------SEE  ALL DOGS-----------------------------------------------------*/
+
+.btn__pages{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: var(--yellow-color);
+    height: 80px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    gap: 50px;
+}
+
+.btn__pages button{
+    width: 200px;
+    height: 40px;
+    margin-top: 20px;
+    cursor: pointer;
+    background-color: none;
+    border: none;
+    border-radius: 4px;
+}
+
+.btn__pages button a{
+    text-decoration: none;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    color: black;
+}
+
+.btn__pages button:hover{
+    transform: scale(1.2);
 }

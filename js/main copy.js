@@ -3,18 +3,29 @@ console.log("start");
 const key='yCTWxvIK9RPRLhRxrjefKcqgcfn2gy3scxvQ8omqd18Pw9QpMO';
 const secret='aB19kPT14oQ4UdEQ42SRmUaEPh1lUqvpYFzlSpB0';
 
-let output="";
+
 let dogsContainer=document.querySelector('#dogs');
 let animalType='Dog'; //solo trabajo con la búsqueda de perros
 let indicePagina=1;
+let scrollBtn=document.querySelector('.scroll');
 
 
 let buttonNext=document.querySelector('.next');
 let buttonAnt=document.querySelector('.ant')
 
 buttonNext.addEventListener('click', async() => {
-    indicePagina+=1;
-    await getToken(); //funciona pero necesito que cuando cargue la siguiente pagina se borre la anterior
+    if(indicePagina<=7){
+        indicePagina+=1;
+        await getToken();
+    }
+    //funciona pero necesito que cuando cargue la siguiente pagina se borre la anterior
+})
+
+buttonAnt.addEventListener("click", async() => {
+    if(indicePagina>1){
+        indicePagina-=1;
+        await getToken();
+    }
 })
 
 const getToken=async() =>{
@@ -51,7 +62,10 @@ const fetchDogs= async (tokenType,tokenAcces) =>{
 
 
 const showAlldogs = (dogs) => {
+    let dogsContainer=document.querySelector('#dogs');
+    let output="";
     console.log("desde la funcion show", dogs)
+    dogsContainer.innerHTML='';
     dogs.forEach(dog =>{
         if(dog.photos.length>0){
             let dogID=dog.url;
