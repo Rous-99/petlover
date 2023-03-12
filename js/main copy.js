@@ -11,7 +11,9 @@ let scrollBtn=document.querySelector('.scroll');
 
 
 let buttonNext=document.querySelector('.next');
-let buttonAnt=document.querySelector('.ant')
+let buttonAnt=document.querySelector('.ant');
+
+
 
 buttonNext.addEventListener('click', async() => {
     if(indicePagina<=7){
@@ -94,6 +96,7 @@ const showAlldogs = (dogs) => {
 
             output+=`
             <div class="dog">
+                <button type="button" data="" class="favorite-btn">+</button>
                 <img class="dog__photo" src="${photo}" alt="">
                 <div class="dog__info">
                     <p class="name">${Name}</p>
@@ -133,6 +136,5 @@ const showAlldogs = (dogs) => {
 document.addEventListener('DOMContentLoaded', async() => {
     await getToken();
 })
-
 
 

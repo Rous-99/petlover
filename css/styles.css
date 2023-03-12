@@ -180,12 +180,13 @@ body{
     /* height: 500px; */
     border-radius: 10px;
     cursor: pointer;
+    position: relative;
    
 }
 
-.dog:hover{
+/* .dog:hover{
     transform: scale(1.1);
-}
+} */
 
 .dog img{
     width: 100%;
@@ -442,4 +443,19 @@ body{
 
 .btn__pages button:hover{
     transform: scale(1.2);
+}
+
+.favorite-btn{
+    position: absolute;
+    padding: 20px;
+    border: none;
+    border-radius: 50%;
+    background: none;
+    top:0;
+    right: 0;
+    cursor: pointer;
+}
+
+.favorite-btn:hover{
+    background-color: #b7a570;
 }

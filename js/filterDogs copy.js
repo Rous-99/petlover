@@ -41,15 +41,6 @@ const getToken=async() =>{
 
 
 
-const clearDiv= () =>{
-    let pruebaDiv=document.querySelector('.prueba');
-    // console.log(pruebaDiv)
-    // pruebaDiv.innerHTML='bye';
-    // let dogsContainer=document.querySelector('#dogs');
-    // dogsContainer.innerHTML='';
-    // $("#dogs").empty();
-}
-
 const showFilterDogs = (filterDogs) =>{
     let dogsContainer=document.querySelector('#dogs');
     let pruebaDiv=document.querySelector('.prueba');
