@@ -11,6 +11,7 @@ form.addEventListener("submit", function(ev){
     let dogBreed=document.querySelector("#pet__breed").value;
     let adopterName=document.querySelector("#owner__name").value;
     let adopterPhone=document.querySelector("#owner__number").value;
+    let adopterEmail=document.querySelector("#email__owner").value;
     let gender="";
     let mixed="";
     let size="";
@@ -43,6 +44,6 @@ form.addEventListener("submit", function(ev){
             age=ageInput[i].value;
         }
     }
-    console.log(petName,dogBreed,adopterName,adopterPhone, gender,mixed,size,age);
+    console.log(petName,dogBreed,adopterName,adopterPhone,adopterEmail, gender,mixed,size,age);
   //get the value of radio inputs, how to?
 })
