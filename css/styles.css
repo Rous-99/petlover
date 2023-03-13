@@ -147,6 +147,10 @@ body{
     cursor: pointer;
 }
 
+.button__alldogs:hover{
+    transform: scale(1.1);
+}
+
 .carrusel__title{
     margin: 30px;
     font-family: 'Raleway', sans-serif;
@@ -458,4 +462,24 @@ body{
 
 .favorite-btn:hover{
     background-color: #b7a570;
+}
+
+/*-----------------------FORMULARIO------------------------------------*/
+
+.form__article{
+    height: 100vh;
+    width: 100vw;
+    background-color: #555B6E;
+    display: flex;
+    flex-direction: column; /*HACERLO RESPONSIVE*/
+}
+
+.photo__form{
+    /* background-image: url(); */
+    background-color: #68c0c3;
+    flex-basis: 50%;
+}
+
+.data__form{
+    flex-basis: 50%;
 }
