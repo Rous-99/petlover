@@ -29,10 +29,11 @@
                 <div class="adopt__container">
                     <div class="adopt__filter">
                         <div class="filter__title">
-                            <img src="./img/dog(1).png">
+                            <img src="./img/dog-seating.png">
                             <span class="filter__span"> SIZE</span>
                         </div>
                         <select name="adopt__filter" id="size__filter" class="dog__select" onchange="changeDogBySize()">
+                            <option value="np">No preference</option>
                             <option value="small">Small</option>
                             <option value="medium">Medium</option>
                             <option value="large">Large</option>
@@ -46,6 +47,7 @@
                             <span class="filter__span"> GENDER</span>
                         </div>
                         <select name="adopt__filter" id="gender_filter" class="dog__select" onchange="changeDogByGender()">
+                            <option value="np">No preference</option>
                             <option value="Female">Female</option>
                             <option value="Male">Male</option>
                         </select>
@@ -53,10 +55,11 @@
                     </div>
                     <div class="adopt__filter">
                         <div class="filter__title">
-                            <img src="./img/age.png">
+                            <img src="./img/bone.png">
                             <span class="filter__span"> AGE</span>
                         </div>
                         <select name="adopt__filter" id="age__filter" class="dog__select" onchange="changeDogByAge()">
+                            <option value="np">No preference</option>
                             <option value="baby">Baby</option>
                             <option value="young">Young</option>
                             <option value="adult">Adult</option>
@@ -66,19 +69,21 @@
                     </div>
                     <div class="adopt__filter">
                         <div class="filter__title">
-                            <img src="./img/age.png">
+                            <img src="./img/paw.png">
                             <span class="filter__span"> BREED</span>
                         </div>
                         <select name="adopt__filter" id="breed__filter" class="dog__select" onchange="changeDogByBreed()">
+                            <option value="np">No preference</option>
                         </select>
                         <button class="btn__breed">FILTER</button>
                     </div>
                     <div class="adopt__filter">
                         <div class="filter__title">
-                            <img src="./img/age.png">
+                            <img src="./img/pet-care.png">
                             <span class="filter__span"> MIXED</span>
                         </div>
                         <select name="adopt__filter" id="mixed__filter" class="dog__select" onchange="changeDogByMixed()">
+                            <option value="np">No preference</option>
                             <option value="mixed">Yes</option>
                             <option value="no_mixed">No</option>
                         </select>
@@ -91,6 +96,9 @@
                     </div> -->
                     <div class="btn__container">
                         <button class="btn__filterAll" id="btn__all">Filter By All</button>
+                    </div>
+                    <div class="btn__container">
+                        <button class="btn__filterAll" id="btn__filter">Filter</button>
                     </div>
                 </div>
             </div>

@@ -16,12 +16,14 @@ let btnGender=document.querySelector(".btn__gender");
 let btnAge=document.querySelector('.btn__age');
 let btnMixed=document.querySelector('.btn__mixed');
 let btnBreed=document.querySelector('.btn__breed');
+let btnFilter=document.querySelector("#btn__filter");
 console.log(btnSize);
 console.log(btnGender);
 console.log(btnAge);
 console.log(btnMixed);
 console.log(btnBreed);
 console.log(btnFilterAll);
+console.log(btnFilter);
 
 
 
@@ -395,6 +397,47 @@ function changeDogByAllFilters(){
     return values;
 }
 
+function changeDogByFilters(){
+    let parametersRequest=0;
+    let parametersNP=0;
+    let size=document.getElementById('size__filter').value;
+    let gender=document.getElementById('gender_filter').value;
+    let age=document.getElementById('age__filter').value;
+    let breed=document.getElementById('breed__filter').value;
+    let mixed=document.getElementById("mixed__filter").value;
+    let dogtoSearch={
+        dogSize:size,
+        dogGender:gender,
+        dogAge:age,
+        dogBreed:breed,
+        dogMixed:mixed,
+    };
+    let dogtoFilter=Object.entries(dogtoSearch);
+    console.log(dogtoFilter);
+    let dogFilter=dogtoFilter.filter(function([key,value]){
+        return value!=="np";
+    })
+    console.log(dogFilter);
+    let dogFilterObj=Object.fromEntries(dogFilter);
+    console.log(dogFilterObj);
+    let paramToSearch=[];
+    for(let param in dogtoSearch){
+        if(dogtoSearch[param]=="np"){
+            parametersNP+=1;
+        }
+        else{
+            parametersRequest+=1;
+        }
+      
+    }
+   
+    console.log(parametersNP);
+    console.log(parametersRequest);
+    console.log(dogtoSearch);
+    console.log(paramToSearch);
+    //search with the params that people want to filter
+}
+
 
 btnSize.addEventListener("click",()=>{
     // filterDogs(size,"size")
@@ -440,6 +483,12 @@ btnFilterAll.addEventListener("click", () => {
     console.log(values);
     console.log(size,gender,age,breed,mixed);
     filterDogsByAllFilters(size,gender,age,breed,mixed);
+})
+
+btnFilter.addEventListener("click", () => {
+    console.log("clickado");
+    changeDogByFilters();
+
 })
 
 
