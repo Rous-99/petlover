@@ -264,17 +264,25 @@ body{
 /*---------------------------ADOPT PAGE HTML -----------------------------------------------------*/
 
 .adopt{
-    height: 60vh;
+    height: 100vh;
     width: 100vw;
-    background-color: var(--white-new);
-    border-top: 4px solid var(--green-new);
-    border-bottom:4px solid var(--green-new);
+    display: flex;
+    border: 2px solid var(--green-new);
+}
+
+.photo__adopt{
+    flex-basis: 50%;
+    background-image: url(/petlover/img/golden-retriever-crema-inglesa-aislado.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100vw;
 }
 
 
-
 .adopt__select{
-    /* background-color: #727b7b; */
+    flex-basis: 50%;
     height: 100%;
     width: 100%;
     display: flex;
@@ -282,9 +290,11 @@ body{
     justify-content: center;
     align-content: center;
     gap: 10px;
+    background-color: var(--white-new);
 }
 
 .adopt__container{
+    /* background-color: #68c0c3; */
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -477,12 +487,29 @@ body{
 }
 
 .photo__form{
-    background-image: url(/petlover/img/form-photo.jpg);
-    background-position: 100%;
+    background-image: url(/petlover/img/mypet.jpg);
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     /* background-color: #68c0c3; */
     flex-basis: 50%;
+    position: relative;
+}
+
+.photo__title{
+    background-color: var(--green-light-new);
+    position: absolute;
+    width: 100%;
+    padding: 30px;
+    bottom: 0;
+    left: 0;
+    font-size: 2rem;
+    color: var(--blue-new);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+    letter-spacing: .7rem;
+    line-height:3rem;
+    text-align: center;
 }
 
 .data__form{

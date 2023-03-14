@@ -326,7 +326,7 @@ const filterDogs = async(valueFilter, paramSearch) =>{
 }
 
 const filterDogsByAllFilters = async (valueSize,valueGender,valueAge,valueBreed,valueMixed) => {
-    console.log("desde la funcion", valueSize,valueGender,valueAge,valueBreed,valueGender);
+    console.log("desde la funcion", valueSize,valueGender,valueAge,valueBreed,valueMixed);
     let currentPage=1;
     let dogs=[];
     let dogJson=await getDogByAllFilters(valueSize,valueGender,valueAge,valueBreed,currentPage);
@@ -435,10 +435,11 @@ btnFilterAll.addEventListener("click", () => {
     let size=values[0];
     let gender=values[1];
     let age=values[2];
-    let mixed=values[3];
+    let breed=values[3];
+    let mixed=values[4];
     console.log(values);
-    console.log(size,gender,age,mixed);
-    filterDogsByAllFilters(size,gender,age,mixed);
+    console.log(size,gender,age,breed,mixed);
+    filterDogsByAllFilters(size,gender,age,breed,mixed);
 })
 
 
