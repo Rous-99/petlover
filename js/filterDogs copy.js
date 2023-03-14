@@ -398,8 +398,6 @@ function changeDogByAllFilters(){
 }
 
 function changeDogByFilters(){
-    let parametersRequest=0;
-    let parametersNP=0;
     let size=document.getElementById('size__filter').value;
     let gender=document.getElementById('gender_filter').value;
     let age=document.getElementById('age__filter').value;
@@ -420,21 +418,6 @@ function changeDogByFilters(){
     console.log(dogFilter);
     let dogFilterObj=Object.fromEntries(dogFilter);
     console.log(dogFilterObj);
-    let paramToSearch=[];
-    for(let param in dogtoSearch){
-        if(dogtoSearch[param]=="np"){
-            parametersNP+=1;
-        }
-        else{
-            parametersRequest+=1;
-        }
-      
-    }
-   
-    console.log(parametersNP);
-    console.log(parametersRequest);
-    console.log(dogtoSearch);
-    console.log(paramToSearch);
     //search with the params that people want to filter
 }
 
