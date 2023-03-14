@@ -56,11 +56,20 @@ body{
     /* flex-basis: 60%; */
 }
 
+li{
+    list-style: none;
+}
+
 .nav__logo{ /*se le estan aplicando los estilos de la imagen*/
     width: 40px;
     height: 40px;
     /* background-color: red; */
     align-self: center;
+    cursor: pointer;
+}
+
+.nav__logo:hover{
+    transform: scale(1.4);
 }
 
 .nav__li{
