@@ -1,4 +1,20 @@
-console.log("form");
+
+firebase.initializeApp({
+    apiKey: "AIzaSyCEGr5MTGVw3RllCyKbsx4bmcKsVebPaJI",
+    authDomain: "adopt-page.firebaseapp.com",
+    projectId: "adopt-page",
+    storageBucket: "adopt-page.appspot.com",
+    messagingSenderId: "242844642262",
+    appId: "1:242844642262:web:b273ed533feea6c3b19277",
+    measurementId: "G-88C7HWG5DM"
+});
+
+
+
+// Initialize Cloud Firestore and get a reference to the service
+const db = firebase.firestore();
+
+
 
 //ELEMENTS DATA
 // let petName=document.querySelector(".pet__name").value;
@@ -46,4 +62,26 @@ form.addEventListener("submit", function(ev){
     }
     console.log(petName,dogBreed,adopterName,adopterPhone,adopterEmail, gender,mixed,size,age);
   //get the value of radio inputs, how to?
+  function guardar(){
+    db.collection("adopt-users").add({
+        userName: adopterName,
+        phoneNumber:adopterPhone,
+        dogName:petName,
+        Size:size,
+        Mixed:mixed,
+        Gender:gender,
+        Email:adopterEmail,
+        Breed:dogBreed,
+        Age:age,
+    })
+    .then((docRef) => {
+        console.log("Datos insertados en la base de datos");
+    })
+    .catch((error) => {
+        console.error("Error adding document: ", error);
+    });
+    }
+    guardar();
 })
+
+
