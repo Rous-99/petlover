@@ -469,42 +469,56 @@ body{
 /*BREAKPOINT PARA DISPOSITIVOS EN VERTICAL*/
 
 .form__article{
-    height: 100vh;
+    height: 950px;
     width: 100vw;
-    background-color: #555B6E;
+    background-color: pink;
     display: flex;
+    margin-bottom: 10px;
 }
 
 .photo__form{
-    /* background-image: url(); */
-    background-color: #68c0c3;
+    background-image: url(/petlover/img/form-photo.jpg);
+    background-position: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-color: #68c0c3; */
     flex-basis: 50%;
 }
 
 .data__form{
     flex-basis: 50%;
-    background-color: #b7a570;
+    background-color:var(--green-new);
+    /* overflow: hidden; */
 }
 
 form{
-    background-color:#727b7b;
+    background-color:white;
+    border-radius: 10px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     width: 90%;
-    height: 100%;
+    height:930px; 
     margin: 10px auto;
     gap: 15px;
     text-align: center;
-}
+} 
 
 input{
    padding: 8px 14px;
    width: 50%;
     margin: 0 auto;
     border-radius: 5px;
-    border: none;
+    border: 2px solid var(--green-new);
     font-size: 1rem;
 }
+
+
+input:active, input:hover{
+    outline: none;
+    border: 3px solid var(--blue-new);
+}
+
 
 label{
     font-size: 1.3rem;
@@ -528,7 +542,7 @@ label{
     padding: 8px 14px;
     font-size: 1.2rem;
     background: var(--green-light-new);
-    color: white;
+    color: var(--blue-new);
     cursor: pointer;
     transition:background .1s;
 }
@@ -538,7 +552,8 @@ label{
 }
 
 .radio__input:checked + .radio__label{
-    background-color:var(--green-new)
+    background-color:var(--green-new);
+    color: white;
 }
 
 .send__btn{
