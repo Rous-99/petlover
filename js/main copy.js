@@ -12,6 +12,7 @@ let scrollBtn=document.querySelector('.scroll');
 
 let buttonNext=document.querySelector('.next');
 let buttonAnt=document.querySelector('.ant');
+// let messageH3=document.querySelector('.message__result');
 
 
 
