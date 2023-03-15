@@ -458,6 +458,7 @@ const filterDog=async(dog) =>{
    let dogsJson=await dogsReponse.json();
    let totalPages=dogsJson["pagination"].total_pages;
    console.log(dogsJson);
+   let dogsArray=[];
     for(let currentPage=1; currentPage<=totalPages; currentPage++){
         urlFetch=urlFetch+`&page=${currentPage}`
         const dogsReponse= await fetch(urlFetch,{ //devuelve un array de objetos
@@ -468,9 +469,11 @@ const filterDog=async(dog) =>{
         });
         let dogsJson=await dogsReponse.json(); //meter en un array de perros
         console.log(dogsJson);
+        dogsArray.push(dogsJson);
     }
+    console.log(dogsArray);
    console.log(totalPages);
-   showFilterDogs(dogsJson);
+//    showFilterDogs(dogsArray); //llamar a la funcion para mostrar los perros
 }
 
 
