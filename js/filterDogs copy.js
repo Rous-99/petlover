@@ -398,19 +398,28 @@ function changeDogByAllFilters(){
 }
 
 function changeDogByFilters(){
-    let size=document.getElementById('size__filter').value;
-    let gender=document.getElementById('gender_filter').value;
-    let age=document.getElementById('age__filter').value;
-    let breed=document.getElementById('breed__filter').value;
-    let mixed=document.getElementById("mixed__filter").value;
+    let sizeInput=document.getElementById('size__filter').value;
+    let genderInput=document.getElementById('gender_filter').value;
+    let ageInput=document.getElementById('age__filter').value;
+    let breedInput=document.getElementById('breed__filter').value;
+    let mixedInput=document.getElementById("mixed__filter").value;
     let dogtoSearch={
-        dogSize:size,
-        dogGender:gender,
-        dogAge:age,
-        dogBreed:breed,
-        dogMixed:mixed,
+        size:sizeInput,
+        gender:genderInput,
+        age:ageInput,
+        breed:breedInput,
     };
-    let dogtoFilter=Object.entries(dogtoSearch);
+    return dogtoSearch; //añadir EL FILTRO DE MIXED AL FINAL DE LA PETICION
+    //search with the params that people want to filter
+}
+
+const filterDog=async(dog) =>{
+    let newToken=await getToken();
+    const tokenType=tokenJson.token_type;
+    const tokenAcces=tokenJson.access_token;
+    const tokenExpires=tokenJson.expires_in;
+    let dogtoFilter=Object.entries(dog);
+    let page=1;
     console.log(dogtoFilter);
     let dogFilter=dogtoFilter.filter(function([key,value]){
         return value!=="np";
@@ -418,8 +427,52 @@ function changeDogByFilters(){
     console.log(dogFilter);
     let dogFilterObj=Object.fromEntries(dogFilter);
     console.log(dogFilterObj);
-    //search with the params that people want to filter
+    let paramsFetch=Object.keys(dogFilterObj).length;
+    console.log(paramsFetch);
+    let paramkeys=Object.entries(dogFilterObj);
+    console.log(paramkeys);
+    let toSearch=[];
+    paramkeys.forEach(param => {
+        let paramKey=`${param[0]}=${param[1]}&`;
+        toSearch.push(paramKey);
+        console.log(paramKey);
+    })
+    let urlFetch=`https://api.petfinder.com/v2/animals?type=${animalType}&`;
+    console.log(toSearch);
+    let toInsert="";
+    for(let i=0;i<toSearch.length;i++){
+        toInsert=toInsert.concat(toSearch[i]);
+    }
+    console.log(toInsert);
+    urlFetch=urlFetch.concat(toInsert);
+    console.log(urlFetch);
+    let finalFetch=`location=texas&distance=50&page=1`;
+    urlFetch=urlFetch.concat(finalFetch);
+    console.log(urlFetch);
+    const dogsReponse= await fetch(urlFetch,{ //devuelve un array de objetos
+    headers: {
+    'Authorization': tokenType + ' ' + tokenAcces,
+    'Content-Type': 'application/x-www/form-urlencoded'
+    }
+   });
+   let dogsJson=await dogsReponse.json();
+   let totalPages=dogsJson["pagination"].total_pages;
+   for(let i=0;i<=totalPages;i++){
+        page+=1;
+        urlFetch=urlFetch+`&page=${page}`
+        const dogsReponse= await fetch(urlFetch,{ //devuelve un array de objetos
+            headers: {
+            'Authorization': tokenType + ' ' + tokenAcces,
+            'Content-Type': 'application/x-www/form-urlencoded'
+            }
+        });
+        let dogsJson=await dogsReponse.json();
+        console.log(dogsJson);
+    }
+   console.log(totalPages);
+   showFilterDogs(dogsJson);
 }
+
 
 
 btnSize.addEventListener("click",()=>{
@@ -470,8 +523,9 @@ btnFilterAll.addEventListener("click", () => {
 
 btnFilter.addEventListener("click", () => {
     console.log("clickado");
-    changeDogByFilters();
-
+    let dog=changeDogByFilters();
+    console.log(dog);
+    filterDog(dog);
 })
 
 
