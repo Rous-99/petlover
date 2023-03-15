@@ -458,16 +458,15 @@ const filterDog=async(dog) =>{
    let dogsJson=await dogsReponse.json();
    let totalPages=dogsJson["pagination"].total_pages;
    console.log(dogsJson);
-    if(page<totalPages){
-        page+=1;
-        urlFetch=urlFetch+`&page=${page}`
+    for(let currentPage=1; currentPage<=totalPages; currentPage++){
+        urlFetch=urlFetch+`&page=${currentPage}`
         const dogsReponse= await fetch(urlFetch,{ //devuelve un array de objetos
             headers: {
             'Authorization': tokenType + ' ' + tokenAcces,
             'Content-Type': 'application/x-www/form-urlencoded'
             }
         });
-        let dogsJson=await dogsReponse.json();
+        let dogsJson=await dogsReponse.json(); //meter en un array de perros
         console.log(dogsJson);
     }
    console.log(totalPages);
