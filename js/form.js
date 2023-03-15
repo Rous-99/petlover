@@ -62,26 +62,33 @@ form.addEventListener("submit", function(ev){
     }
     console.log(petName,dogBreed,adopterName,adopterPhone,adopterEmail, gender,mixed,size,age);
   //get the value of radio inputs, how to?
-  function guardar(){
-    db.collection("adopt-users").add({
-        userName: adopterName,
-        phoneNumber:adopterPhone,
-        dogName:petName,
-        Size:size,
-        Mixed:mixed,
-        Gender:gender,
-        Email:adopterEmail,
-        Breed:dogBreed,
-        Age:age,
-    })
-    .then((docRef) => {
-        console.log("Datos insertados en la base de datos");
-    })
-    .catch((error) => {
-        console.error("Error adding document: ", error);
-    });
-    }
-    guardar();
+    validateInputs();
+    //if it's true llamamos a guardar y sino no dejamos guardar
+    // function guardar(){
+    //     db.collection("adopt-users").add({
+    //         userName: adopterName,
+    //         phoneNumber:adopterPhone,
+    //         dogName:petName,
+    //         Size:size,
+    //         Mixed:mixed,
+    //         Gender:gender,
+    //         Email:adopterEmail,
+    //         Breed:dogBreed,
+    //         Age:age,
+    //     })
+    //     .then((docRef) => {
+    //         console.log("Datos insertados en la base de datos");
+    //     })
+    //     .catch((error) => {
+    //         console.error("Error adding document: ", error);
+    //     });
+    //     }
+    //     guardar();
 })
 
-
+const validateInputs= () =>{
+    let adopterEmail=document.querySelector("#email__owner").value;
+    if (adopterEmail===){
+        
+    }
+}

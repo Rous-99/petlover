@@ -97,7 +97,6 @@ const showAlldogs = (dogs) => {
 
             output+=`
             <div class="dog">
-                <button type="button" data="" class="favorite-btn">+</button>
                 <img class="dog__photo" src="${photo}" alt="">
                 <div class="dog__info">
                     <p class="name">${Name}</p>
