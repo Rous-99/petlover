@@ -62,28 +62,32 @@ form.addEventListener("submit", function(ev){
     }
     console.log(petName,dogBreed,adopterName,adopterPhone,adopterEmail, gender,mixed,size,age);
   //get the value of radio inputs, how to?
-    validateInputs(petName,dogBreed,adopterName,adopterPhone,adopterEmail, gender,mixed,size,age);
+    let check=validateInputs(petName,dogBreed,adopterName,adopterPhone,adopterEmail, gender,mixed,size,age);
+    console.log(check);
     //if it's true llamamos a guardar y sino no dejamos guardar
-    // function guardar(){
-    //     db.collection("adopt-users").add({
-    //         userName: adopterName,
-    //         phoneNumber:adopterPhone,
-    //         dogName:petName,
-    //         Size:size,
-    //         Mixed:mixed,
-    //         Gender:gender,
-    //         Email:adopterEmail,
-    //         Breed:dogBreed,
-    //         Age:age,
-    //     })
-    //     .then((docRef) => {
-    //         console.log("Datos insertados en la base de datos");
-    //     })
-    //     .catch((error) => {
-    //         console.error("Error adding document: ", error);
-    //     });
-    //     }
-    //     guardar();
+    if(check===7){
+        function guardar(){
+            db.collection("adopt-users").add({
+                userName: adopterName,
+                phoneNumber:adopterPhone,
+                dogName:petName,
+                Size:size,
+                Mixed:mixed,
+                Gender:gender,
+                Email:adopterEmail,
+                Breed:dogBreed,
+                Age:age,
+            })
+            .then((docRef) => {
+                console.log("Datos insertados en la base de datos");
+            })
+            .catch((error) => {
+                console.error("Error adding document: ", error);
+            });
+        }
+        guardar();
+    }
+   
 })
 
 const setError = (element, message) => {
@@ -138,18 +142,15 @@ function isValidPhone(phone){
 
 
 const validateInputs= (petName,dogBreed,adopterName,adopterPhone,adopterEmail, gender,mixed,size,age) =>{
-    // let adopterEmail=document.querySelector("#email__owner").value;
-    // if (adopterEmail===){
-        
-    // }
+    
     console.log(adopterPhone);
     console.log(adopterEmail);
     //EXPRESION REGULAR PARA QUE VALIDE EL TELEFONO CON FORMATO: +?? ??? ??? ????
    
-   let Email=adopterEmail;
-   let phone=adopterPhone;
-   console.log(Email);
-   console.log(phone);
+    let Email=adopterEmail;
+    let phone=adopterPhone;
+    console.log(Email);
+    console.log(phone);
     let genderInput=document.getElementsByName("pet__gender");
     let mixedInput=document.getElementsByName("pet__mixed");
     let sizeInput=document.getElementsByName("pet__size");
@@ -162,6 +163,7 @@ const validateInputs= (petName,dogBreed,adopterName,adopterPhone,adopterEmail, g
     let mixedCheck=0;
     let sizeCheck=0;
     let ageCheck=0;
+    let checkTotal=0; //deben ser 7 sin contar breed y dog name de momento
  
     for(let i=0; i<genderInput.length;i++){
         console.log(genderInput[i]);
@@ -194,6 +196,7 @@ const validateInputs= (petName,dogBreed,adopterName,adopterPhone,adopterEmail, g
         setError(owner__name, 'Username is required');
     }else{
         setSucces(owner__name);
+        checkTotal+=1;
     }
     if(adopterPhone===""){
         setError(owner__number, 'Phone is required');
@@ -201,6 +204,7 @@ const validateInputs= (petName,dogBreed,adopterName,adopterPhone,adopterEmail, g
         setError(owner__number, 'Not valid, must follow the pattern: +?? ??? ??? ???');
     }else{
         setSucces(owner__number);
+        checkTotal+=1;
     }
     if(adopterEmail=""){
         setError(email__owner, 'Email is required');
@@ -208,25 +212,35 @@ const validateInputs= (petName,dogBreed,adopterName,adopterPhone,adopterEmail, g
         setError(email__owner, 'Provide a valid email adress');
     }else{
         setSucces(email__owner);
+        checkTotal+=1;
     }
     if(genderCheck>0){
        errorGender.innerText="";
+       checkTotal+=1;
+
     }else{
         errorGender.innerText="You must select the gender";
     }
     if(mixedCheck>0){
         errorMixed.innerText="";
+        checkTotal+=1;
+
     }else{
         errorMixed.innerText="You must select a value";
     }
     if(sizeCheck>0){
         errorSize.innerText="";
+        checkTotal+=1;
+
     }else{
         errorSize.innerText="You must select a size";
     }
     if(ageCheck>0){
         errorAge.innerText="";
+        checkTotal+=1;
+
     }else{
         errorAge.innerText="You must select a age";
     }
+    return checkTotal;
 }

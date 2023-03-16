@@ -557,11 +557,10 @@ li{
 /*BREAKPOINT PARA DISPOSITIVOS EN VERTICAL*/
 
 .form__article{
-    height: 1060px;
+    height: 1020px;
     width: 100vw;
-    background-color: pink;
     display: flex;
-    margin-bottom: 10px;
+    margin:0 auto;
 }
 
 .photo__form{
@@ -602,17 +601,28 @@ form{
     padding: 20px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     width: 90%;
-    height:1040px; 
+    height:990px; 
     margin: 10px auto;
-    gap: 15px;
+    gap: 10px;
     text-align: center;
 } 
+
+.main__radioInputs{
+    /* background-color: #555B6E; */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+    margin-top: 20px;
+    gap: 60px;
+}
 
 .input__control{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 }
 
 input{
@@ -624,6 +634,11 @@ input{
     font-size: 1rem;
 }
 
+.option__container{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
 
 /* input:active, input:hover{
     outline: none;
@@ -714,5 +729,33 @@ label{
     .photo__adopt{
         grid-row: 1/2;
     }
+
+    .form__article{
+        height: 100vh;
+        width: 100vw;
+        display: grid;
+    }
+
+    .photo__form{
+        height: 700px;
+        /* background-color: #68c0c3; */
+        flex-basis: 30%;
+    }
+    
+    .photo__title{
+        font-size: 1.7rem;
+    }
+
+    form{
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 90%;
+        height:1000px; 
+        margin: 10px auto;
+        gap: 10px;
+        text-align: center;
+    } 
      
 }

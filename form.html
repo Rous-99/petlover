@@ -27,10 +27,6 @@
             </section>
             <section class="data__form">
                 <form action="" class="form__adopt">
-                    <label for="pet__name">Dog's Name</label>
-                    <input type="text" name="pet___name" id="pet__name" placeholder="Pet's name" required>
-                    <label for="pet__breed">Breed</label>
-                    <input type="text" name="pet__breed" id="pet__breed" placeholder="Pet's breed" required>
                     <div class="input__control">
                         <label for="">Name</label>
                         <input type="text" name="owner__name" id="owner__name" placeholder="Your name">
@@ -46,53 +42,59 @@
                         <input type="text" name="email" id="email__owner" placeholder="Ex:rousisonfire@gmail.com">
                         <div class="error"></div>
                     </div>
-                    <label for="gender">Gender</label>
-                    <div class="option__container">
-                        <div class="radio gender" name="gender">
-                            <input  class="radio__input" type="radio" name="pet__gender" id="female__option" value="female">
-                            <label  class="radio__label" for="female__option">Female</label>
-                            <input class="radio__input"  type="radio" name="pet__gender" id="male__option" value="male">
-                            <label class="radio__label"  for="male__option">Male</label>
+                    <label for="pet__name">Dog's Name</label>
+                    <input type="text" name="pet___name" id="pet__name" placeholder="Pet's name" required>
+                    <label for="pet__breed">Breed</label>
+                    <input type="text" name="pet__breed" id="pet__breed" placeholder="Pet's breed" required>
+                    <div class="main__radioInputs">
+                        <div class="option__container">
+                            <label for="gender">Gender</label>
+                            <div class="radio gender" name="gender">
+                                <input  class="radio__input" type="radio" name="pet__gender" id="female__option" value="female">
+                                <label  class="radio__label" for="female__option">Female</label>
+                                <input class="radio__input"  type="radio" name="pet__gender" id="male__option" value="male">
+                                <label class="radio__label"  for="male__option">Male</label>
+                            </div>
+                            <p class="error__radio" id="error__gender"></p>
                         </div>
-                        <p class="error__radio" id="error__gender"></p>
-                    </div>
-                    <label for="mixed">Mixed</label>
-                    <div  class="option__container">
-                        <div class="radio" name="mixed">
-                            <input class="radio__input" type="radio" value="mixed" name="pet__mixed" id="mixed__option">
-                            <label class="radio__label" for="mixed__option">Yes</label>
-                            <input class="radio__input" type="radio" value="no-mixed" name="pet__mixed" id="no-mixed__option">
-                            <label class="radio__label"for="no-mixed__option">No</label>
+                        <div  class="option__container">
+                            <label for="mixed">Mixed</label>
+                            <div class="radio" name="mixed">
+                                <input class="radio__input" type="radio" value="mixed" name="pet__mixed" id="mixed__option">
+                                <label class="radio__label" for="mixed__option">Yes</label>
+                                <input class="radio__input" type="radio" value="no-mixed" name="pet__mixed" id="no-mixed__option">
+                                <label class="radio__label"for="no-mixed__option">No</label>
+                            </div>
+                            <p class="error__radio" id="error__mixed"></p>
                         </div>
-                        <p class="error__radio" id="error__mixed"></p>
-                    </div>
-                    <label for="size">Size</label>
-                    <div class="option__container">
-                        <div class="radio" name="size">
-                            <input type="radio" class="radio__input" name="pet__size" value="small"  id="small__option">
-                            <label class="radio__label" for="small__option">Small</label>
-                            <input type="radio" class="radio__input" name="pet__size"  value="medium" id="medium__option">
-                            <label class="radio__label" for="medium__option">Medium</label>
-                            <input type="radio"  class="radio__input"name="pet__size"  value="large" id="large__option">
-                            <label class="radio__label" for="large__option">Large</label>
-                            <input type="radio" class="radio__input" name="pet__size" value="extralarge"  id="extralarge__option">
-                            <label class="radio__label" for="extralarge__option">Extralarge</label>
+                        <div class="option__container">
+                            <label for="age">Age</label>
+                            <div class="radio" name="age">
+                                <input type="radio" class="radio__input" name="pet__age" id="baby__option" value="baby">
+                                <label class="radio__label" for="baby__option">Baby</label>
+                                <input type="radio" class="radio__input" name="pet__age" id="young__option" value="young">
+                                <label class="radio__label" for="young__option">Young</label>
+                                <input type="radio" class="radio__input" name="pet__age" id="adult__option" value="adult">
+                                <label class="radio__label" for="adult__option">Adult</label>
+                                <input type="radio" class="radio__input" name="pet__age" id="senior__option" value="senior">
+                                <label class="radio__label" for="senior__option">Senior</label>
+                            </div>
+                            <p class="error__radio" id="error__age"></p>
                         </div>
-                        <p class="error__radio" id="error__size"></p>
-                    </div>
-                    <label for="age">Age</label>
-                    <div class="option__container">
-                        <div class="radio" name="age">
-                            <input type="radio" class="radio__input" name="pet__age" id="baby__option" value="baby">
-                            <label class="radio__label" for="baby__option">Baby</label>
-                            <input type="radio" class="radio__input" name="pet__age" id="young__option" value="young">
-                            <label class="radio__label" for="young__option">Young</label>
-                            <input type="radio" class="radio__input" name="pet__age" id="adult__option" value="adult">
-                            <label class="radio__label" for="adult__option">Adult</label>
-                            <input type="radio" class="radio__input" name="pet__age" id="senior__option" value="senior">
-                            <label class="radio__label" for="senior__option">Senior</label>
+                        <div class="option__container">
+                            <label for="size">Size</label>
+                            <div class="radio" name="size">
+                                <input type="radio" class="radio__input" name="pet__size" value="small"  id="small__option">
+                                <label class="radio__label" for="small__option">Small</label>
+                                <input type="radio" class="radio__input" name="pet__size"  value="medium" id="medium__option">
+                                <label class="radio__label" for="medium__option">Medium</label>
+                                <input type="radio"  class="radio__input"name="pet__size"  value="large" id="large__option">
+                                <label class="radio__label" for="large__option">Large</label>
+                                <input type="radio" class="radio__input" name="pet__size" value="extralarge"  id="extralarge__option">
+                                <label class="radio__label" for="extralarge__option">Extralarge</label>
+                            </div>
+                            <p class="error__radio" id="error__size"></p>
                         </div>
-                        <p class="error__radio" id="error__age"></p>
                     </div>
                     <button class="send__btn">Send</button>
                 </form>
