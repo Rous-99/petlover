@@ -681,6 +681,12 @@ label{
     color: white;
 }
 
+.error__radio{
+    margin-top: 9px;
+    color: #ff3860;
+    font-size: 1rem;
+}
+
 .send__btn{
     width: 40%;
     margin: 10px auto;

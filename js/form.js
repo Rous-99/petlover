@@ -123,6 +123,15 @@ function isValidEmail(email){
 function isValidPhone(phone){
     console.log("phone es:", phone);
     const telefono=/^\+?\d{2}(\s\d{3}){2}\s\d{3}$/;
+      /*
+    ^ inicio de linea
+    \+? que tenga o no el caracter +
+    \d{2} seguido de 2 digitos
+    (\s\d{3}){2} un patron de 3 digitos que se repita dos veces y con un espacio en blanco
+    \s espacio en blanco
+    \d{3} seguido de 3 digitos
+    $ fin de linea
+   */
     console.log(telefono.test(phone));
     return telefono.test(phone);
 }
@@ -141,16 +150,28 @@ const validateInputs= (petName,dogBreed,adopterName,adopterPhone,adopterEmail, g
    let phone=adopterPhone;
    console.log(Email);
    console.log(phone);
+    let genderInput=document.getElementsByName("pet__gender");
+    let mixedInput=document.getElementsByName("pet__mixed");
+    let sizeInput=document.getElementsByName("pet__size");
+    let ageInput=document.getElementsByName("pet__age");
+    let errorGender=document.querySelector('#error__gender');
+    let errorMixed=document.querySelector("#error__mixed");
+    let genderCheck=0;
+    let mixedCheck=0;
+ 
+    for(let i=0; i<genderInput.length;i++){
+        console.log(genderInput[i]);
+        if(genderInput[i].checked){
+           genderCheck+=1;
+        }
+    }
+    for(let i=0; i<mixedInput.length;i++){
+        console.log(mixedInput[i]);
+        if(mixedInput[i].checked){
+           mixedCheck+=1;
+        }
+    }
 
-   /*
-    ^ inicio de linea
-    \+? que tenga o no el caracter +
-    \d{2} seguido de 2 digitos
-    (\s\d{3}){2} un patron de 3 digitos que se repita dos veces y con un espacio en blanco
-    \s espacio en blanco
-    \d{3} seguido de 3 digitos
-    $ fin de linea
-   */
 
     //validate the name of the adopter is not empty
     if(adopterName===''){
@@ -171,5 +192,15 @@ const validateInputs= (petName,dogBreed,adopterName,adopterPhone,adopterEmail, g
         setError(email__owner, 'Provide a valid email adress');
     }else{
         setSucces(email__owner);
+    }
+    if(genderCheck>0){
+       errorGender.innerText="";
+    }else{
+        errorGender.innerText="You must select the gender";
+    }
+    if(mixedCheck>0){
+        errorMixed.innerText="";
+    }else{
+        errorMixed.innerText="You must select a value";
     }
 }
