@@ -160,13 +160,81 @@ li{
     transform: scale(1.1);
 }
 
-.carrusel__title{
-    margin: 30px;
-    font-family: 'Raleway', sans-serif;
-    font-size: 1.2rem;
-    color: var(--var-color3);
+.carrusel{
+    background-color:var(--yellow-color);
+    height: 160px;
 }
 
+.carrusel__title{
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.info{
+    width: 100%;
+    margin-bottom: 30px;
+    /* background-color: pink; */
+}
+
+.info__title{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 2.7rem;
+    margin: 40px 0;
+    text-align: center;
+}
+
+.info__cards{
+    /* background-color: #68c0c3; */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+    gap: 50px;
+}
+
+.card{
+    background-color: var(--white-new);
+    outline: 2px solid var(--yellow-color);
+    margin: 10px;
+    width: 250px;
+    height: 400px;
+    text-align: center;
+}
+
+.card__icon{
+    margin: 15px 0;
+}
+
+.card__number{
+    background-color: var(--yellow-color);
+    width: 30px;
+    height: 28px;
+    margin: 10px auto;
+}
+.card__number p {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+}
+
+.card__title{
+    font-family: 'Poppins',sans-serif;
+    font-weight: 600;
+    font-size: 1.3rem;
+    text-align: center;
+    margin: 0 10px;
+}
+
+
+.card__description{
+    margin: 20px 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
 /*AÑADIR BREAKPOINTS PARA HACERLO RESPONSIVE*/
 
 
