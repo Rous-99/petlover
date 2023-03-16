@@ -557,7 +557,7 @@ li{
 /*BREAKPOINT PARA DISPOSITIVOS EN VERTICAL*/
 
 .form__article{
-    height: 950px;
+    height: 1060px;
     width: 100vw;
     background-color: pink;
     display: flex;
@@ -603,7 +603,7 @@ form{
     display: flex;
     flex-direction: column;
     width: 90%;
-    height:930px; 
+    height:1040px; 
     margin: 10px auto;
     gap: 15px;
     text-align: center;

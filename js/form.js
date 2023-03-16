@@ -156,8 +156,12 @@ const validateInputs= (petName,dogBreed,adopterName,adopterPhone,adopterEmail, g
     let ageInput=document.getElementsByName("pet__age");
     let errorGender=document.querySelector('#error__gender');
     let errorMixed=document.querySelector("#error__mixed");
+    let errorSize=document.querySelector("#error__size");
+    let errorAge=document.querySelector("#error__age");
     let genderCheck=0;
     let mixedCheck=0;
+    let sizeCheck=0;
+    let ageCheck=0;
  
     for(let i=0; i<genderInput.length;i++){
         console.log(genderInput[i]);
@@ -169,6 +173,18 @@ const validateInputs= (petName,dogBreed,adopterName,adopterPhone,adopterEmail, g
         console.log(mixedInput[i]);
         if(mixedInput[i].checked){
            mixedCheck+=1;
+        }
+    }
+    for(let i=0; i<sizeInput.length;i++){
+        console.log(sizeInput[i]);
+        if(sizeInput[i].checked){
+           sizeCheck+=1;
+        }
+    }
+    for(let i=0; i<ageInput.length;i++){
+        console.log(ageInput[i]);
+        if(ageInput[i].checked){
+           ageCheck+=1;
         }
     }
 
@@ -202,5 +218,15 @@ const validateInputs= (petName,dogBreed,adopterName,adopterPhone,adopterEmail, g
         errorMixed.innerText="";
     }else{
         errorMixed.innerText="You must select a value";
+    }
+    if(sizeCheck>0){
+        errorSize.innerText="";
+    }else{
+        errorSize.innerText="You must select a size";
+    }
+    if(ageCheck>0){
+        errorAge.innerText="";
+    }else{
+        errorAge.innerText="You must select a age";
     }
 }
