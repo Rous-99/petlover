@@ -62,7 +62,7 @@ form.addEventListener("submit", function(ev){
     }
     console.log(petName,dogBreed,adopterName,adopterPhone,adopterEmail, gender,mixed,size,age);
   //get the value of radio inputs, how to?
-    validateInputs();
+    validateInputs(petName,dogBreed,adopterName,adopterPhone,adopterEmail, gender,mixed,size,age);
     //if it's true llamamos a guardar y sino no dejamos guardar
     // function guardar(){
     //     db.collection("adopt-users").add({
@@ -86,9 +86,90 @@ form.addEventListener("submit", function(ev){
     //     guardar();
 })
 
-const validateInputs= () =>{
-    let adopterEmail=document.querySelector("#email__owner").value;
-    if (adopterEmail===){
+const setError = (element, message) => {
+    const inputControl=element.parentElement;
+    const errorDisplay=inputControl.querySelector('.error');
+
+    errorDisplay.innerText=message;
+    inputControl.classList.add('error');
+    inputControl.classList.remove('success');
+}
+
+const setSucces= element =>{
+    const inputControl=element.parentElement;
+    const errorDisplay=inputControl.querySelector('.error');
+
+    errorDisplay.innerText='';
+    inputControl.classList.remove('error');
+    inputControl.classList.add('success');
+}
+
+function isValidEmail(email){
+    console.log("email es:",email);
+    const re=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+    /*
+        PRUEBAS PARA EL TESTING 
+        isValidEmail('david@davidburgos.blog'); // true
+        isValidEmail('david@ejemplo.com.es'); // true 
+        isValidEmail('@google.com'); // false 
+        isValidEmail('hola@.com'); // false 
+        isValidEmail('hola@google.c'); // false 
+        isValidEmail('hola@google'); // false
+    */
+    console.log(re.test(email));
+    return re.test(email);
+}
+
+function isValidPhone(phone){
+    console.log("phone es:", phone);
+    const telefono=/^\+?\d{2}(\s\d{3}){2}\s\d{3}$/;
+    console.log(telefono.test(phone));
+    return telefono.test(phone);
+}
+
+
+const validateInputs= (petName,dogBreed,adopterName,adopterPhone,adopterEmail, gender,mixed,size,age) =>{
+    // let adopterEmail=document.querySelector("#email__owner").value;
+    // if (adopterEmail===){
         
+    // }
+    console.log(adopterPhone);
+    console.log(adopterEmail);
+    //EXPRESION REGULAR PARA QUE VALIDE EL TELEFONO CON FORMATO: +?? ??? ??? ????
+   
+   let Email=adopterEmail;
+   let phone=adopterPhone;
+   console.log(Email);
+   console.log(phone);
+
+   /*
+    ^ inicio de linea
+    \+? que tenga o no el caracter +
+    \d{2} seguido de 2 digitos
+    (\s\d{3}){2} un patron de 3 digitos que se repita dos veces y con un espacio en blanco
+    \s espacio en blanco
+    \d{3} seguido de 3 digitos
+    $ fin de linea
+   */
+
+    //validate the name of the adopter is not empty
+    if(adopterName===''){
+        setError(owner__name, 'Username is required');
+    }else{
+        setSucces(owner__name);
+    }
+    if(adopterPhone===""){
+        setError(owner__number, 'Phone is required');
+    }else if (!isValidPhone(phone)){
+        setError(owner__number, 'Not valid, must follow the pattern: +?? ??? ??? ???');
+    }else{
+        setSucces(owner__number);
+    }
+    if(adopterEmail=""){
+        setError(email__owner, 'Email is required');
+    } else if (!isValidEmail(Email)){
+        setError(email__owner, 'Provide a valid email adress');
+    }else{
+        setSucces(email__owner);
     }
 }

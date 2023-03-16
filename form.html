@@ -31,12 +31,21 @@
                     <input type="text" name="pet___name" id="pet__name" placeholder="Pet's name" required>
                     <label for="pet__breed">Breed</label>
                     <input type="text" name="pet__breed" id="pet__breed" placeholder="Pet's breed" required>
-                    <label for="">Name</label>
-                    <input type="text" name="owner__name" id="owner__name" placeholder="Your name" required>
-                    <label for="owner__number">Telephone Number</label>
-                    <input type="tel" name="owner__number" id="owner__number" placeholder="Ex:#34 722729071" required>
-                    <label for="email__owner">Email</label>
-                    <input type="email" name="email" id="email__owner" placeholder="Ex:rousisonfire@gmail.com" required>
+                    <div class="input__control">
+                        <label for="">Name</label>
+                        <input type="text" name="owner__name" id="owner__name" placeholder="Your name">
+                        <div class="error"></div>
+                    </div>
+                    <div class="input__control">
+                        <label for="owner__number">Telephone Number</label>
+                        <input type="text" name="owner__number" id="owner__number" placeholder="+?? ??? ??? ???">
+                        <div class="error"></div>
+                    </div>
+                    <div class="input__control">
+                        <label for="email__owner">Email</label>
+                        <input type="text" name="email" id="email__owner" placeholder="Ex:rousisonfire@gmail.com">
+                        <div class="error"></div>
+                    </div>
                     <label for="gender">Gender</label>
                     <div class="option__container">
                         <div class="radio gender" name="gender">
