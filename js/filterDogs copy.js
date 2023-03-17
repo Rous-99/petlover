@@ -154,17 +154,87 @@ const showDogs = (dogs) => {
     })
 }
 
+const showDogsMixedOption= (arrayDogs) => {
+    let dogsContainer=document.querySelector('#dogs');
+    let output="";
+    dogsContainer.innerHTML='';
+    console.log(dogs);
+    arrayDogs.forEach(dog => {
+        if(dog.photos.length>0){
+            let dogID=dog.url;
+            let photo=dog['primary_photo_cropped'].large;
+            let age=dog.age;
+            let breed=dog['breeds'].primary;
+            let mixed=dog['breeds'].mixed;
+            let breed2="";
+            console.log(mixed);
+            let mixedValue="";
+            if (mixed===true){
+                mixedValue="Yes";
+                breed2=dog['breeds'].secondary;
+                if (breed2===null){
+                    breed2="";
+                }
+            }else{
+                mixedValue="No";
+            }
+
+            let gender=dog.gender;
+            let Name=dog.name;
+            let size=dog.size;
+            let description=dog["tags"];
+            console.log(dog);
+            console.log(dogID,photo,age,breed,gender,Name,description, size); 
+
+            output+=`
+            <div class="dog">
+                <img class="dog__photo" src="${photo}" alt="">
+                <div class="dog__info">
+                    <p class="name">${Name}</p>
+                    <div class="info__description">
+                        <p class="info__p">Age</p>
+                        <p class="lifespan">${age}</p>
+                    </div>
+                    <div class="info__description">
+                        <p class="info__p">Breed</p>
+                        <p class="breed">${breed}</p>
+                        <p class="breed">${breed2}</p>
+                    </div>
+                    <div class="info__description">
+                        <p class="info__p">Gender</p>
+                        <p class="height">${gender}</p>
+                    </div>
+                    <div class="info__description">
+                        <p class="info__p">Size</p>
+                        <p class="weight">${size}</p>
+                    </div>
+                    <div class="info__description">
+                        <p class="info__p">Mixed</p>
+                        <p class="weight">${mixedValue}</p>
+                    </div>
+                </div>
+            </div>
+            `
+            dogsContainer.innerHTML=output;
+        }
+    })
+}
+
 const SelectDogs = (dogs) =>{
     let mixedOption=document.getElementById("mixed__filter").value;
     console.log(mixedOption);
     if (mixedOption==="np"){
+        let flatArrayDogs=dogs.flat();
+        let numDogs=flatArrayDogs.length;
+        console.log(numDogs);
+        let dogsFoundMessage=document.querySelector('.message__text').innerText=`${numDogs} results found`;
         showDogs(dogs);
     }
     else if (mixedOption==="mixed"){
         let MixedDogs=[];
         dogs.forEach(page =>{
             page.forEach(dog => {
-                console.log(dog);
+                // console.log(dog);
                 let mixed=dog['breeds'].mixed;
                 if (mixed===true){
                     MixedDogs.push(dog);
@@ -173,7 +243,9 @@ const SelectDogs = (dogs) =>{
            
         })
         console.log(MixedDogs);
-        showDogs(MixedDogs);
+        let numDogs=MixedDogs.length;
+        let dogsFoundMessage=document.querySelector('.message__text').innerText=`${numDogs} results found`;
+        showDogsMixedOption(MixedDogs);
     }
     else{
         //show only the dogs returned that are false
@@ -188,7 +260,9 @@ const SelectDogs = (dogs) =>{
             })
         })
         console.log(noMixedDogs);
-        showDogs(noMixedDogs);
+        let numDogs=noMixedDogs.length;
+        let dogsFoundMessage=document.querySelector('.message__text').innerText=`${numDogs} results found`;
+        showDogsMixedOption(noMixedDogs);
     }
 }
 
@@ -263,16 +337,16 @@ const filterDog=async(dog) =>{
             }
         });
         let dogsJson=await dogsReponse.json(); //meter en un array de perros
-        console.log(dogsJson);
+        // console.log(dogsJson);
         dogsArray.push(dogsJson["animals"]);
     }
     console.log(dogsArray);
     console.log(totalPages);
-    if(dogsArray[0].length>1){
+    if(dogsArray[0].length>=1){
         SelectDogs(dogsArray);
     }
     else{
-        console.log("NO DOGS FOUND");
+        let dogsFoundMessage=document.querySelector('.message__text').innerText='No dogs found';
         //coger el contenedor de dogs y vaciarlo para insertar el mensaje
     }
 //    showFilterDogs(dogsArray); //llamar a la funcion para mostrar los perros
@@ -284,6 +358,7 @@ btnFilter.addEventListener("click", () => {
     let dog=changeDogByFilters();
     console.log(dog);
     filterDog(dog);
+
 })
 
 

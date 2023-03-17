@@ -714,6 +714,15 @@ label{
     cursor: pointer;
 }
 
+.message{
+    background-color: #68c0c3;
+    color: black;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
 /*MEDIA QUERIES*/
 
 @media (max-width:1250px) {
