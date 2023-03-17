@@ -353,7 +353,6 @@ const filterDog=async(dog) =>{
         let dogsFoundMessage=document.querySelector('.message__text').innerText='No dogs found';
         //coger el contenedor de dogs y vaciarlo para insertar el mensaje
     }
-//    showFilterDogs(dogsArray); //llamar a la funcion para mostrar los perros
 }
 
 
