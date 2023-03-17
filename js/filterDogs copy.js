@@ -227,6 +227,7 @@ const SelectDogs = (dogs) =>{
         let flatArrayDogs=dogs.flat();
         let numDogs=flatArrayDogs.length;
         console.log(numDogs);
+        let loadingInput=document.querySelector('.loading__text').innerText='';
         let dogsFoundMessage=document.querySelector('.message__text').innerText=`${numDogs} results found`;
         showDogs(dogs);
     }
@@ -244,6 +245,7 @@ const SelectDogs = (dogs) =>{
         })
         console.log(MixedDogs);
         let numDogs=MixedDogs.length;
+        let loadingInput=document.querySelector('.loading__text').innerText='';
         let dogsFoundMessage=document.querySelector('.message__text').innerText=`${numDogs} results found`;
         showDogsMixedOption(MixedDogs);
     }
@@ -261,6 +263,7 @@ const SelectDogs = (dogs) =>{
         })
         console.log(noMixedDogs);
         let numDogs=noMixedDogs.length;
+        let loadingInput=document.querySelector('.loading__text').innerText='';
         let dogsFoundMessage=document.querySelector('.message__text').innerText=`${numDogs} results found`;
         showDogsMixedOption(noMixedDogs);
     }
@@ -346,6 +349,7 @@ const filterDog=async(dog) =>{
         SelectDogs(dogsArray);
     }
     else{
+        let loadingInput=document.querySelector('.loading__text').innerText='';
         let dogsFoundMessage=document.querySelector('.message__text').innerText='No dogs found';
         //coger el contenedor de dogs y vaciarlo para insertar el mensaje
     }
@@ -355,10 +359,29 @@ const filterDog=async(dog) =>{
 
 btnFilter.addEventListener("click", () => {
     console.log("clickado");
+    let dogsFoundMessage=document.querySelector('.message__text').innerText='';
+    let loadingInput=document.querySelector('.loading__text').innerText='Loading...';
+    let dogsContainer=document.querySelector('#dogs').innerHTML='';
     let dog=changeDogByFilters();
     console.log(dog);
     filterDog(dog);
+})
 
+let btnReset=document.querySelector("#reset__filters");
+btnReset.addEventListener("click", () => {
+    let resetSize=document.getElementById("size__filter");
+    let resetGender=document.getElementById("gender_filter");
+    let resetAge=document.getElementById("age__filter");
+    let resetBreed=document.getElementById("breed__filter");
+    let resetMixed=document.getElementById("mixed__filter");
+    resetSize.selectedIndex=0;
+    resetGender.selectedIndex=0;
+    resetAge.selectedIndex=0;
+    resetBreed.selectedIndex=0;
+    resetMixed.selectedIndex=0;
+    let dogsFoundMessage=document.querySelector('.message__text').innerText='';
+    let loadingInput=document.querySelector('.loading__text').innerText='';
+    let dogsContainer=document.querySelector('#dogs').innerHTML='';
 })
 
 

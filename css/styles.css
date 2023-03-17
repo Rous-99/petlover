@@ -463,9 +463,9 @@ li{
 .btn__container{
     /* background-color: #68c0c3; */
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-content: center;
+    gap: 40px;
 }
 
 .btn__filterAll{
@@ -483,6 +483,29 @@ li{
     text-transform: uppercase;
     font-weight: 600;
     font-size: 1.4rem;
+}
+
+.reset{
+    /* background-color: #09c372; */
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.btn__reset{
+    width: max-content;
+    background: none;
+    border: none;
+    outline: none;
+   cursor: pointer;
+}
+
+.reset p{
+    font-size: 1.4rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    color: black;
+    margin: 10px;
 }
 
 .btn__filterAll:hover{
@@ -715,13 +738,19 @@ label{
 }
 
 .message{
-    background-color: #68c0c3;
+    /* background-color: #68c0c3; */
     color: black;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-size: 1.4rem;
-    margin-bottom: 10px;
+    margin: 20px 30px;
+    letter-spacing: .3rem;
+    color:black;
 }
+
+/* .loading__text{
+
+} */
 
 /*MEDIA QUERIES*/
 
