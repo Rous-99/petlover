@@ -24,7 +24,7 @@ let form=document.querySelector(".form__adopt");
 form.addEventListener("submit", function(ev){
     ev.preventDefault();
     let petName=document.querySelector("#pet__name").value;
-    let dogBreed=document.querySelector("#pet__breed").value;
+    let dogBreed=document.querySelector("#breed__filter").value;
     let adopterName=document.querySelector("#owner__name").value;
     let adopterPhone=document.querySelector("#owner__number").value;
     let adopterEmail=document.querySelector("#email__owner").value;
@@ -86,6 +86,10 @@ form.addEventListener("submit", function(ev){
             });
         }
         guardar();
+        let message= document.querySelector('.messageForm').innerText='Form send with exit';
+    }
+    else{
+        let message= document.querySelector('.messageForm').innerText="Form couldn't be send. Check again please";
     }
    
 })
@@ -244,3 +248,72 @@ const validateInputs= (petName,dogBreed,adopterName,adopterPhone,adopterEmail, g
     }
     return checkTotal;
 }
+
+const breedOptions=async() =>{
+    let newToken=await getToken();
+    const tokenType=tokenJson.token_type;
+    const tokenAcces=tokenJson.access_token;
+    const tokenExpires=tokenJson.expires_in;
+    const selectBreed=document.querySelector('#breed__filter');
+    console.log(selectBreed);
+    const breed=[];
+    //son 7 paginas
+    for(let indexPage=1;indexPage<=7; indexPage++){
+        const dogsReponse= await fetch(`https://api.petfinder.com/v2/animals?type=${animalType}&location=texas&distance=50&page=${indexPage}`,{ //devuelve un array de objetos
+         headers: {
+            'Authorization': tokenType + ' ' + tokenAcces,
+            'Content-Type': 'application/x-www/form-urlencoded'
+        }
+        }); //son 7 páginas y 130 perros en total
+        const dogsJson=await dogsReponse.json();
+        console.log(dogsJson);
+        const dogsOnly=dogsJson["animals"];
+        console.log(dogsOnly);
+        dogsOnly.forEach((dog)=>{
+            // console.log(dog);
+            if(dog.photos.length>0) {//si tiene foto 
+                let dogBreed=dog["breeds"].primary;
+                if(!breed.includes(dogBreed)){
+                    breed.push(dogBreed);
+                }
+            }
+          
+        })
+    }
+
+    console.log(breed); //me salen 29 razas
+    localStorage.setItem('razas', JSON.stringify(breed));
+    let listaRazas=localStorage.getItem('razas');
+    console.log(listaRazas);
+}   
+
+function setBreedsOptions(){
+    let razasString= localStorage.getItem('razas');
+    let razas=JSON.parse(razasString);
+    const selectBreed=document.querySelector('#breed__filter');
+    console.log("desde funcion");
+    console.log(razas);
+    razas.forEach(raza => {
+        const option=document.createElement('option');
+        option.innerText=raza;
+        option.value=raza;
+        selectBreed.appendChild(option);
+    })
+}
+
+//get the breeds when the page has loaded
+document.addEventListener('DOMContentLoaded', async() => {
+    console.log(localStorage.length);
+    if(localStorage.length===0){
+        console.log("primera carga");
+        breedOptions();
+        setBreedsOptions();
+    }
+    let breedFilter=document.querySelector("#breed__filter");
+    if(breedFilter.length<=1 && localStorage.length>0){
+        // breedOptions();
+        console.log("segunda carga");
+        setBreedsOptions();
+    }
+    console.log(breedFilter);
+})

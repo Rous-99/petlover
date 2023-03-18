@@ -240,12 +240,10 @@ li{
 
 /*-----------------------------------DOGS CARDS-------------------------------------------*/
 #dogs{
-    /* background-color: aqua; */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(450px, auto));
     grid-template-rows: repeat(auto-fit, minmax(200px, auto));
     grid-gap: 50px;
-    margin: 50px auto;
     max-width: 100%;
     padding: 20px;
 } 
@@ -262,7 +260,6 @@ li{
     border-radius: 10px;
     cursor: pointer;
     position: relative;
-   
 }
 
 /* .dog:hover{
@@ -455,9 +452,10 @@ li{
 }
 
 .btns__container{
+    /* background-color: #09c372; */
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    gap: 20px;
 }
 
 .btn__container{
@@ -469,8 +467,9 @@ li{
 }
 
 .btn__filterAll{
-    margin: 40px 0;
+    /* margin: 40px 0; */
     /* border: 1px solid var(--var-color3); */
+    margin-top: 40px;
     border: none;
     background-color: var(--green-new);
     color: white;
@@ -497,7 +496,7 @@ li{
     background: none;
     border: none;
     outline: none;
-   cursor: pointer;
+    cursor: pointer;
 }
 
 .reset p{
@@ -505,23 +504,35 @@ li{
     font-family: 'Raleway', sans-serif;
     font-weight: 600;
     color: black;
-    margin: 10px;
 }
 
 .btn__filterAll:hover{
     transform: scale(1.2);
 }
+
+.filterMessage{
+    /* background-color: #555B6E; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.message{
+    /* background-color: #68c0c3; */
+    margin-top: 10px;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: .3rem;
+    color:black;
+}
  
 /*AÑADIR ESTILOS DE LAS OPCIONES, NO FUNCIONA, CREO QUE HAY QUE PONER CLASE A TODAS LAS ETIQUETAS OPTION*/
 /*mirar en task una pagina que lo explica*/
 
-.hide{
-    display: none;
-}
-
-.show{
-    display: block;
-}
 
 /*------------------------SEE  ALL DOGS-----------------------------------------------------*/
 
@@ -657,6 +668,15 @@ input{
     font-size: 1rem;
 }
 
+.breed__form{
+    padding: 8px 14px;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 5px;
+    border: 2px solid var(--green-new);
+    font-size: 1rem; 
+}
+
 .option__container{
     display: flex;
     flex-direction: column;
@@ -737,16 +757,13 @@ label{
     cursor: pointer;
 }
 
-.message{
-    /* background-color: #68c0c3; */
-    color: black;
-    font-family: 'Montserrat', sans-serif;
+.messageForm{
+    font-size: 1rem;
+    font-family: 'Raleway', sans-serif;
     font-weight: 600;
-    font-size: 1.4rem;
-    margin: 20px 30px;
-    letter-spacing: .3rem;
-    color:black;
+    color: black;
 }
+
 
 /* .loading__text{
 
@@ -794,6 +811,28 @@ label{
         margin: 10px auto;
         gap: 10px;
         text-align: center;
+    }
+
+    #dogs{
+        margin-top: 100px;
+        height: max-content;
     } 
-     
+    
+    .dog{
+        box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+        background-color: var(--green-light-new);
+        margin: 20px auto;
+        width:500px;
+        border-radius: 10px;
+        cursor: pointer;
+        position: relative;
+    }
+    
+    .filterMessage{
+        gap: 5px;
+    }
+    
+    .message{
+        margin-bottom: 10px;
+    }
 }

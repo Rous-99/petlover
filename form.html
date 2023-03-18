@@ -38,13 +38,15 @@
                     </div>
                     <div class="input__control">
                         <label for="email__owner">Email</label>
-                        <input type="text" name="email" id="email__owner" placeholder="Ex: rousisonfire@gmail.com">
+                        <input type="text" name="email" id="email__owner" placeholder="Ex: example@gmail.com">
                         <div class="error"></div>
                     </div>
                     <label for="pet__name">Dog's Name</label>
                     <input type="text" name="pet___name" id="pet__name" placeholder="Pet's name" required>
                     <label for="pet__breed">Breed</label>
-                    <input type="text" name="pet__breed" id="pet__breed" placeholder="Pet's breed" required>
+                    <!-- <input type="text" name="pet__breed" id="pet__breed" placeholder="Pet's breed" required> -->
+                    <select name="adopt__filter" id="breed__filter" class="breed__form">
+                    </select>
                     <div class="main__radioInputs">
                         <div class="option__container">
                             <label for="gender">Gender</label>
@@ -96,6 +98,7 @@
                         </div>
                     </div>
                     <button class="send__btn">Send</button>
+                    <p class="messageForm"></p>
                 </form>
             </section>
         </div>

@@ -86,7 +86,11 @@
                 </div>
                 <div class="btns__container">
                     <div class="btn__container">
-                        <button class="btn__filterAll" id="btn__filter">Filter</button>
+                        <div class="filterMessage">
+                            <button class="btn__filterAll" id="btn__filter">Filter</button>
+                            <div class="message"><p class="message__text"></p></div>
+                            <div class="message"><p class="loading__text"></p></div>
+                        </div>
                         <div class="reset">
                             <button class="btn__reset" id="reset__filters"><img src="./img/reset.png" alt=""></button>
                             <p>Reset filters</p>
@@ -95,8 +99,7 @@
                 </div>
             </div>
         </section>
-        <div class="message"><p class="message__text"></p></div>
-        <div class="message"><p class="loading__text"></p></div>
+       
         <div id="dogs">
         </div>
     </main>
