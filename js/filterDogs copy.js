@@ -63,12 +63,7 @@ const breedOptions=async() =>{
     localStorage.setItem('razas', JSON.stringify(breed));
     let listaRazas=localStorage.getItem('razas');
     console.log(listaRazas);
-    // breed.forEach(breed => {
-    //     const option=document.createElement('option');
-    //     option.innerText=breed;
-    //     option.value=breed;
-    //     selectBreed.appendChild(option);
-    // })
+    setBreedsOptions();
 }   
 
 function setBreedsOptions(){
@@ -384,20 +379,19 @@ btnReset.addEventListener("click", () => {
 })
 
 
-breedOptions();
-setBreedsOptions();
 
 //get the breeds when the page has loaded
-// document.addEventListener('DOMContentLoaded', async() => {
-//    setBreedsOptions(); //SOLUCIONAR EL TIEMPO DE ESPERA
-//     // dogsContainer.classList.add('hide');
-// })
-
-// let genderSelect=document.querySelector('#gender_filter');
-// genderSelect.addEventListener("change", () => {
-//     let pruebaDiv=document.querySelector('.prueba');
-//     console.log(pruebaDiv)
-//     pruebaDiv.innerHTML='';
-//     let dogs=document.querySelector('#dogs');
-//     dogs.innerHTML='';
-// })
+document.addEventListener('DOMContentLoaded', async() => {
+    console.log(localStorage.length);
+    if(localStorage.length===0){
+        console.log("primera carga");
+        breedOptions();
+    }
+    let breedFilter=document.querySelector("#breed__filter");
+    if(breedFilter.length<=1 && localStorage.length>0){
+        // breedOptions();
+        console.log("segunda carga");
+        setBreedsOptions();
+    }
+    console.log(breedFilter);
+})
