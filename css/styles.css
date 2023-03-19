@@ -412,7 +412,7 @@ li{
 /*---------------------------ADOPT PAGE HTML -----------------------------------------------------*/
 
 .adopt{
-    height: 80vh;
+    height: 90vh;
     width: 100vw;
     display: flex;
     border: 2px solid var(--green-new);
@@ -450,6 +450,7 @@ li{
 }
 
 .adopt__title{
+    margin-top: 10px;
     color:var(--green-new);
     font-family: 'Poppins',sans-serif;
     font-size: 6rem;
@@ -544,6 +545,7 @@ li{
     /* margin: 40px 0; */
     /* border: 1px solid var(--var-color3); */
     margin-top: 40px;
+    margin-bottom: 20px;
     border: none;
     background-color: var(--green-new);
     color: white;
