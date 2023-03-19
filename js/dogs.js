@@ -19,6 +19,10 @@ let buttonAnt=document.querySelector('.ant');
 buttonNext.addEventListener('click', async() => {
     if(indicePagina<=7){
         indicePagina+=1;
+        let dogsContainer=document.querySelector('#dogs');
+        dogsContainer.innerHTML="";
+        let loadingMessage=document.querySelector('.message__text');
+        loadingMessage.innerText='Loading...';
         await getToken();
     }
     //funciona pero necesito que cuando cargue la siguiente pagina se borre la anterior
@@ -27,6 +31,10 @@ buttonNext.addEventListener('click', async() => {
 buttonAnt.addEventListener("click", async() => {
     if(indicePagina>1){
         indicePagina-=1;
+        let dogsContainer=document.querySelector('#dogs');
+        dogsContainer.innerHTML="";
+        let loadingMessage=document.querySelector('.message__text');
+        loadingMessage.innerText='Loading...';
         await getToken();
     }
 })
@@ -65,6 +73,8 @@ const fetchDogs= async (tokenType,tokenAcces) =>{
 
 
 const showAlldogs = (dogs) => {
+    let loadingMessage=document.querySelector('.message__text');
+    loadingMessage.innerText='';
     let dogsContainer=document.querySelector('#dogs');
     let output="";
     console.log("desde la funcion show", dogs)
@@ -134,6 +144,8 @@ const showAlldogs = (dogs) => {
 
 
 document.addEventListener('DOMContentLoaded', async() => {
+    let loadingMessage=document.querySelector('.message__text');
+    loadingMessage.innerText='Loading...';
     await getToken();
 })
 

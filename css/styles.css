@@ -662,10 +662,9 @@ li{
 
 /*-----------------------FORMULARIO------------------------------------*/
 
-/*BREAKPOINT PARA DISPOSITIVOS EN VERTICAL*/
 
 .form__article{
-    height: 1020px;
+    height: 1060px;
     width: 100vw;
     display: flex;
     margin:0 auto;
@@ -711,7 +710,7 @@ form{
     flex-direction: column;
     justify-content: center;
     width: 90%;
-    height:990px; 
+    height:1030px; 
     margin: 10px auto;
     gap: 10px;
     text-align: center;
@@ -754,7 +753,7 @@ input{
 .option__container{
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
 }
 
 /* input:active, input:hover{
@@ -796,7 +795,7 @@ label{
 }
 
 .radio__label{
-    padding: 8px 14px;
+    padding: 8px 24px;
     font-size: 1.2rem;
     background: var(--green-light-new);
     color: var(--blue-new);
@@ -814,7 +813,7 @@ label{
 }
 
 .error__radio{
-    margin-top: 9px;
+    margin-top: 5px;
     color: #ff3860;
     font-size: 1rem;
 }
@@ -838,10 +837,6 @@ label{
     color: black;
 }
 
-
-/* .loading__text{
-
-} */
 
 /*MEDIA QUERIES*/
 

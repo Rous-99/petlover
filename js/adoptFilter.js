@@ -26,7 +26,7 @@ const getToken=async() =>{
 }
 
 
-//sin terminar
+
 const breedOptions=async() =>{
     let newToken=await getToken();
     const tokenType=tokenJson.token_type;

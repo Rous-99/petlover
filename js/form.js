@@ -1,4 +1,6 @@
 
+
+
 firebase.initializeApp({
     apiKey: "AIzaSyCEGr5MTGVw3RllCyKbsx4bmcKsVebPaJI",
     authDomain: "adopt-page.firebaseapp.com",
