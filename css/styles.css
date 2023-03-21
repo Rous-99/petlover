@@ -400,6 +400,10 @@ li{
     letter-spacing: .1rem;
 }
 
+.dog__info .dog__id{
+    display: none;
+}
+
 .dog .name{
     /* padding-top: 15px; */
     text-transform: uppercase;
@@ -432,10 +436,24 @@ li{
     font-weight: 600;
 }
 
-/* #dogs img{
-    width: 100%;
-    display: block;
-} */
+
+/*--------------------------VIEW MORE ABOUT ONE DOG-----------------------------------------------*/
+.actualDog{
+    background-color: var(--green-new);
+    height: 70vh;
+    width: 90vw;
+    margin: 0 auto;
+}
+
+.actualDogInfo{
+    flex-basis: 50%;
+    text-align: center;
+}
+.dogPhoto{
+    flex-basis: 50%;
+}
+
+
 /*---------------------------ADOPT PAGE HTML -----------------------------------------------------*/
 
 .adopt{
@@ -702,6 +720,7 @@ li{
 .favorite-btn:hover{
     background-color: #b7a570;
 }
+
 
 /*-----------------------FORMULARIO------------------------------------*/
 
