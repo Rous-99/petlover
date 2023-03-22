@@ -139,7 +139,7 @@ const showAlldogs = (dogs) => {
                             <p class="weight">${mixedValue}</p>
                         </div>
                     </div>
-                    <a class="dog__btn">VIEW MORE</a>
+                    <a class="dog__btn"><img src="./img/zoom-in.png">VIEW MORE</a>
                 </div>
             </div>
             `
@@ -210,28 +210,64 @@ async function viewActualDog(dogInfo){
     let coat=dogInfoFetch.coat;
     let messageCoat="";
     let status=dogInfoFetch.status;
+    let messageStatus=`${status}`;
     let descriptionDog=dogInfoFetch.description;
     let messageDescriptionDog="";
     let personality=dogInfoFetch["tags"];
-    let messasgePersonality="";
     let messageGoodWith="";
+    let messagePersonality="";
+    let colorTitle="";
+    let colorCoat="";
+    let iconColor="";
+    let iconCoat="";
+    let iconStatus="";
+    let goodTitle="";
     console.log(photo,age,breed,gender,Name, size, color,coat, personality, descriptionDog,status, goodWith); 
 
+
+
+
     if (color!==null){
-        messageColor=`Color: ${color}`;
+        colorTitle="Color";
+        iconColor=` <img src="./img/gota-de-tinta.png">`;
+        messageColor=`${color}`;
     }
     if(coat!==null){
-       messageCoat=`Coat: ${coat}`;
+        colorCoat="Coat";
+        iconCoat=` <img src="./img/coat.png">`
+        messageCoat=`${coat}`;
     }
     if(descriptionDog!==null){
-        messageDescriptionDog=`About me: ${descriptionDog}`;
+        messageDescriptionDog=`About me <br><br> ${descriptionDog}`;
     }
     if(personality.length!==0){
-        messasgePersonality=`Personality: ${personality}`;
+        let space="";
+        personality.forEach(value =>{
+            console.log(value);
+            space=`<br>`;
+        })
+        messagePersonality=`${personality}${space}`;
     }
     if(goodWith.length!==0){
-        messageGoodWith=`Good with: ${goodWith}`;
+        goodTitle="Good with";
+        let GoodWithDogs="";
+        let GoodWithChildren="";
+        let GoodWithCats="";
+        goodWith.forEach(value =>{
+            if(value==="dogs"){
+                GoodWithDogs=`<img src="./img/love-dog.png">${value}<br> `;
+            }
+            if(value==="children"){
+                GoodWithChildren=`<img src="./img/chupete.png">${value}<br>`;
+            }
+            if(value==="cats"){
+                GoodWithCats=`<img src="./img/cat.png">${value}<br>`;
+            }
+        })
+        messageGoodWith=`${GoodWithDogs} ${GoodWithChildren} ${GoodWithCats}`;
     }
+
+
   
 
     let dogContainer=document.querySelector('.actualDog');
@@ -239,52 +275,63 @@ async function viewActualDog(dogInfo){
     outputDog+=`
     <img class="dogPhoto" src="${photo}" alt="">
     <div class="actualDogInfo">
-                <div class="dogInfo">
                     <p class="Name">${Name}</p>
                     <div class="infoDog">
                         <div class="info__parameter">
+                            <img src="./img/bone.png">
                             <p class="parameter__title">Age</p>
                             <p>${age}</p>
                         </div>
                         <div class="info__parameter">
+                            <img src="./img/paw.png">
                             <p class="parameter__title">Breed</p>
                             <p>${breed}</p>
                             <p>${breed2}</p>
                         </div>
                         <div class="info__parameter">
+                            <img src="./img/gender.png">
                             <p class="parameter__title">Gender</p>
                             <p >${gender}</p>
                         </div>
                         <div class="info__parameter">
+                            <img src="./img/dog-seating.png">
                             <p class="parameter__title">Size</p>
                             <p >${size}</p>
                         </div>
                         <div class="info__parameter">
+                            <img src="./img/pet-care.png">
                             <p class="parameter__title">Mixed</p>
                             <p >${mixedValue}</p>
                         </div>
-                        <div class="info_color">
-                            <p>${messageColor}</p>
+                        <div class="info__parameter">
+                                ${iconColor}
+                                <p class="parameter__title">${colorTitle}</p>
+                                <p>${messageColor}</p>
                         </div>
                         <div class="info__parameter">
-                            <p >${messageCoat}</p>
+                                ${iconCoat}
+                                <p class="parameter__title">${colorCoat}</p>
+                                <p>${messageCoat}</p>
                         </div>
                         <div class="info__parameter">
-                            <p class="parameter__title">Status</p>
-                            <p >${status}</p>
-                        </div>
-                        <div class="info__parameter">
-                            <p >${messageDescriptionDog}</p>
-                        </div>
-                        <div class="info__parameter">
-                            <p >${messasgePersonality}</p>
-                        </div>
-                        <div class="info__parameter">
-                            <p >${messageGoodWith}</p>
+                                <img src="./img/status.png">
+                                <p class="parameter__title">Status</p>
+                                <p>${messageStatus}</p>
                         </div>
                     </div>
-                    <a href="./dogs.html">GO BACK</a>
-                </div>
+                    <div class="descriptionDog">
+                            <div class="info__parameter">
+                                <p >${messageDescriptionDog}</p>
+                            </div>
+                            <div class="info__parameter">
+                                <p >${messagePersonality}</p>
+                            </div>
+                    </div>
+                    <div class="info__parameter">
+                            <p class="parameter__title">${goodTitle}</p>
+                            <p>${messageGoodWith}</p>
+                    </div>
+                    <a href="./dogs.html"><img src="./img/hacia-atras.png" alt="">GO BACK</a>
             </div>
     `
     dogContainer.innerHTML=outputDog;
@@ -306,7 +353,7 @@ document.addEventListener('DOMContentLoaded', async() => {
 //     })
 
 document.addEventListener("click", function(ev){
-    if(ev.target.innerHTML==="VIEW MORE"){
+    if(ev.target.innerText==="VIEW MORE" || ev.target.offsetParent==='<div class="dog">'){
         console.log("es el enlace");
         console.log(ev.target); //aqui esta el padre contenedor con la info del perro
         let actualDog=ev.target.offsetParent
@@ -319,7 +366,8 @@ document.addEventListener("click", function(ev){
         dogsContainer.style.display="none";
         let actualDogContainer=document.querySelector(".actualDog");
         actualDogContainer.style.display="flex";
-        
+        let btnDiv=document.querySelector('.btn__pages');
+        btnDiv.style.display="none";
         viewActualDog(dogInfo);
         // viewActualDog(actualDog);
     }else{

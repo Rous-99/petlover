@@ -360,13 +360,12 @@ li{
     width:500px;
     /* height: 500px; */
     border-radius: 10px;
-    cursor: pointer;
     position: relative;
 }
 
-.dog:hover{
+/* .dog:hover{
     transform: scale(1.1);
-}
+} */
 
 .dog img{
     width: 100%;
@@ -437,22 +436,149 @@ li{
     font-weight: 600;
 }
 
+.dog__btn{
+    background-color: white;
+    width: 90%;
+    height: max-content;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+    margin:10px auto;
+    cursor: pointer;
+}
+
+.dog__btn img{
+    width: 30px;
+    cursor: pointer;
+}
+
 
 /*--------------------------VIEW MORE ABOUT ONE DOG-----------------------------------------------*/
 .actualDog{
-    background-color: var(--green-new);
-    height: 70vh;
+    background-color: var(--green-light-new);
+    height: 80vh;
     width: 90vw;
-    margin: 0 auto;
+    margin: 30px auto;
+    position: relative;
+}
+
+.dogPhoto{
+    width: 70%;
+    object-fit: cover;
 }
 
 .actualDogInfo{
-    flex-basis: 50%;
+    /* background-color: yellow; */
+    width: 100%;
+    height: 100%;
     text-align: center;
+    display: flex;
+    flex-flow: row wrap;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
-.dogPhoto{
-    flex-basis: 50%;
+
+.infoDog{
+    height: max-content;
+    background-color: white;
+    padding: 15px;
+    margin: 0 auto;
+    border-radius: 10px;
+    width: 90%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
 }
+
+
+.parameter__title{
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.7rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+}
+
+.infoDog .info__parameter{
+    /* background-color: pink; */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    text-transform: capitalize;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; */
+}
+
+.info__parameter p{
+    font-size: 1.3rem;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: capitalize;
+}
+
+
+.info__parameter img{
+    width: 35px;
+}
+
+.Name{
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: .5rem;
+    font-size: 2.5rem;
+    font-family: 'Poppins',sans-serif;
+}
+
+.descriptionDog{
+    width: 100%;
+    margin: 0 auto;
+    background-color: #b7a570;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.actualDogInfo a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: white;
+    padding: 8px;
+    border-radius: 30px;
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    font-size: 1.3rem;
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+    letter-spacing: .2rem;
+    font-family: 'Poppins',sans-serif;
+}
+
+.actualDogInfo a img{
+    width: 30px;
+}
+
+.actualDogInfo a:hover{
+    background-color:var(--yellow-color);
+    font-weight: 600;
+}
+
+
 
 
 /*---------------------------ADOPT PAGE HTML -----------------------------------------------------*/
