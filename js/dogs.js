@@ -206,11 +206,33 @@ async function viewActualDog(dogInfo){
     let Name=dogInfoFetch.name;
     let size=dogInfoFetch.size;
     let color=dogInfoFetch.colors["primary"]; //can be null
+    let messageColor="";
     let coat=dogInfoFetch.coat;
+    let messageCoat="";
     let status=dogInfoFetch.status;
     let descriptionDog=dogInfoFetch.description;
-    let description=dogInfoFetch["tags"];
-    console.log(photo,age,breed,gender,Name, size, color,coat, description, descriptionDog,status, goodWith); 
+    let messageDescriptionDog="";
+    let personality=dogInfoFetch["tags"];
+    let messasgePersonality="";
+    let messageGoodWith="";
+    console.log(photo,age,breed,gender,Name, size, color,coat, personality, descriptionDog,status, goodWith); 
+
+    if (color!==null){
+        messageColor=`Color: ${color}`;
+    }
+    if(coat!==null){
+       messageCoat=`Coat: ${coat}`;
+    }
+    if(descriptionDog!==null){
+        messageDescriptionDog=`About me: ${descriptionDog}`;
+    }
+    if(personality.length!==0){
+        messasgePersonality=`Personality: ${personality}`;
+    }
+    if(goodWith.length!==0){
+        messageGoodWith=`Good with: ${goodWith}`;
+    }
+  
 
     let dogContainer=document.querySelector('.actualDog');
     let outputDog="";
@@ -241,31 +263,25 @@ async function viewActualDog(dogInfo){
                             <p class="parameter__title">Mixed</p>
                             <p >${mixedValue}</p>
                         </div>
-                        <div class="info__parameter">
-                            <p class="parameter__title">Color</p>
-                            <p >${color}</p>
+                        <div class="info_color">
+                            <p>${messageColor}</p>
                         </div>
                         <div class="info__parameter">
-                            <p class="parameter__title">Coat</p>
-                            <p >${coat}</p>
+                            <p >${messageCoat}</p>
                         </div>
                         <div class="info__parameter">
                             <p class="parameter__title">Status</p>
                             <p >${status}</p>
                         </div>
                         <div class="info__parameter">
-                            <p class="parameter__title">About me</p>
-                            <p >${descriptionDog}</p>
+                            <p >${messageDescriptionDog}</p>
                         </div>
                         <div class="info__parameter">
-                            <p class="parameter__title">About me</p>
-                            <p >${description}</p>
+                            <p >${messasgePersonality}</p>
                         </div>
                         <div class="info__parameter">
-                            <p class="parameter__title">Good With</p>
-                            <p >${goodWith}</p>
+                            <p >${messageGoodWith}</p>
                         </div>
-                        
                     </div>
                     <a href="./dogs.html">GO BACK</a>
                 </div>
