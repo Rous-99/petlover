@@ -469,7 +469,7 @@ li{
 .actualDog{
     background-color: var(--green-light-new);
     height: 80vh;
-    width: 90vw;
+    width: 95vw;
     margin: 30px auto;
     position: relative;
 }
@@ -481,7 +481,7 @@ li{
 
 .actualDogInfo{
     /* background-color: yellow; */
-    width: 100%;
+    width: 90%;
     height: 100%;
     text-align: center;
     display: flex;
@@ -551,7 +551,7 @@ li{
 .descriptionDog{
     width: 100%;
     margin: 0 auto;
-    background-color: #b7a570;
+    background-color: green;
     font-size: 1rem;
     display: flex;
     justify-content: space-between;
@@ -589,6 +589,8 @@ li{
 
 .personality{
     /* background-color: #09c372; */
+    width: 95%;
+    margin: 0 auto;
     display: flex;
     justify-content: space-around;
     align-items: flex-start;

@@ -83,7 +83,7 @@ function setBreedsOptions(){
 function goBack(){
     let actualDogContainer=document.querySelector(".actualDog");
     actualDogContainer.innerHTML="";
-    // actualDogContainer.style.display = "none";
+    actualDogContainer.style.display = "none";
     let dogsContainer=document.querySelector('#dogs');
     dogsContainer.style.display="grid";
 }
