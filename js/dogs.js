@@ -139,7 +139,7 @@ const showAlldogs = (dogs) => {
                             <p class="weight">${mixedValue}</p>
                         </div>
                     </div>
-                    <a class="dog__btn"><img src="./img/zoom-in.png">VIEW MORE</a>
+                    <button class="dog__btn"><img src="./img/zoom-in.png">VIEW MORE</button>
                 </div>
             </div>
             `
@@ -206,22 +206,24 @@ async function viewActualDog(dogInfo){
     let Name=dogInfoFetch.name;
     let size=dogInfoFetch.size;
     let color=dogInfoFetch.colors["primary"]; //can be null
-    let messageColor="";
+    // let messageColor="";
     let coat=dogInfoFetch.coat;
-    let messageCoat="";
+    // let messageCoat="";
     let status=dogInfoFetch.status;
     let messageStatus=`${status}`;
     let descriptionDog=dogInfoFetch.description;
-    let messageDescriptionDog="";
+    // let messageDescriptionDog="";
     let personality=dogInfoFetch["tags"];
-    let messageGoodWith="";
-    let messagePersonality="";
-    let colorTitle="";
-    let colorCoat="";
-    let iconColor="";
-    let iconCoat="";
-    let iconStatus="";
-    let goodTitle="";
+    let messageColor, messageCoat, messageDescriptionDog, messageGoodWith,  titlePersonality,messagePersonality,colorTitle, colorCoat, iconColor, iconCoat,iconStatus,goodTitle;
+    // let titlePersonality="";
+    // let messagePersonality="";
+    // let colorTitle="";
+    // let colorCoat="";
+    // let iconColor="";
+    // let iconCoat="";
+    // let iconStatus="";
+    // let goodTitle="";
+    console.log(messagePersonality);
     console.log(photo,age,breed,gender,Name, size, color,coat, personality, descriptionDog,status, goodWith); 
 
 
@@ -231,22 +233,38 @@ async function viewActualDog(dogInfo){
         colorTitle="Color";
         iconColor=` <img src="./img/gota-de-tinta.png">`;
         messageColor=`${color}`;
+    }else{
+        colorTitle="";
+        iconColor="";
+        messageColor="";
     }
     if(coat!==null){
         colorCoat="Coat";
         iconCoat=` <img src="./img/coat.png">`
         messageCoat=`${coat}`;
     }
+    else{
+        colorCoat="";
+        iconCoat="";
+        messageCoat="";
+    }
     if(descriptionDog!==null){
         messageDescriptionDog=`About me <br><br> ${descriptionDog}`;
     }
     if(personality.length!==0){
-        let space="";
+        messagePersonality="";
+        let adj="";
+        titlePersonality="Personality";
         personality.forEach(value =>{
             console.log(value);
-            space=`<br>`;
+            adj=`<p>${value}</p>`;
+            console.log(adj);
+            messagePersonality=messagePersonality.concat(adj);
+            console.log(messagePersonality);
         })
-        messagePersonality=`${personality}${space}`;
+    }else{
+        titlePersonality="";
+        messagePersonality="";
     }
     if(goodWith.length!==0){
         goodTitle="Good with";
@@ -255,16 +273,19 @@ async function viewActualDog(dogInfo){
         let GoodWithCats="";
         goodWith.forEach(value =>{
             if(value==="dogs"){
-                GoodWithDogs=`<img src="./img/love-dog.png">${value}<br> `;
+                GoodWithDogs=`<div class="option"><img src="./img/love-dog.png"><p>${value}</p></div> `;
             }
             if(value==="children"){
-                GoodWithChildren=`<img src="./img/chupete.png">${value}<br>`;
+                GoodWithChildren=`<div class="option"><img src="./img/chupete.png"><p>${value}</p></div>`;
             }
             if(value==="cats"){
-                GoodWithCats=`<img src="./img/cat.png">${value}<br>`;
+                GoodWithCats=`<div class="option"><img src="./img/cat.png"><p>${value}</p></div>`;
             }
         })
         messageGoodWith=`${GoodWithDogs} ${GoodWithChildren} ${GoodWithCats}`;
+    }else{
+        goodTitle="";
+        messageGoodWith="";
     }
 
 
@@ -319,18 +340,20 @@ async function viewActualDog(dogInfo){
                                 <p>${messageStatus}</p>
                         </div>
                     </div>
-                    <div class="descriptionDog">
-                            <div class="info__parameter">
-                                <p >${messageDescriptionDog}</p>
-                            </div>
-                            <div class="info__parameter">
-                                <p >${messagePersonality}</p>
-                            </div>
-                    </div>
-                    <div class="info__parameter">
-                            <p class="parameter__title">${goodTitle}</p>
-                            <p>${messageGoodWith}</p>
-                    </div>
+                    <div class="info__parameter personality">
+                                <div class="containerOptions">
+                                    <h3 class="parameter__title">${titlePersonality}</h3>
+                                    <div class="info__personality">
+                                        ${messagePersonality}
+                                    </div>
+                                </div>
+                                <div class="containerGoodWith">
+                                    <h3 class="parameter__title">${goodTitle}</h3>
+                                    <div class="goodWith">
+                                        ${messageGoodWith}
+                                    </div>
+                                </div>
+                     </div>
                     <a href="./dogs.html"><img src="./img/hacia-atras.png" alt="">GO BACK</a>
             </div>
     `
@@ -353,14 +376,12 @@ document.addEventListener('DOMContentLoaded', async() => {
 //     })
 
 document.addEventListener("click", function(ev){
-    if(ev.target.innerText==="VIEW MORE" || ev.target.offsetParent==='<div class="dog">'){
-        console.log("es el enlace");
+    if(ev.target.className==="dog__btn"){
+        console.log("es el boton");
         console.log(ev.target); //aqui esta el padre contenedor con la info del perro
-        let actualDog=ev.target.offsetParent
+        let actualDog=ev.target.offsetParent;
         console.log(actualDog);
-        let dogPhoto=actualDog.children[0];
         let dogInfo=actualDog.children[1];
-        console.log(dogPhoto);
         console.log(dogInfo);
         let dogsContainer=document.querySelector("#dogs");
         dogsContainer.style.display="none";
@@ -369,8 +390,8 @@ document.addEventListener("click", function(ev){
         let btnDiv=document.querySelector('.btn__pages');
         btnDiv.style.display="none";
         viewActualDog(dogInfo);
-        // viewActualDog(actualDog);
     }else{
+        console.log(ev.target.className);
         console.log("no es boton");
     }
     console.log(ev.target);
