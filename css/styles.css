@@ -852,6 +852,32 @@ li{
     letter-spacing: .3rem;
     color:black;
 }
+
+/*VIEW MORE ABOUT ONE DOG IN ADOPT ME SECTION*/
+
+.btn__goBack{
+    background-color: var(--white-new);
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 30px;
+    border: none;
+    width: 10%;
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2rem;
+    letter-spacing: .2rem;
+    font-family: 'Poppins',sans-serif;
+}
+
+.btn__goBack:hover{
+    background-color: var(--yellow-color);
+    font-weight: 600;
+}
  
 /*AÑADIR ESTILOS DE LAS OPCIONES, NO FUNCIONA, CREO QUE HAY QUE PONER CLASE A TODAS LAS ETIQUETAS OPTION*/
 /*mirar en task una pagina que lo explica*/
