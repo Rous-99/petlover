@@ -76,7 +76,24 @@ const fetchDogs= async (tokenType,tokenAcces) =>{
 }
 
 
+// function viewDog(){
+//     console.log("Hola");
+//     console.log(ev.offsetParent);
+//     let actualDog=ev.offsetParent;
+//     let dogsContainer=document.querySelector("#dogs");
+//     dogsContainer.style.display="none";
+//     let actualDogContainer=document.querySelector(".actualDog");
+//     actualDogContainer.style.display="flex";
+//     let dogInfo=actualDog.children[1];
+//     console.log(dogInfo);
+//     viewActualDog(dogInfo);
+// }
+
+
 const showAlldogs = (dogs) => {
+    function hi(){
+        console.log("hi");
+    }
     let loadingMessage=document.querySelector('.message__text');
     loadingMessage.innerText='';
     let dogsContainer=document.querySelector('#dogs');
@@ -139,7 +156,7 @@ const showAlldogs = (dogs) => {
                             <p class="weight">${mixedValue}</p>
                         </div>
                     </div>
-                    <button class="dog__btn"><img src="./img/zoom-in.png">VIEW MORE</button>
+                    <button class="dog__btn"><img src="./img/zoom-in.png">VIEW MORE</button> 
                 </div>
             </div>
             `
@@ -147,7 +164,13 @@ const showAlldogs = (dogs) => {
         }   
        
     });
+   
 }
+
+
+
+
+
 
 async function viewActualDog(dogInfo){
     console.log("desde la funcion");
@@ -354,7 +377,7 @@ async function viewActualDog(dogInfo){
                                     </div>
                                 </div>
                      </div>
-                    <a href="./dogs.html"><img src="./img/hacia-atras.png" alt="">GO BACK</a>
+                    <button class="btn__goBack" onclick="goBack()"><img src="./img/hacia-atras.png" alt="">GO BACK</button>
             </div>
     `
     dogContainer.innerHTML=outputDog;
@@ -366,14 +389,22 @@ document.addEventListener('DOMContentLoaded', async() => {
     let loadingMessage=document.querySelector('.message__text');
     loadingMessage.innerText='Loading...';
     await getToken();
-    
+    let btnviewDog=document.querySelectorAll('.dog__btn');
+    btnviewDog.addEventListener("click", function(){
+     console.log("hi");
+    }) 
 })
 
-
-// let btnActualDog=document.querySelector('dog__btn');
-//     btnActualDog.addEventListener("click", function(ev){
-//          console.log(ev.target);
-//     })
+function goBack(){
+    console.log("hi");
+    let actualDogContainer=document.querySelector(".actualDog");
+    actualDogContainer.innerHTML="";
+    actualDogContainer.style.display = "none";
+    let dogsContainer=document.querySelector('#dogs');
+    dogsContainer.style.display="grid";
+    let btnDiv=document.querySelector('.btn__pages');
+    btnDiv.style.display="flex";
+}
 
 document.addEventListener("click", function(ev){
     if(ev.target.className==="dog__btn"){
@@ -390,6 +421,8 @@ document.addEventListener("click", function(ev){
         let btnDiv=document.querySelector('.btn__pages');
         btnDiv.style.display="none";
         viewActualDog(dogInfo);
+    }else if(ev.target.className==="btn__goBack"){
+        goBack();
     }else{
         console.log(ev.target.className);
         console.log("no es boton");
