@@ -310,6 +310,7 @@ function viewDog(ev){
     let dogsContainer=document.querySelector("#dogs");
     dogsContainer.style.display="none";
     let actualDogContainer=document.querySelector(".actualDog");
+    actualDogContainer.innerHTML="";
     actualDogContainer.style.display="flex";
     let dogInfo=actualDog.children[1];
     console.log(dogInfo);
@@ -521,6 +522,8 @@ function changeDogByFilters(){
 }
 
 const filterDog=async(dog) =>{
+    let dogsContainer=document.querySelector('#dogs');
+    dogsContainer.style.display="grid";
     let newToken=await getToken();
     const tokenType=tokenJson.token_type;
     const tokenAcces=tokenJson.access_token;
