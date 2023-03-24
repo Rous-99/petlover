@@ -8,6 +8,14 @@ let indicePagina=1;
 let btnFilter=document.querySelector("#btn__filter"); //obtengo el boton de filtrar
 
 
+//FUNCION PARA MANIPULAR EL TOKEN OBTENIDO
+// let newToken=await getToken();
+//     const tokenType=tokenJson.token_type;
+//     const tokenAcces=tokenJson.access_token;
+//     const tokenExpires=tokenJson.expires_in;
+
+
+
 //OBTENGO EL TOKEN NECESARIO PARA OBTENER LOS DATOS DE LA API
 const getToken=async() =>{
     const tokenResponse= await fetch('https://api.petfinder.com/v2/oauth2/token', {
@@ -37,7 +45,7 @@ const breedOptions=async() =>{
             'Authorization': tokenType + ' ' + tokenAcces,
             'Content-Type': 'application/x-www/form-urlencoded'
         }
-        }); //son 7 páginas y 130 perros en total
+        }); 
         const dogsJson=await dogsReponse.json();
         // console.log(dogsJson);
         const dogsOnly=dogsJson["animals"];
@@ -52,7 +60,6 @@ const breedOptions=async() =>{
             }
         })
     }
-
     // console.log(breed); 
     localStorage.setItem('razas', JSON.stringify(breed)); //guardo el array con las razas en el localStorage creando un item
     // console.log(listaRazas);
