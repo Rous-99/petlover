@@ -1,3 +1,4 @@
+import {dataActualDog} from './viewActualDog.js';
 
 console.log("start");
 const key='yCTWxvIK9RPRLhRxrjefKcqgcfn2gy3scxvQ8omqd18Pw9QpMO';
@@ -16,15 +17,16 @@ const getToken=async() =>{
             'Content-Type': 'application/x-www-form-urlencoded' //indicamos el tipo de información que estamos enviando
         }
     });
+    let tokenJson;
     return tokenJson= await tokenResponse.json();
 }
 
 async function getDataToken(){
     let newToken=await getToken();
     console.log(newToken);
-    const tokenType=tokenJson.token_type;
-    const tokenAcces=tokenJson.access_token;
-    const tokenExpires=tokenJson.expires_in;
+    const tokenType=newToken.token_type;
+    const tokenAcces=newToken.access_token;
+    const tokenExpires=newToken.expires_in;
     return [tokenType,tokenAcces,tokenExpires];
 }
 
@@ -85,125 +87,6 @@ function goBack(){
     dogsContainer.style.display="grid"; //vuelvo a mostrar los perros filtrados del contenedor dogs
 }
 
-function dataActualDog(dogInfoFetch){
-    let photo=dogInfoFetch['primary_photo_cropped'].large;
-    let age=dogInfoFetch.age;
-    let breed=dogInfoFetch['breeds'].primary;
-    let mixed=dogInfoFetch['breeds'].mixed;
-    let breed2="";
-    console.log(mixed);
-    let mixedValue="";
-    if (mixed===true){
-        mixedValue="Yes";
-        breed2=dogInfoFetch['breeds'].secondary;
-        if (breed2===null){
-            breed2="";
-        }
-    }else{
-        mixedValue="No";
-    }
-    let goodWith=[] //añado con que se lleva bien el perro si hay información (perros, gatos, niños)
-    let ArrayValues=dogInfoFetch.environment;
-    for(let value in ArrayValues){
-        if (ArrayValues[value]===true){
-            goodWith.push(value);
-        }
-    }
-    console.log(goodWith);
-    let gender=dogInfoFetch.gender;
-    let Name=dogInfoFetch.name;
-    let size=dogInfoFetch.size;
-    let color=dogInfoFetch.colors["primary"]; //can be null
-    let coat=dogInfoFetch.coat;
-    let status=dogInfoFetch.status;
-    let messageStatus=`${status}`;
-    let descriptionDog=dogInfoFetch.description;
-    let personality=dogInfoFetch["tags"];
-    let messageColor, messageCoat, messageDescriptionDog, messageGoodWith,  titlePersonality,messagePersonality,colorTitle, colorCoat, iconColor, iconCoat,goodTitle;
-    console.log(messagePersonality);
-    console.log(photo,age,breed,gender,Name, size, color,coat, personality, descriptionDog,status, goodWith); 
-    //SOLO MUESTRO LOS VALORES DE AQUELLAS PROPIEDADES QUE TIENEN VALOR DIFERENTE A NULL
-    if (color!==null){
-        colorTitle="Color";
-        iconColor=` <img src="./img/gota-de-tinta.png">`;
-        messageColor=`${color}`;
-    }else{
-        colorTitle="";
-        iconColor="";
-        messageColor="";
-    }
-    if(coat!==null){
-        colorCoat="Coat";
-        iconCoat=` <img src="./img/coat.png">`
-        messageCoat=`${coat}`;
-    }
-    else{
-        colorCoat="";
-        iconCoat="";
-        messageCoat="";
-    }
-    if(descriptionDog!==null){
-        messageDescriptionDog=`About me <br><br> ${descriptionDog}`;
-    }
-    if(personality.length!==0){
-        messagePersonality="";
-        let adj="";
-        titlePersonality="Personality";
-        personality.forEach(value =>{
-            console.log(value);
-            adj=`<p>${value}</p>`;
-            console.log(adj);
-            messagePersonality=messagePersonality.concat(adj);
-            console.log(messagePersonality);
-        })
-    }else{
-        titlePersonality="";
-        messagePersonality="";
-    }
-    if(goodWith.length!==0){
-        goodTitle="Good with";
-        let GoodWithDogs="";
-        let GoodWithChildren="";
-        let GoodWithCats="";
-        goodWith.forEach(value =>{
-            if(value==="dogs"){
-                GoodWithDogs=`<div class="option"><img src="./img/love-dog.png"><p>${value}</p></div> `;
-            }
-            if(value==="children"){
-                GoodWithChildren=`<div class="option"><img src="./img/chupete.png"><p>${value}</p></div>`;
-            }
-            if(value==="cats"){
-                GoodWithCats=`<div class="option"><img src="./img/cat.png"><p>${value}</p></div>`;
-            }
-        })
-        messageGoodWith=`${GoodWithDogs} ${GoodWithChildren} ${GoodWithCats}`;
-    }else{
-        goodTitle="";
-        messageGoodWith="";
-    }
-    let structureActualDog={
-        nameKey:Name,
-        photoKey:photo,
-        ageKey:age, 
-        breedKey:breed, 
-        breed2Key:breed2,
-        genderKey:gender,
-        sizeKey:size,
-        mixedValueKey:mixedValue,
-        iconColorKey:iconColor,
-        colorTitleKey:colorTitle,
-        messageColorKey:messageColor,
-        iconCoatKey:iconCoat,
-        colorCoatKey:colorCoat,
-        messageCoatKey:messageCoat,
-        messageStatusKey:messageStatus,
-        titlePersonalityKey:titlePersonality,
-        messagePersonalityKey:messagePersonality,
-        goodTitleKey:goodTitle,
-        messageGoodWithKey:messageGoodWith
-    };
-    return structureActualDog;
-}
 
 //FUNCIÓN "VIEW MORE" SOBRE UN PERRO
 async function viewActualDog(dogInfo){
@@ -290,29 +173,28 @@ async function viewActualDog(dogInfo){
                                     </div>
                                 </div>
                      </div>
-                    <button class="btn__goBack" onclick="goBack()"><img src="./img/hacia-atras.png" alt="">GO BACK</button>
+                    <button class="btn__goBack"><img src="./img/hacia-atras.png" alt="">GO BACK</button>
             </div>
     `
     dogContainer.innerHTML=outputDog;
+    let btnActualDog=document.querySelector('.btn__goBack');
+    btnActualDog.addEventListener("click", () => {
+        let actualDogContainer=document.querySelector(".actualDog");
+        actualDogContainer.innerHTML=""; //limpio el contenedor y lo dejo vacío para el próximo perro 
+        actualDogContainer.style.display = "none"; 
+        let dogsContainer=document.querySelector('#dogs');
+        dogsContainer.style.display="grid"; //vuelvo a mostrar los perros filtrados del contenedor dogs
+    })
+    
 }
 
-
-//FUNCIÓN "VIEW MORE" SOBRE EL PERRO DESEADO
-function viewDog(ev){ //recibe el botón que ha sido clikado
-    console.log(ev.offsetParent);
-    let actualDog=ev.offsetParent; //accedo a la info sobre el perro que tiene ese botón
-    let dogsContainer=document.querySelector("#dogs");
-    dogsContainer.style.display="none"; //oculto el resto de perros
-    let actualDogContainer=document.querySelector(".actualDog");
-    actualDogContainer.innerHTML=""; //limpio el contenedor para insertar la información del nuevo perro
-    actualDogContainer.style.display="flex";
-    let dogInfo=actualDog.children[1]; //accedo a la info que me interesa obtener del perro, donde se encuentra la ID también
-    // console.log(dogInfo);
-    viewActualDog(dogInfo);
-}
 
 function dataDog(dog){
-    let photo=dog['primary_photo_cropped'].large;
+    console.log(dog);
+    let photo=""
+    if (dog.primary_photo_cropped!==null){
+        photo=dog['primary_photo_cropped'].large;
+    }
     let age=dog.age;
     let breed=dog['breeds'].primary;
     let mixed=dog['breeds'].mixed; //veo si es de raza pura o no
@@ -335,6 +217,7 @@ function dataDog(dog){
     let description=dog["tags"];
     return [photo,age,breed,mixed, mixedValue,breed2,gender,Name,size,id,description];
 }   
+
 
 
 //FUNCIÓN MOSTRAR PERROS
@@ -376,7 +259,7 @@ const showDogs = (dogs) => {
                             <p class="info__p">Mixed</p>
                             <p class="weight">${dataDogArray[4]}</p>
                         </div>
-                        <button class="dog__btn" onclick="viewDog(this)"><img src="./img/zoom-in.png">VIEW MORE</button>
+                        <button class="dog__btn"><img src="./img/zoom-in.png">VIEW MORE</button>
                     </div>
                 </div>
                 `
@@ -384,7 +267,28 @@ const showDogs = (dogs) => {
             }   
         })
     })
+    let btnViewMore=document.querySelectorAll('.dog__btn');
+    console.log(btnViewMore);
+    btnViewMore.forEach(btn =>{
+        btn.addEventListener("click", function viewDog(ev){
+            console.log("soy yo");
+            console.log(ev);
+            let btnDog=ev.target;
+            console.log(btnDog);
+            let actualDog=btnDog.offsetParent; //accedo a la info sobre el perro que tiene ese botón
+            let dogsContainer=document.querySelector("#dogs");
+            dogsContainer.style.display="none"; //oculto el resto de perros
+            let actualDogContainer=document.querySelector(".actualDog");
+            actualDogContainer.innerHTML=""; //limpio el contenedor para insertar la información del nuevo perro
+            actualDogContainer.style.display="flex";
+            let dogInfo=actualDog.children[1]; //accedo a la info que me interesa obtener del perro, donde se encuentra la ID también
+            // console.log(dogInfo);
+            viewActualDog(dogInfo);
+        })
+    })
+    
 }
+
 
 //MOSTRAMOS LOS PERROS FILTRADOS SEGÚN EL VALOR MIXED
 const showDogsMixedOption= (arrayDogs) => {
@@ -423,12 +327,31 @@ const showDogsMixedOption= (arrayDogs) => {
                             <p class="info__p">Mixed</p>
                             <p class="weight">${dataDogArray[4]}</p>
                         </div>
-                        <button class="dog__btn" onclick="viewDog(this)"><img src="./img/zoom-in.png">VIEW MORE</button>
+                        <button class="dog__btn"><img src="./img/zoom-in.png">VIEW MORE</button>
                     </div>
                 </div>
                 `
                 dogsContainer.innerHTML=output; //inserto cada perro en el contenedor padre dogs
         }
+    })
+    let btnViewMore=document.querySelectorAll('.dog__btn');
+    console.log(btnViewMore);
+    btnViewMore.forEach(btn =>{
+        btn.addEventListener("click", function viewDog(ev){
+            console.log("soy yo");
+            console.log(ev);
+            let btnDog=ev.target;
+            console.log(btnDog);
+            let actualDog=btnDog.offsetParent; //accedo a la info sobre el perro que tiene ese botón
+            let dogsContainer=document.querySelector("#dogs");
+            dogsContainer.style.display="none"; //oculto el resto de perros
+            let actualDogContainer=document.querySelector(".actualDog");
+            actualDogContainer.innerHTML=""; //limpio el contenedor para insertar la información del nuevo perro
+            actualDogContainer.style.display="flex";
+            let dogInfo=actualDog.children[1]; //accedo a la info que me interesa obtener del perro, donde se encuentra la ID también
+            // console.log(dogInfo);
+            viewActualDog(dogInfo);
+        })
     })
 }
 
