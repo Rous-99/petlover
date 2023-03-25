@@ -29,7 +29,6 @@ buttonNext.addEventListener('click', async() => {
         loadingMessage.innerText='Loading...';
         await getToken();
     }
-    //funciona pero necesito que cuando cargue la siguiente pagina se borre la anterior
 })
 
 buttonAnt.addEventListener("click", async() => {
