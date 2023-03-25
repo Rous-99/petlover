@@ -1249,9 +1249,12 @@ label{
     }
 
     .dogPhoto{
-        width: 100%;
+        width: 90%;
         height: 600px;
-        object-fit: cover;
+        margin: 10px auto;
+        object-fit:contain;
+        object-position: center;
+        /* background-color: var(--white-new); */
     }
     
     .actualDogInfo{
