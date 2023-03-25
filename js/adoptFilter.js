@@ -1,19 +1,10 @@
 
-
 console.log("start");
 const key='yCTWxvIK9RPRLhRxrjefKcqgcfn2gy3scxvQ8omqd18Pw9QpMO';
 const secret='aB19kPT14oQ4UdEQ42SRmUaEPh1lUqvpYFzlSpB0';
 let animalType='Dog'; //solo trabajo con la búsqueda de perros
 let indicePagina=1;
 let btnFilter=document.querySelector("#btn__filter"); //obtengo el boton de filtrar
-
-
-//FUNCION PARA MANIPULAR EL TOKEN OBTENIDO
-// let newToken=await getToken();
-//     const tokenType=tokenJson.token_type;
-//     const tokenAcces=tokenJson.access_token;
-//     const tokenExpires=tokenJson.expires_in;
-
 
 
 //OBTENGO EL TOKEN NECESARIO PARA OBTENER LOS DATOS DE LA API
@@ -28,13 +19,18 @@ const getToken=async() =>{
     return tokenJson= await tokenResponse.json();
 }
 
-
-
-const breedOptions=async() =>{
+async function getDataToken(){
     let newToken=await getToken();
+    console.log(newToken);
     const tokenType=tokenJson.token_type;
     const tokenAcces=tokenJson.access_token;
     const tokenExpires=tokenJson.expires_in;
+    return [tokenType,tokenAcces,tokenExpires];
+}
+
+const breedOptions=async () =>{
+    let dataToken=await getDataToken();
+    // console.log(dataToken);
     const selectBreed=document.querySelector('#breed__filter');
     console.log(selectBreed);
     const breed=[]; //array que almacenará todas las razas de los perros que se obtienen de la API
@@ -42,7 +38,7 @@ const breedOptions=async() =>{
     for(let indexPage=1;indexPage<=7; indexPage++){
         const dogsReponse= await fetch(`https://api.petfinder.com/v2/animals?type=${animalType}&location=texas&distance=50&page=${indexPage}`,{ //devuelve un array de objetos
          headers: {
-            'Authorization': tokenType + ' ' + tokenAcces,
+            'Authorization': dataToken[0] + ' ' + dataToken[1],
             'Content-Type': 'application/x-www/form-urlencoded'
         }
         }); 
@@ -96,21 +92,11 @@ async function viewActualDog(dogInfo){
     let actualDogId=dogInfo.children[1].innerText; //accedo a la ID del perro del que queremos obtener más ifnormación
     let actualDogID=parseInt(actualDogId); //lo convertimos a un entero para que el fetch lo pueda hacer
     // console.log("aqui",actualDogID);
-    const tokenResponse= await fetch('https://api.petfinder.com/v2/oauth2/token', {
-        method: 'POST',
-        body: 'grant_type=client_credentials&client_id=' + key + '&client_secret=' + secret, //enviamos los datos en el body
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded' //indicamos el tipo de información que estamos enviando
-        }
-    });
-    const tokenJson= await tokenResponse.json();
-    const tokenType=tokenJson.token_type;
-    const tokenAcces=tokenJson.access_token;
-    const tokenExpires=tokenJson.expires_in;
-    // console.log(tokenJson);
+    let dataToken= await getDataToken();
+    // console.log(dataToken);
     const dogsReponse= await fetch(`https://api.petfinder.com/v2/animals/${actualDogID}`,{ 
          headers: {
-         'Authorization': tokenType + ' ' + tokenAcces,
+         'Authorization': dataToken[0] + ' ' + dataToken[1],
          'Content-Type': 'application/x-www/form-urlencoded'
          }
         });
@@ -296,7 +282,6 @@ async function viewActualDog(dogInfo){
 }
 
 
-
 //FUNCIÓN "VIEW MORE" SOBRE EL PERRO DESEADO
 function viewDog(ev){ //recibe el botón que ha sido clikado
     console.log(ev.offsetParent);
@@ -311,6 +296,32 @@ function viewDog(ev){ //recibe el botón que ha sido clikado
     viewActualDog(dogInfo);
 }
 
+function dataDog(dog){
+    let photo=dog['primary_photo_cropped'].large;
+    let age=dog.age;
+    let breed=dog['breeds'].primary;
+    let mixed=dog['breeds'].mixed; //veo si es de raza pura o no
+    let breed2=""; //no todos los perros tienen una raza secundaria puesto que algunos son de raza pura
+    console.log(mixed);
+    let mixedValue="";
+    if (mixed===true){ //para obtener la raza secundaria si existe de los que no son puros
+        mixedValue="Yes"; //separo los perros entre los que son de raza pura y los que no
+        breed2=dog['breeds'].secondary; //obtengo la raza secundaria
+        if (breed2===null){ //puede ser que no sean de raza pura pero no se tenga información sobre la raza secundaria
+            breed2=""; //si no la sabemos no la mostramos
+        }
+    }else{
+        mixedValue="No";
+    }
+    let gender=dog.gender;
+    let Name=dog.name;
+    let size=dog.size;
+    let id=dog.id; //quiero que no se vea pero que esté en la estructura para poder hacer fetch segun la ID del perro cuando se clicke en "VIEW MORE"
+    let description=dog["tags"];
+    return [photo,age,breed,mixed, mixedValue,breed2,gender,Name,size,id,description];
+}   
+
+
 //FUNCIÓN MOSTRAR PERROS
 
 const showDogs = (dogs) => {
@@ -321,56 +332,34 @@ const showDogs = (dogs) => {
     dogs.forEach(page => {
         page.forEach( dog => {
             if(dog.photos.length>0){ //solo si tiene fotos busco los datos que quiero mostrar
-                // let dogID=dog.url;
-                let photo=dog['primary_photo_cropped'].large;
-                let age=dog.age;
-                let breed=dog['breeds'].primary;
-                let mixed=dog['breeds'].mixed; //veo si es de raza pura o no
-                let breed2=""; //no todos los perros tienen una raza secundaria puesto que algunos son de raza pura
-                console.log(mixed);
-                let mixedValue="";
-                if (mixed===true){ //para obtener la raza secundaria si existe de los que no son puros
-                    mixedValue="Yes"; //separo los perros entre los que son de raza pura y los que no
-                    breed2=dog['breeds'].secondary; //obtengo la raza secundaria
-                    if (breed2===null){ //puede ser que no sean de raza pura pero no se tenga información sobre la raza secundaria
-                        breed2=""; //si no la sabemos no la mostramos
-                    }
-                }else{
-                    mixedValue="No";
-                }
-                let gender=dog.gender;
-                let Name=dog.name;
-                let size=dog.size;
-                let id=dog.id; //quiero que no se vea pero que esté en la estructura para poder hacer fetch segun la ID del perro cuando se clicke en "VIEW MORE"
-                let description=dog["tags"];
-                // console.log(dog);
-                // console.log(photo,age,breed,gender,Name,description, size,id); 
+                let dataDogArray=dataDog(dog);
+                console.log(dataDogArray);
                 output+=`
                 <div class="dog">
-                    <img class="dog__photo" src="${photo}" alt="">
+                    <img class="dog__photo" src="${dataDogArray[0]}" alt="">
                     <div class="dog__info">
-                        <p class="name">${Name}</p>
-                        <p class="dog__id">${id}</p>
+                        <p class="name">${dataDogArray[7]}</p>
+                        <p class="dog__id">${dataDogArray[9]}</p>
                         <div class="info__description">
                             <p class="info__p">Age</p>
-                            <p class="lifespan">${age}</p>
+                            <p class="lifespan">${dataDogArray[1]}</p>
                         </div>
                         <div class="info__description">
                             <p class="info__p">Breed</p>
-                            <p class="breed">${breed}</p>
-                            <p class="breed">${breed2}</p>
+                            <p class="breed">${dataDogArray[2]}</p>
+                            <p class="breed">${dataDogArray[5]}</p>
                         </div>
                         <div class="info__description">
                             <p class="info__p">Gender</p>
-                            <p class="height">${gender}</p>
+                            <p class="height">${dataDogArray[6]}</p>
                         </div>
                         <div class="info__description">
                             <p class="info__p">Size</p>
-                            <p class="weight">${size}</p>
+                            <p class="weight">${dataDogArray[8]}</p>
                         </div>
                         <div class="info__description">
                             <p class="info__p">Mixed</p>
-                            <p class="weight">${mixedValue}</p>
+                            <p class="weight">${dataDogArray[4]}</p>
                         </div>
                         <button class="dog__btn" onclick="viewDog(this)"><img src="./img/zoom-in.png">VIEW MORE</button>
                     </div>
@@ -378,7 +367,7 @@ const showDogs = (dogs) => {
                 `
                 dogsContainer.innerHTML=output; //inserto cada perro en el contenedor padre dogs
             }   
-        } )
+        })
     })
 }
 
@@ -388,63 +377,42 @@ const showDogsMixedOption= (arrayDogs) => {
     let output="";
     dogsContainer.innerHTML='';
     // console.log(dogs);
-    arrayDogs.forEach(dog => { //POSIBLE FUNCIÓN CREATEDOG para CADA PERRO y QUE LA ESTRUCTURA CON LAS VARIABLES NO SE REPITAN EN CADA FUNCIÓN DE MOSTRAR PERROS
+    arrayDogs.forEach(dog => { 
         if(dog.photos.length>0){
-            let dogID=dog.url;
-            let photo=dog['primary_photo_cropped'].large;
-            let age=dog.age;
-            let breed=dog['breeds'].primary;
-            let mixed=dog['breeds'].mixed;
-            let breed2="";
-            console.log(mixed);
-            let mixedValue="";
-            if (mixed===true){
-                mixedValue="Yes";
-                breed2=dog['breeds'].secondary;
-                if (breed2===null){
-                    breed2="";
-                }
-            }else{
-                mixedValue="No";
-            }
-
-            let gender=dog.gender;
-            let Name=dog.name;
-            let size=dog.size;
-            let description=dog["tags"];
-            console.log(dog);
-            console.log(dogID,photo,age,breed,gender,Name,description, size); 
-
-            output+=`
-            <div class="dog">
-                <img class="dog__photo" src="${photo}" alt="">
-                <div class="dog__info">
-                    <p class="name">${Name}</p>
-                    <div class="info__description">
-                        <p class="info__p">Age</p>
-                        <p class="lifespan">${age}</p>
-                    </div>
-                    <div class="info__description">
-                        <p class="info__p">Breed</p>
-                        <p class="breed">${breed}</p>
-                        <p class="breed">${breed2}</p>
-                    </div>
-                    <div class="info__description">
-                        <p class="info__p">Gender</p>
-                        <p class="height">${gender}</p>
-                    </div>
-                    <div class="info__description">
-                        <p class="info__p">Size</p>
-                        <p class="weight">${size}</p>
-                    </div>
-                    <div class="info__description">
-                        <p class="info__p">Mixed</p>
-                        <p class="weight">${mixedValue}</p>
+            let dataDogArray=dataDog(dog);
+                console.log(dataDogArray);
+                output+=`
+                <div class="dog">
+                    <img class="dog__photo" src="${dataDogArray[0]}" alt="">
+                    <div class="dog__info">
+                        <p class="name">${dataDogArray[7]}</p>
+                        <p class="dog__id">${dataDogArray[9]}</p>
+                        <div class="info__description">
+                            <p class="info__p">Age</p>
+                            <p class="lifespan">${dataDogArray[1]}</p>
+                        </div>
+                        <div class="info__description">
+                            <p class="info__p">Breed</p>
+                            <p class="breed">${dataDogArray[2]}</p>
+                            <p class="breed">${dataDogArray[5]}</p>
+                        </div>
+                        <div class="info__description">
+                            <p class="info__p">Gender</p>
+                            <p class="height">${dataDogArray[6]}</p>
+                        </div>
+                        <div class="info__description">
+                            <p class="info__p">Size</p>
+                            <p class="weight">${dataDogArray[8]}</p>
+                        </div>
+                        <div class="info__description">
+                            <p class="info__p">Mixed</p>
+                            <p class="weight">${dataDogArray[4]}</p>
+                        </div>
+                        <button class="dog__btn" onclick="viewDog(this)"><img src="./img/zoom-in.png">VIEW MORE</button>
                     </div>
                 </div>
-            </div>
-            `
-            dogsContainer.innerHTML=output;
+                `
+                dogsContainer.innerHTML=output; //inserto cada perro en el contenedor padre dogs
         }
     })
 }
@@ -519,10 +487,7 @@ const filterDog=async(dog) =>{ //recibe el objeto perro que buscamos
     let dogsContainer=document.querySelector('#dogs');
     dogsContainer.style.display="grid"; //muestro el contenedor 
     //OBTENEMOS NUEVO TOKEN PARA HACER LA PETICIÓN
-    let newToken=await getToken();
-    const tokenType=tokenJson.token_type;
-    const tokenAcces=tokenJson.access_token;
-    const tokenExpires=tokenJson.expires_in;
+    let dataToken=await getDataToken();
     let dogtoFilter=Object.entries(dog); //obtengo las llaves del objeto perro
     let page=1;
     // console.log(dogtoFilter);
@@ -558,7 +523,7 @@ const filterDog=async(dog) =>{ //recibe el objeto perro que buscamos
     //PETICIÓN DEL PERRO FILTRADO
     const dogsReponse= await fetch(urlFetch,{ //devuelve un array de objetos
     headers: {
-    'Authorization': tokenType + ' ' + tokenAcces,
+    'Authorization': dataToken[0] + ' ' + dataToken[1],
     'Content-Type': 'application/x-www/form-urlencoded'
     }
    });
@@ -570,7 +535,7 @@ const filterDog=async(dog) =>{ //recibe el objeto perro que buscamos
         urlFetch=urlFetch+`&page=${currentPage}` //paso el valor de la nueva página a buscar
         const dogsReponse= await fetch(urlFetch,{ //devuelve un array de objetos
             headers: {
-            'Authorization': tokenType + ' ' + tokenAcces,
+            'Authorization': dataToken[0] + ' ' + dataToken[1],
             'Content-Type': 'application/x-www/form-urlencoded'
             }
         });
@@ -588,12 +553,17 @@ const filterDog=async(dog) =>{ //recibe el objeto perro que buscamos
     }
 }
 
+function cleanDogs(){
+    let dogsFoundMessage=document.querySelector('.message__text').innerText=''; //limpio el mensaje de dogs found
+    let dogsContainer=document.querySelector('#dogs').innerHTML=''; //limpio el contenedor de los perros filtrados anteriormente
+    let actualDogContainer=document.querySelector(".actualDog").innerHTML='';
+}
+
 
 btnFilter.addEventListener("click", () => {
     console.log("clickado");
-    let dogsFoundMessage=document.querySelector('.message__text').innerText=''; //limpio el mensaje de dogs found
+    cleanDogs();
     let loadingInput=document.querySelector('.loading__text').innerText='Loading...'; //muestro el mensaje de loading
-    let dogsContainer=document.querySelector('#dogs').innerHTML=''; //limpio el contenedor de los perros filtrados anteriormente
     let dog=changeDogByFilters(); //obtengo los datos de los filtros para buscar los perros filtrados
     // console.log(dog);
     filterDog(dog); //paso el objeto perro a la función de filtrado
@@ -612,9 +582,7 @@ btnReset.addEventListener("click", () => {
     resetAge.selectedIndex=0;
     resetBreed.selectedIndex=0;
     resetMixed.selectedIndex=0;
-    let dogsFoundMessage=document.querySelector('.message__text').innerText='';
-    let loadingInput=document.querySelector('.loading__text').innerText='';
-    let dogsContainer=document.querySelector('#dogs').innerHTML='';
+    cleanDogs();
     let actualDogContainer=document.querySelector(".actualDog");
     actualDogContainer.style.display="none";
 })
