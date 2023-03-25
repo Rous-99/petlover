@@ -1186,7 +1186,10 @@ label{
     /* #dogs{
         margin-top: 900px;
     } */
-    
+    .actualDog{
+        margin-top: 200px;
+    }
+
     .form__article{
         height: 100vh;
         width: 100vw;
@@ -1236,5 +1239,30 @@ label{
     
     .message{
         margin-bottom: 10px;
+    }
+}
+
+@media (max-width:1500px){
+    .actualDog{
+        flex-direction: column;
+        height: max-content;
+    }
+
+    .dogPhoto{
+        width: 100%;
+        height: 600px;
+        object-fit: cover;
+    }
+    
+    .actualDogInfo{
+        margin: 0 auto;
+    }
+
+    .infoDog{
+        margin: 15px auto;
+    }
+
+    .personality{
+        margin: 10px auto;
     }
 }
