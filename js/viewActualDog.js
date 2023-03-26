@@ -1,5 +1,8 @@
 
-export function dataActualDog(dogInfoFetch){
+import {getToken} from './token.js';
+
+//FUNCIÓN OBTENER LA DATA EXTRA DE CADA PERRO
+function dataActualDog(dogInfoFetch){ //recibe el objeto perro
     let photo=dogInfoFetch['primary_photo_cropped'].large;
     let age=dogInfoFetch.age;
     let breed=dogInfoFetch['breeds'].primary;
@@ -33,11 +36,11 @@ export function dataActualDog(dogInfoFetch){
     let messageStatus=`${status}`;
     let descriptionDog=dogInfoFetch.description;
     let personality=dogInfoFetch["tags"];
-    let messageColor, messageCoat, messageDescriptionDog, messageGoodWith,  titlePersonality,messagePersonality,colorTitle, colorCoat, iconColor, iconCoat,goodTitle;
+    let messageColor, messageCoat, messageDescriptionDog, messageGoodWith,  titlePersonality,messagePersonality,colorTitle, colorCoat, iconColor, iconCoat,goodTitle; //declaro variables para mostrar vacías o no según si el perro tiene info sobre esa característica
     console.log(messagePersonality);
     console.log(photo,age,breed,gender,Name, size, color,coat, personality, descriptionDog,status, goodWith); 
     //SOLO MUESTRO LOS VALORES DE AQUELLAS PROPIEDADES QUE TIENEN VALOR DIFERENTE A NULL
-    if (color!==null){
+    if (color!==null){ //sino esta vacía la información se mostrará, así que añado la estructura html a cada variable correspondiente
         colorTitle="Color";
         iconColor=` <img src="./img/gota-de-tinta.png">`;
         messageColor=`${color}`;
@@ -59,7 +62,7 @@ export function dataActualDog(dogInfoFetch){
     if(descriptionDog!==null){
         messageDescriptionDog=`About me <br><br> ${descriptionDog}`;
     }
-    if(personality.length!==0){
+    if(personality.length!==0){ //si tiene info
         messagePersonality="";
         let adj="";
         titlePersonality="Personality";
@@ -74,7 +77,7 @@ export function dataActualDog(dogInfoFetch){
         titlePersonality="";
         messagePersonality="";
     }
-    if(goodWith.length!==0){
+    if(goodWith.length!==0){ //si tiene info
         goodTitle="Good with";
         let GoodWithDogs="";
         let GoodWithChildren="";
@@ -95,7 +98,7 @@ export function dataActualDog(dogInfoFetch){
         goodTitle="";
         messageGoodWith="";
     }
-    let structureActualDog={
+    let structureActualDog={ //devuelvo un objeto con los datos que necesito para montar la estructura html del perro
         nameKey:Name,
         photoKey:photo,
         ageKey:age, 
@@ -120,3 +123,105 @@ export function dataActualDog(dogInfoFetch){
 }
 
 // export default dataActualDog;
+
+export async function viewActualDog(dogInfo){
+    console.log("desde la funcion", dogInfo);
+    let info=dogInfo.innerHTML;
+    let actualDogId=dogInfo.children[1].innerText; //accedo a la ID del perro del que queremos obtener más ifnormación
+    let actualDogID=parseInt(actualDogId); //lo convertimos a un entero para que el fetch lo pueda hacer
+    // console.log("aqui",actualDogID);
+    let dataToken= await getToken();
+    // console.log(dataToken);
+    const dogsReponse= await fetch(`https://api.petfinder.com/v2/animals/${actualDogID}`,{ 
+         headers: {
+         'Authorization': dataToken[0] + ' ' + dataToken[1],
+         'Content-Type': 'application/x-www/form-urlencoded'
+         }
+        });
+    const dogsJson=await dogsReponse.json();
+    // console.log(dogsJson);
+    const dogInfoFetch=dogsJson.animal; //accedemos al perro buscado por la ID
+    // console.log(dogInfoFetch);
+    let structureDog=dataActualDog(dogInfoFetch); //obtengo el objeto con los datos para mostrar en el HTML del perro
+    console.log(structureDog);
+    let dogContainer=document.querySelector('.actualDog');
+    let outputDog="";
+    outputDog+=`
+    <img class="dogPhoto" src="${structureDog.photoKey}" alt="">
+    <div class="actualDogInfo">
+                    <p class="Name">${structureDog.nameKey}</p>
+                    <div class="infoDog">
+                        <div class="info__parameter">
+                            <img src="./img/bone.png">
+                            <p class="parameter__title">Age</p>
+                            <p>${structureDog.ageKey}</p>
+                        </div>
+                        <div class="info__parameter">
+                            <img src="./img/paw.png">
+                            <p class="parameter__title">Breed</p>
+                            <p>${structureDog.breedKey}</p>
+                            <p>${structureDog.breed2Key}</p>
+                        </div>
+                        <div class="info__parameter">
+                            <img src="./img/gender.png">
+                            <p class="parameter__title">Gender</p>
+                            <p >${structureDog.genderKey}</p>
+                        </div>
+                        <div class="info__parameter">
+                            <img src="./img/dog-seating.png">
+                            <p class="parameter__title">Size</p>
+                            <p >${structureDog.sizeKey}</p>
+                        </div>
+                        <div class="info__parameter">
+                            <img src="./img/pet-care.png">
+                            <p class="parameter__title">Mixed</p>
+                            <p >${structureDog.mixedValueKey}</p>
+                        </div>
+                        <div class="info__parameter">
+                                ${structureDog.iconColorKey}
+                                <p class="parameter__title">${structureDog.colorTitleKey}</p>
+                                <p>${structureDog.messageColorKey}</p>
+                        </div>
+                        <div class="info__parameter">
+                                ${structureDog.iconCoatKey}
+                                <p class="parameter__title">${structureDog.colorCoatKey}</p>
+                                <p>${structureDog.messageCoatKey}</p>
+                        </div>
+                        <div class="info__parameter">
+                                <img src="./img/status.png">
+                                <p class="parameter__title">Status</p>
+                                <p>${structureDog.messageStatusKey}</p>
+                        </div>
+                    </div>
+                    <div class="info__parameter personality">
+                                <div class="containerOptions">
+                                    <h3 class="parameter__title">${structureDog.titlePersonalityKey}</h3>
+                                    <div class="info__personality">
+                                        ${structureDog.messagePersonalityKey}
+                                    </div>
+                                </div>
+                                <div class="containerGoodWith">
+                                    <h3 class="parameter__title">${structureDog.goodTitleKey}</h3>
+                                    <div class="goodWith">
+                                        ${structureDog.messageGoodWithKey}
+                                    </div>
+                                </div>
+                     </div>
+                    <button class="btn__goBack"><img src="./img/hacia-atras.png" alt="">GO BACK</button>
+            </div>
+    `
+    dogContainer.innerHTML=outputDog;
+    let btnActualDog=document.querySelector('.btn__goBack'); //funcionalidad para volver atrás al contenedor padre
+    btnActualDog.addEventListener("click", () => {
+        let actualDogContainer=document.querySelector(".actualDog");
+        actualDogContainer.innerHTML=""; //limpio el contenedor y lo dejo vacío para el próximo perro 
+        actualDogContainer.style.display = "none"; 
+        let dogsContainer=document.querySelector('#dogs');
+        dogsContainer.style.display="grid"; //vuelvo a mostrar los perros filtrados del contenedor dogs
+        let divBtns=document.querySelector('.btn__pages');
+        if(divBtns!==null){
+            divBtns.style.display="flex";
+        }
+    })
+    
+}

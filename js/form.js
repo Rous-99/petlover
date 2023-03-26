@@ -1,6 +1,7 @@
 
+import{setBreedsOptions,breedOptions} from './breeds.js';
 
-
+//LOS FORMULARIOS DE ADOPCIÓN SE ENVIARÁN A UNA BASE DE DATOS EN FIREBASE
 firebase.initializeApp({
     apiKey: "AIzaSyCEGr5MTGVw3RllCyKbsx4bmcKsVebPaJI",
     authDomain: "adopt-page.firebaseapp.com",
@@ -19,12 +20,12 @@ const db = firebase.firestore();
 
 
 //ELEMENTS DATA
-// let petName=document.querySelector(".pet__name").value;
 let btnSubmit=document.querySelector(".send__btn");
 let form=document.querySelector(".form__adopt");
 
 form.addEventListener("submit", function(ev){
-    ev.preventDefault();
+    ev.preventDefault(); 
+    //OBTENGO TODOS LOS VALORES DE TODOS LOS CAMPOS
     let petName=document.querySelector("#pet__name").value;
     let dogBreed=document.querySelector("#breed__filter").value;
     let adopterName=document.querySelector("#owner__name").value;
@@ -38,7 +39,7 @@ form.addEventListener("submit", function(ev){
     let mixedInput=document.getElementsByName("pet__mixed");
     let sizeInput=document.getElementsByName("pet__size");
     let ageInput=document.getElementsByName("pet__age");
-    // console.log("a",genderInput);
+    //RECORRO LOS RADIO BUTTONS PARA VER CUAL HA SIDO SELECCIONADO
     for(let i=0; i<genderInput.length;i++){
         if(genderInput[i].checked){
             gender=genderInput[i].value;
@@ -63,11 +64,10 @@ form.addEventListener("submit", function(ev){
         }
     }
     console.log(petName,dogBreed,adopterName,adopterPhone,adopterEmail, gender,mixed,size,age);
-  //get the value of radio inputs, how to?
-    let check=validateInputs(petName,dogBreed,adopterName,adopterPhone,adopterEmail, gender,mixed,size,age);
+    let check=validateInputs(petName,dogBreed,adopterName,adopterPhone,adopterEmail, gender,mixed,size,age); //valido cada campo  y si todos están bien el total será de 7
     console.log(check);
     //if it's true llamamos a guardar y sino no dejamos guardar
-    if(check===7){
+    if(check===7){ //solo si todos los campos han pasado la validación dejo que el formulario se envie a la base de datos
         function guardar(){
             db.collection("adopt-users").add({
                 userName: adopterName,
@@ -96,7 +96,7 @@ form.addEventListener("submit", function(ev){
    
 })
 
-const setError = (element, message) => {
+const setError = (element, message) => { //añade los diseños para mostrar error en el campo que no se valide
     const inputControl=element.parentElement;
     const errorDisplay=inputControl.querySelector('.error');
 
@@ -105,7 +105,7 @@ const setError = (element, message) => {
     inputControl.classList.remove('success');
 }
 
-const setSucces= element =>{
+const setSucces= element =>{ //añade los diseños al campo que se haya validado correctamente
     const inputControl=element.parentElement;
     const errorDisplay=inputControl.querySelector('.error');
 
@@ -114,6 +114,8 @@ const setSucces= element =>{
     inputControl.classList.add('success');
 }
 
+
+//VALIDACIÓN DE CORREO ELECTRÓNICO CON REGULAR EXPRESSION
 function isValidEmail(email){
     console.log("email es:",email);
     const re=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
@@ -130,6 +132,7 @@ function isValidEmail(email){
     return re.test(email);
 }
 
+//VALIDACIÓN NÚMERO DE TELÉFONO CON REGULAR EXPRESSION
 function isValidPhone(phone){
     console.log("phone es:", phone);
     const telefono=/^\+?\d{2}(\s\d{3}){2}\s\d{3}$/;
@@ -146,7 +149,7 @@ function isValidPhone(phone){
     return telefono.test(phone);
 }
 
-
+//VALIDACIÓN DE TODOS LOS CAMPOS
 const validateInputs= (petName,dogBreed,adopterName,adopterPhone,adopterEmail, gender,mixed,size,age) =>{
     
     console.log(adopterPhone);
@@ -169,11 +172,12 @@ const validateInputs= (petName,dogBreed,adopterName,adopterPhone,adopterEmail, g
     let mixedCheck=0;
     let sizeCheck=0;
     let ageCheck=0;
-    let checkTotal=0; //deben ser 7 sin contar breed y dog name de momento
+    let checkTotal=0; //deben ser 7 
  
+    //VALIDACIÓN DE LOS RADIO BUTTONS, TIENEN QUE TENER ALGUNA CASILLA SELECCIONADA
     for(let i=0; i<genderInput.length;i++){
         console.log(genderInput[i]);
-        if(genderInput[i].checked){
+        if(genderInput[i].checked){ //solo si alguno ha sido seleccionado sumo 1 y lo valido
            genderCheck+=1;
         }
     }
@@ -196,15 +200,14 @@ const validateInputs= (petName,dogBreed,adopterName,adopterPhone,adopterEmail, g
         }
     }
 
-
-    //validate the name of the adopter is not empty
+    //Validacón nombre del adoptante 
     if(adopterName===''){
         setError(owner__name, 'Username is required');
     }else{
         setSucces(owner__name);
         checkTotal+=1;
     }
-    if(adopterPhone===""){
+    if(adopterPhone===""){ //validación del número de telefóno del adoptante
         setError(owner__number, 'Phone is required');
     }else if (!isValidPhone(phone)){
         setError(owner__number, 'Not valid, must follow the pattern: +?? ??? ??? ???');
@@ -212,7 +215,7 @@ const validateInputs= (petName,dogBreed,adopterName,adopterPhone,adopterEmail, g
         setSucces(owner__number);
         checkTotal+=1;
     }
-    if(adopterEmail=""){
+    if(adopterEmail=""){ //validación del email del adoptante
         setError(email__owner, 'Email is required');
     } else if (!isValidEmail(Email)){
         setError(email__owner, 'Provide a valid email adress');
@@ -220,9 +223,9 @@ const validateInputs= (petName,dogBreed,adopterName,adopterPhone,adopterEmail, g
         setSucces(email__owner);
         checkTotal+=1;
     }
-    if(genderCheck>0){
-       errorGender.innerText="";
-       checkTotal+=1;
+    if(genderCheck>0){ //si tiene alguna casilla seleccionada tendrá 1 como valor
+       errorGender.innerText=""; //escondo el mensaje de error
+       checkTotal+=1; //sumo 1 a la validación total 
 
     }else{
         errorGender.innerText="You must select the gender";
@@ -251,57 +254,6 @@ const validateInputs= (petName,dogBreed,adopterName,adopterPhone,adopterEmail, g
     return checkTotal;
 }
 
-const breedOptions=async() =>{
-    let newToken=await getToken();
-    const tokenType=tokenJson.token_type;
-    const tokenAcces=tokenJson.access_token;
-    const tokenExpires=tokenJson.expires_in;
-    const selectBreed=document.querySelector('#breed__filter');
-    console.log(selectBreed);
-    const breed=[];
-    //son 7 paginas
-    for(let indexPage=1;indexPage<=7; indexPage++){
-        const dogsReponse= await fetch(`https://api.petfinder.com/v2/animals?type=${animalType}&location=texas&distance=50&page=${indexPage}`,{ //devuelve un array de objetos
-         headers: {
-            'Authorization': tokenType + ' ' + tokenAcces,
-            'Content-Type': 'application/x-www/form-urlencoded'
-        }
-        }); //son 7 páginas y 130 perros en total
-        const dogsJson=await dogsReponse.json();
-        console.log(dogsJson);
-        const dogsOnly=dogsJson["animals"];
-        console.log(dogsOnly);
-        dogsOnly.forEach((dog)=>{
-            // console.log(dog);
-            if(dog.photos.length>0) {//si tiene foto 
-                let dogBreed=dog["breeds"].primary;
-                if(!breed.includes(dogBreed)){
-                    breed.push(dogBreed);
-                }
-            }
-          
-        })
-    }
-
-    console.log(breed); //me salen 29 razas
-    localStorage.setItem('razas', JSON.stringify(breed));
-    let listaRazas=localStorage.getItem('razas');
-    console.log(listaRazas);
-}   
-
-function setBreedsOptions(){
-    let razasString= localStorage.getItem('razas');
-    let razas=JSON.parse(razasString);
-    const selectBreed=document.querySelector('#breed__filter');
-    console.log("desde funcion");
-    console.log(razas);
-    razas.forEach(raza => {
-        const option=document.createElement('option');
-        option.innerText=raza;
-        option.value=raza;
-        selectBreed.appendChild(option);
-    })
-}
 
 //get the breeds when the page has loaded
 document.addEventListener('DOMContentLoaded', async() => {

@@ -10,13 +10,8 @@ export const getToken=async() =>{
         }
     });
     const tokenJson= await tokenResponse.json();
-    // const tokenType=tokenJson.token_type;
-    // const tokenAcces=tokenJson.access_token;
-    // const tokenExpires=tokenJson.expires_in;
-    // console.log(tokenType,tokenAcces,tokenExpires);
     const tokenType=tokenJson.token_type;
     const tokenAcces=tokenJson.access_token;
     const tokenExpires=tokenJson.expires_in;
-    return [tokenType,tokenAcces,tokenExpires];
-    // fetchDogs(tokenType,tokenAcces);
+    return [tokenType,tokenAcces,tokenExpires]; //devuelvo un array con los valores del token obtenido
 }
