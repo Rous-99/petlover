@@ -988,27 +988,12 @@ li{
     transform: scale(1.1);
 }
 
-/* .favorite-btn{
-    position: absolute;
-    padding: 20px;
-    border: none;
-    border-radius: 50%;
-    background: none;
-    top:0;
-    right: 0;
-    cursor: pointer;
-}
-
-.favorite-btn:hover{
-    background-color: #b7a570;
-} */
-
 
 /*-----------------------FORMULARIO------------------------------------*/
 
 
 .form__article{
-    height: 1060px;
+    height: max-content;
     width: 100vw;
     display: flex;
     margin:0 auto;
@@ -1042,20 +1027,22 @@ li{
 
 .data__form{
     flex-basis: 50%;
-    background-color:var(--green-new);
+    background-color:var(--white-new);
     /* overflow: hidden; */
 }
 
 form{
     background-color:white;
     border-radius: 10px;
+    /* border: 10px solid black; */
+    outline: 8px solid var(--green-new);
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 90%;
+    width: 75%;
     height:1030px; 
-    margin: 10px auto;
+    margin: 50px auto;
     gap: 10px;
     text-align: center;
 } 
