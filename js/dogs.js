@@ -13,6 +13,8 @@ let buttonAnt=document.querySelector('.ant');
 
 //BOTÓN PARA SIGUIENTE PÁGINA
 buttonNext.addEventListener('click', async() => {
+    let btnUp=document.querySelector('.arrow__goUp');
+    btnUp.style.display="none";
     if(indicePagina<=7){ //como el total de páginas con la que trabajo son 7, cuando llegue a 7 dejo de sumar el indicePagina
         indicePagina+=1;
         let dogsContainer=document.querySelector('#dogs');
@@ -20,11 +22,14 @@ buttonNext.addEventListener('click', async() => {
         let loadingMessage=document.querySelector('.message__text');
         loadingMessage.innerText='Loading...';
         await fetchDogs(); //llama a la función que hará la petición de la página y luego llamará a la función que mostrará los perros
+        btnUp.style.display="flex";
     }
 })
 
 //BOTÓN PARA PÁGINA ANTERIOR
 buttonAnt.addEventListener("click", async() => {
+    let btnUp=document.querySelector('.arrow__goUp');
+    btnUp.style.display="none";
     if(indicePagina>1){ //no quiero un indíce de página menor que 1
         indicePagina-=1; //resto para volver a la página anterior
         let dogsContainer=document.querySelector('#dogs');
@@ -32,6 +37,7 @@ buttonAnt.addEventListener("click", async() => {
         let loadingMessage=document.querySelector('.message__text');
         loadingMessage.innerText='Loading...';
         await fetchDogs();
+        btnUp.style.display="flex";
     }
 })
 
@@ -124,10 +130,13 @@ const fetchDogs= async () =>{
 
 
 document.addEventListener('DOMContentLoaded', async() => {
+    let btnUp=document.querySelector('.arrow__goUp');
+    btnUp.style.display="none";
     let actualDogContainer=document.querySelector(".actualDog");
     actualDogContainer.style.display="none";
     let loadingMessage=document.querySelector('.message__text');
     loadingMessage.innerText='Loading...';
     await fetchDogs(); //hace la primera petición con la página 1
+    btnUp.style.display="flex";
 })
 

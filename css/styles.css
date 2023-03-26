@@ -121,6 +121,11 @@ li{
     color: white;
 }
 
+.line{
+    width: 100%;
+    height: 3px;
+    background-color: var(--green-new);
+}
 .main__section{
     background-color: antiquewhite;
     width: 100vw;
@@ -153,15 +158,16 @@ li{
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
     font-weight: 400;
-    font-size: 2rem;
+    font-size: 2.5rem;
     /* background-color: #68c0c3; */
-    width: 90%;
-    line-height: 4.2rem;
-    letter-spacing: .5rem;
+    width: 80%;
+    line-height: 5rem;
+    letter-spacing: .7rem;
 }
 
 .button__alldogs{
     width: 70%;
+    max-width: 450px;
     background-color: var(--var-color5);
     padding: 20px;
     border: none;
@@ -181,10 +187,9 @@ li{
     cursor: pointer;
 }
 
-.button__alldogs:hover{
-    transform: scale(1.1);
+.a__showDogs:hover{
+    font-weight: bold;
 }
-
 
 .info{
     width: 100%;
@@ -206,14 +211,14 @@ li{
     flex-flow: row wrap;
     justify-content: center;
     align-content: center;
-    gap: 50px;
+    gap: 120px;
 }
 
 .card{
     background-color: var(--white-new);
     outline: 2px solid var(--yellow-color);
     margin: 10px;
-    width: 250px;
+    width: 300px;
     height: 400px;
     text-align: center;
 }
@@ -258,18 +263,21 @@ li{
     min-width:100%;
     height: 600px;
     display: flex;
+    justify-content: center;
+    align-content: center;
     align-items: center;
     position: relative;
 }
 
 .carrusel__title{
     font-family: 'Raleway', sans-serif;
-    font-size: 1.4rem;
+    font-size: 2.2rem;
+    font-weight: 600;
     margin: 20px auto;
     text-align: center;
     color: black;
     letter-spacing:.4rem;
-    line-height: 80px;
+    line-height: 100px;
 }
 
 .carruselSection .arrow-left,
@@ -278,7 +286,7 @@ li{
     border: none;
     background: var(--green-light-new);
     font-size: 40px;
-    height: 20%;
+    height: 14%;
     /* top: calc(50%-25%); */
     /* line-height: 40px; */
     width: 60px;
@@ -298,6 +306,18 @@ li{
     border-radius: 0 10px 10px 0;
 }
 
+.carruselSection .arrow-left img{
+    /* background-color: #09c372; */
+    margin-right:10px;
+    margin-top: 10px;
+}
+
+.carruselSection .arrow-right img{
+    /* background-color: #09c372; */
+    margin-left:6px;
+    margin-top: 10px;
+}
+
 .carruselSection .arrow-right{
     right: 0;
     border-radius: 10px 0 0 10px;
@@ -305,18 +325,20 @@ li{
 }
 
 .carruselBox{
+    /* background-color: #555B6E; */
     width: 100%;
     height: 600px;
-    margin: 10px auto;
     padding: 20px 0;
     overflow: hidden;
     scroll-behavior: smooth;
 }
 
 .carruselBox .carrusel{
-    margin: 15px auto;
+    /* background-color: #09c372; */
+    margin-top: -20px;
+    height: 600px;
     display: flex;
-    /* gap: 10px; */
+    align-items: center;
     flex-wrap: nowrap;
 }
 
@@ -347,7 +369,7 @@ li{
     grid-gap: 50px;
     max-width: 100%;
     padding: 20px;
-    margin-bottom: 70px;
+    margin-bottom: 20px;
 } 
 
 .dog{
@@ -649,7 +671,8 @@ li{
     height: 90vh;
     width: 100vw;
     display: flex;
-    border: 2px solid var(--green-new);
+    border-top: 3px solid var(--green-new);
+    border-bottom: 3px solid var(--green-new);
 }
 
 .photo__adopt{
@@ -753,6 +776,7 @@ li{
     font-size:1rem;
     font-weight: 900;
     align-self: center;
+    text-align: center;
 }
 
 .dog__select option{
@@ -795,13 +819,16 @@ li{
     letter-spacing: .5rem;
 }
 
+.btn__filterAll:hover{
+    transform: scale(1.1);
+    color: black;
+}
+
 .reset{
     /* background-color: #09c372; */
     display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items:center;
-    text-align: center;
+    margin-top: 60px;
+    /* gap: 10px; */
 }
 
 .btn__reset{
@@ -830,9 +857,6 @@ li{
     color: black;
 }
 
-.btn__filterAll:hover{
-    transform: scale(1.2);
-}
 
 .filterMessage{
     /* background-color: #555B6E; */
@@ -887,10 +911,9 @@ li{
 /*------------------------SEE  ALL DOGS-----------------------------------------------------*/
 
 .btn__pages{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    background-color: var(--yellow-color);
+    /* background-color: var(--yellow-color); */
+    position: relative;
+    margin-top: 20px;
     height: 80px;
     width: 100vw;
     display: flex;
@@ -900,28 +923,69 @@ li{
 }
 
 .btn__pages button{
+    background-color: var(--white-new);
     width: 200px;
-    height: 40px;
+    height: 50px;
     margin-top: 20px;
     cursor: pointer;
     background-color: none;
     border: none;
-    border-radius: 4px;
+    border-radius: 50px;
 }
 
 .btn__pages button a{
     text-decoration: none;
     font-family: 'Raleway', sans-serif;
     font-weight: 400;
-    font-size: 1rem;
+    font-size: 1.4rem;
     color: black;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-content: center;
+}
+
+.btn__pages button img{
+    width: 25px;
+    height: 25px;
 }
 
 .btn__pages button:hover{
     transform: scale(1.2);
+    /* background-color: var(--green-light-new); */
 }
 
-.favorite-btn{
+.goUp{
+    /* background-color: #09c372; */
+    height: 100px;
+}
+
+.arrow__goUp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--green-light-new);
+    height: 60px;
+    width: 60px;
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    margin-right: 30px;
+    border: none;
+    border-radius: 10px;
+}
+
+.arrow__goUp a{
+    text-decoration: none;
+    font-size: .8rem;
+    cursor: pointer;
+}
+
+.arrow__goUp:hover{
+    transform: scale(1.1);
+}
+
+/* .favorite-btn{
     position: absolute;
     padding: 20px;
     border: none;
@@ -934,7 +998,7 @@ li{
 
 .favorite-btn:hover{
     background-color: #b7a570;
-}
+} */
 
 
 /*-----------------------FORMULARIO------------------------------------*/
@@ -1134,6 +1198,7 @@ label{
         grid-row: 2/3;
     }
 
+    
     /* .carruselSection{
         height: 1000px;
         align-items: flex-start;
@@ -1175,7 +1240,7 @@ label{
         width: 100vw;
         display: grid;
         grid-template-rows: 400px 1fr;
-        border: 2px solid var(--green-new);
+        border-bottom: 3px solid var(--green-new);
     }
     
     .photo__adopt{
