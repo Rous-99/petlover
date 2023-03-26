@@ -358,7 +358,7 @@ li{
     display: flex;
     /* flex-direction: column; */
     width:500px;
-    /* height: 500px; */
+    height: 600px;
     border-radius: 10px;
     position: relative;
 }
@@ -368,7 +368,7 @@ li{
 } */
 
 .dog img{
-    width: 100%;
+    width: 100px;
     height:100%;
     object-fit:cover;
     object-position:center;
@@ -439,7 +439,6 @@ li{
 .dog__btn{
     background-color: white;
     border: none;
-    width: 90%;
     height: max-content;
     border-radius: 50px;
     display: flex;
