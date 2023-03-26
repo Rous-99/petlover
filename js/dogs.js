@@ -81,7 +81,7 @@ const showAlldogs = (dogs) => {
                             <p class="info__p">Mixed</p>
                             <p class="weight">${dataDogArray[4]}</p>
                         </div>
-                        <button class="dog__btn"><img src="./img/zoom-in.png">VIEW MORE</button>
+                        <button class="dog__btn"><img src="./img/zoom-in.png">+INFO</button>
                     </div>
                 </div>
                 `
@@ -92,6 +92,8 @@ const showAlldogs = (dogs) => {
     console.log(btnViewMore);
     btnViewMore.forEach(btn =>{ //añado la funcionalidad ver más a cada botón de cada perro
         btn.addEventListener("click", function viewDog(ev){
+            let btnUp=document.querySelector('.arrow__goUp');
+            btnUp.style.display="none";
             let divBtns=document.querySelector('.btn__pages');
             divBtns.style.display="none";
             console.log("soy yo");

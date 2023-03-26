@@ -207,7 +207,7 @@ export async function viewActualDog(dogInfo){
                                     </div>
                                 </div>
                      </div>
-                    <button class="btn__goBack"><img src="./img/hacia-atras.png" alt="">GO BACK</button>
+                    <button class="btn__goBack"><img src="./img/hacia-atras.png" alt="">BACK</button>
             </div>
     `
     dogContainer.innerHTML=outputDog;
@@ -219,8 +219,12 @@ export async function viewActualDog(dogInfo){
         let dogsContainer=document.querySelector('#dogs');
         dogsContainer.style.display="grid"; //vuelvo a mostrar los perros filtrados del contenedor dogs
         let divBtns=document.querySelector('.btn__pages');
+        let btnUp=document.querySelector('.arrow__goUp');
         if(divBtns!==null){
             divBtns.style.display="flex";
+        }
+        if(btnUp!==null){
+            btnUp.style.display="flex";
         }
     })
     

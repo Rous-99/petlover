@@ -489,6 +489,7 @@ li{
 /*--------------------------VIEW MORE ABOUT ONE DOG-----------------------------------------------*/
 .actualDog{
     background-color: var(--green-light-new);
+    border-radius: 10px;
     height: 80vh;
     width: 95vw;
     margin: 30px auto;
@@ -498,6 +499,7 @@ li{
 .dogPhoto{
     width: 70%;
     object-fit: cover;
+    border-radius: 10px 0 0 10px;
 }
 
 .actualDogInfo{
@@ -924,12 +926,12 @@ li{
 
 .btn__pages button{
     background-color: var(--white-new);
-    width: 200px;
+    border: 2px solid grey;
+    width: 170px;
     height: 50px;
     margin-top: 20px;
     cursor: pointer;
     background-color: none;
-    border: none;
     border-radius: 50px;
 }
 
@@ -937,7 +939,7 @@ li{
     text-decoration: none;
     font-family: 'Raleway', sans-serif;
     font-weight: 400;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     color: black;
     display: flex;
     gap: 5px;
@@ -952,7 +954,8 @@ li{
 
 .btn__pages button:hover{
     transform: scale(1.2);
-    /* background-color: var(--green-light-new); */
+    background-color: var(--green-light-new);
+    border: none;
 }
 
 .goUp{

@@ -71,7 +71,7 @@ export const showDogs = (dogs) => {
                             <p class="info__p">Mixed</p>
                             <p class="weight">${dataDogArray[4]}</p>
                         </div>
-                        <button class="dog__btn"><img src="./img/zoom-in.png">VIEW MORE</button>
+                        <button class="dog__btn"><img src="./img/zoom-in.png">+INFO</button>
                     </div>
                 </div>
                 `
