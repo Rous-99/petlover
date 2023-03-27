@@ -1,22 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300;1,400&family=Poppins:wght@400;600;700&family=Raleway:wght@400;600;700&display=swap');
 
 :root{
-    --var-color1:#68c0c3;
-    --color-card-dog:#abe0d3;
     --var-color3:#061d21;
-    --var-color4:#727b7b;
     --var-color5:#e5e5e5;
     --yellow-color: #d4d926;
-    --cyan-color:#6fc6a5;
-    --blue-strong:#88d0c7;
-    --blue-soft:#c7dedf;
-    --grey-color:#929598;
-    --brown-color:#b7a570;
     --blue-new:#555B6E;
     --green-new:#89B0AE;
     --green-light-new:#BEE3DB;
     --white-new:#FAF9F9;
-    --orange-new:#FFD6BA;
 }
 
 
@@ -40,14 +31,12 @@ body{
 }
 
 .header__nav{
-    /* background-color: #68c0c3; */
     height: 120px;
     display: flex;
     justify-content: space-between;
     align-content: center;
     align-items: center;
     text-align: center;
-    /* background-color: yellow; */
     padding: 30px;
 }
 
@@ -55,11 +44,9 @@ body{
     display: flex;
     align-self: center;
     gap: 30px;
-    /* flex-basis: 60%; */
 }
 
 .main__name{
-    /* background-color: #09c372; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,10 +72,9 @@ li{
     list-style: none;
 }
 
-.nav__logo{ /*se le estan aplicando los estilos de la imagen*/
+.nav__logo{ 
     width: 40px;
     height: 40px;
-    /* background-color: red; */
     align-self: center;
     cursor: pointer;
 }
@@ -127,7 +113,6 @@ li{
     background-color: var(--green-new);
 }
 .main__section{
-    background-color: antiquewhite;
     width: 100vw;
     height: 50vh;
     display: flex;
@@ -135,7 +120,6 @@ li{
 
 .main__photo{
     flex-basis: 50%;
-    background-color: #727b7b;
     background-image: url("../img/dogsection.jpg");
     background-position: center;
     background-size: cover;
@@ -159,7 +143,6 @@ li{
     text-transform: uppercase;
     font-weight: 400;
     font-size: 2.5rem;
-    /* background-color: #68c0c3; */
     width: 80%;
     line-height: 5rem;
     letter-spacing: .7rem;
@@ -177,7 +160,6 @@ li{
     font-size: 1.23em;
     align-self: center;
     letter-spacing: .2rem;
-    /* border: 3px solid black; */
     box-shadow: 20px black;
 }
 
@@ -194,7 +176,6 @@ li{
 .info{
     width: 100%;
     margin-bottom: 30px;
-    /* background-color: pink; */
 }
 
 .info__title{
@@ -206,7 +187,6 @@ li{
 }
 
 .info__cards{
-    /* background-color: #68c0c3; */
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -287,8 +267,6 @@ li{
     background: var(--green-light-new);
     font-size: 40px;
     height: 14%;
-    /* top: calc(50%-25%); */
-    /* line-height: 40px; */
     width: 60px;
     color: #FAF9F9;
     cursor: pointer;
@@ -307,13 +285,11 @@ li{
 }
 
 .carruselSection .arrow-left img{
-    /* background-color: #09c372; */
     margin-right:10px;
     margin-top: 10px;
 }
 
 .carruselSection .arrow-right img{
-    /* background-color: #09c372; */
     margin-left:6px;
     margin-top: 10px;
 }
@@ -325,7 +301,6 @@ li{
 }
 
 .carruselBox{
-    /* background-color: #555B6E; */
     width: 100%;
     height: 600px;
     padding: 20px 0;
@@ -334,7 +309,6 @@ li{
 }
 
 .carruselBox .carrusel{
-    /* background-color: #09c372; */
     margin-top: -20px;
     height: 600px;
     display: flex;
@@ -355,9 +329,7 @@ li{
 .carruselBox .carrusel .dogCarrusel img{
     width: 100%;
     height:500px;
-    /* border-radius: 10px; */
     vertical-align: top;
-    /* height: 90%; */
 }
 
 
@@ -373,21 +345,16 @@ li{
 } 
 
 .dog{
-    /* padding: 10px; */
     box-shadow: 0 5px 5px rgba(0,0,0,0.2);
     background-color: var(--green-light-new);
     margin: 20px auto;
     display: flex;
-    /* flex-direction: column; */
     width:500px;
     height: 600px;
     border-radius: 10px;
     position: relative;
 }
 
-/* .dog:hover{
-    transform: scale(1.1);
-} */
 
 .dog img{
     width: 100px;
@@ -398,21 +365,17 @@ li{
 }
 
 .info{
-    /* background-color: #68c0c3; */
     justify-content: flex-end;
 }
 .dog__photo{
     flex-basis: 60%;
-    background-color: red;
 }
 
 .dog__info{
-    /* background-color: #727b7b; */
     flex-basis: 40%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    /* background-color: blue; */
 }
 
 .dog p{
@@ -427,7 +390,6 @@ li{
 }
 
 .dog .name{
-    /* padding-top: 15px; */
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: .5rem;
@@ -438,7 +400,6 @@ li{
 .info__description{
     margin-top: 5px;
     margin-bottom:10px;
-    /* background-color: yellow; */
     
 }
 
@@ -503,7 +464,6 @@ li{
 }
 
 .actualDogInfo{
-    /* background-color: yellow; */
     width: 90%;
     height: 100%;
     text-align: center;
@@ -538,18 +498,12 @@ li{
 }
 
 .infoDog .info__parameter{
-    /* background-color: pink; */
     display: flex;
     flex-direction: column;
     gap: 8px;
     justify-content: center;
     align-items: center;
     text-transform: capitalize;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px; */
 }
 
 .info__parameter p{
@@ -574,7 +528,6 @@ li{
 .descriptionDog{
     width: 100%;
     margin: 0 auto;
-    background-color: green;
     font-size: 1rem;
     display: flex;
     justify-content: space-between;
@@ -611,7 +564,6 @@ li{
 }
 
 .personality{
-    /* background-color: #09c372; */
     width: 95%;
     margin: 0 auto;
     display: flex;
@@ -621,14 +573,12 @@ li{
 }
 
 .containerOptions{
-    /* background-color: pink; */
     display: flex;
     flex-direction: column;
 }
 
 .personality .info__personality{
     margin-top: 10px;
-    /* background-color: #061d21; */
     width: 90%;
     margin: 10px auto;
     display: flex;
@@ -651,7 +601,6 @@ li{
  }
 
  .goodWith{
-    /* background-color: pink; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -660,7 +609,6 @@ li{
 
 
  .option{
-    /* background-color: #88d0c7; */
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -701,7 +649,6 @@ li{
 }
 
 .adopt__container{
-    /* background-color: #68c0c3; */
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -718,7 +665,6 @@ li{
 }
 
 .adopt__filter{
-    /* background-color: #68c0c3; */
     display: flex;
     text-align: center;
     flex-direction: column;
@@ -730,9 +676,7 @@ li{
 }
 
 .adopt__filter button{
-    /* border: 2px solid var(--var-color3);  */
     background-color: var(--yellow-color);
-    /* background: none; */
     border: none;
     padding: 5px;
     width: 80px;
@@ -751,7 +695,6 @@ li{
 }
 
 .filter__title{
-    /* background-color: #68c0c3; */
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -769,7 +712,6 @@ li{
     height: 50px;
     padding: 10px;
     border: 4px solid var(--yellow-color);
-    /* background-color:var(--green-new); */
     background: none;
     color: var(--var-color3);
     border-radius: 5px;
@@ -787,14 +729,12 @@ li{
 }
 
 .btns__container{
-    /* background-color: #09c372; */
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .btn__container{
-    /* background-color: #68c0c3; */
     display: flex;
     justify-content: center;
     align-content: center;
@@ -802,8 +742,6 @@ li{
 }
 
 .btn__filterAll{
-    /* margin: 40px 0; */
-    /* border: 1px solid var(--var-color3); */
     margin-top: 40px;
     margin-bottom: 20px;
     border: none;
@@ -827,10 +765,8 @@ li{
 }
 
 .reset{
-    /* background-color: #09c372; */
     display: flex;
     margin-top: 60px;
-    /* gap: 10px; */
 }
 
 .btn__reset{
@@ -861,7 +797,6 @@ li{
 
 
 .filterMessage{
-    /* background-color: #555B6E; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -870,7 +805,6 @@ li{
 }
 
 .message{
-    /* background-color: #68c0c3; */
     margin-top: 10px;
     color: black;
     font-family: 'Montserrat', sans-serif;
@@ -906,14 +840,12 @@ li{
     font-weight: 600;
 }
  
-/*AÑADIR ESTILOS DE LAS OPCIONES, NO FUNCIONA, CREO QUE HAY QUE PONER CLASE A TODAS LAS ETIQUETAS OPTION*/
-/*mirar en task una pagina que lo explica*/
+
 
 
 /*------------------------SEE  ALL DOGS-----------------------------------------------------*/
 
 .btn__pages{
-    /* background-color: var(--yellow-color); */
     position: relative;
     margin-top: 20px;
     height: 80px;
@@ -959,7 +891,6 @@ li{
 }
 
 .goUp{
-    /* background-color: #09c372; */
     height: 100px;
 }
 
@@ -1004,7 +935,6 @@ li{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    /* background-color: #68c0c3; */
     flex-basis: 50%;
     position: relative;
 }
@@ -1028,13 +958,11 @@ li{
 .data__form{
     flex-basis: 50%;
     background-color:var(--white-new);
-    /* overflow: hidden; */
 }
 
 form{
     background-color:white;
     border-radius: 10px;
-    /* border: 10px solid black; */
     outline: 8px solid var(--green-new);
     padding: 20px;
     display: flex;
@@ -1048,7 +976,6 @@ form{
 } 
 
 .main__radioInputs{
-    /* background-color: #555B6E; */
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -1087,10 +1014,6 @@ input{
     gap: 10px;
 }
 
-/* input:active, input:hover{
-    outline: none;
-    border: 3px solid var(--blue-new);
-} */
 
 .input__control.success input{
     border-color: #09c372;
@@ -1188,39 +1111,6 @@ label{
         grid-row: 2/3;
     }
 
-    
-    /* .carruselSection{
-        height: 1000px;
-        align-items: flex-start;
-        overflow: visible;
-    }
-
-    .carruselSection .carrusel{
-        height:max-content;
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
-        grid-template-rows: repeat(4,1fr);
-        gap: 20px;
-    }
-    
-    .dogCarrusel{
-        width: 250px;
-        height: 300px;
-    }
-
-    .dogCarrusel:hover{
-       transform: scale(1);
-    }
-
-    .carruselBox .carrusel .dogCarrusel {
-        min-width: 100%;
-    }
-
-    .arrow-left,
-    .arrow-right{
-        display: none;
-    }
-     */
 }
 
 @media (max-width:1250px) {
@@ -1237,9 +1127,6 @@ label{
         grid-row: 1/2;
     }
 
-    /* #dogs{
-        margin-top: 900px;
-    } */
     .actualDog{
         margin-top: 200px;
     }
@@ -1252,7 +1139,6 @@ label{
 
     .photo__form{
         height: 700px;
-        /* background-color: #68c0c3; */
         flex-basis: 30%;
     }
     
@@ -1308,7 +1194,6 @@ label{
         margin: 10px auto;
         object-fit:contain;
         object-position: center;
-        /* background-color: var(--white-new); */
     }
     
     .actualDogInfo{
