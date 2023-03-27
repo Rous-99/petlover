@@ -21,11 +21,9 @@ Dentro de la própia página podemos consultar todos los perros disponibles para
 
 ### POR HACER
 
--Adaptar el diseño responsive para visualizar la página correctamente en cualquier dispositivo
-
--Creación de un menú desplegable con las distintas secciones de la web para dispositivos móviles
-
--Añadir un botón a cada perro (ADOPT ME) que envie los datos de ese perro al formulario y redirija al formulario con los datos de ese perro ya completos.
+- Adaptar el diseño responsive para visualizar la página correctamente en cualquier dispositivo
+- Creación de un menú desplegable con las distintas secciones de la web para dispositivos móviles
+- Añadir un botón a cada perro (ADOPT ME) que envie los datos de ese perro al formulario y redirija al formulario con los datos de ese perro ya completos.
 
 ## RECURSOS UTILIZADOS
 
