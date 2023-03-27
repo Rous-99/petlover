@@ -1,13 +1,13 @@
 # PET LOVERS (ADOPT A DOG WEBSITE)
  
-##DESCRIPCIÓN
+## DESCRIPCIÓN
 Pet Lover es una página web sobre una asociación de adopción de perros en Texas. 
 
 Dentro de la própia página podemos consultar todos los perros disponibles para adoptar, utilizar filtros para encontrar el perro más acorde a nuestros gustos y necesidades y obtener más información sobre ellos. Además, a través de un formulario podemos enviar nuestros datos y los del perro que deseamos adoptar.
 
-##OBJETIVOS
+## OBJETIVOS
 
-###COMPLETADOS
+### COMPLETADOS
 
 Interacción con la API para obtener los perros (PetFinder)
 Manipular los datos recibidos para mostrar los deseados
@@ -19,7 +19,7 @@ Creación de un formulario con validaciones y envio de datos a la API de Firebas
 Carrusel de algunos perros en la página inicial
 Diseño para ordenador limpio y sin errores
 
-###POR HACER
+### POR HACER
 
 Adaptar el diseño responsive para visualizar la página correctamente en cualquier dispositivo
 
@@ -27,7 +27,7 @@ Creación de un menú desplegable con las distintas secciones de la web para dis
 
 Añadir un botón a cada perro (ADOPT ME) que envie los datos de ese perro al formulario y redirija al formulario con los datos de ese perro ya completos.
 
-##RECURSOS UTILIZADOS
+## RECURSOS UTILIZADOS
 
 API para obtener los perros (PetFinder)
 LocalStorage 
