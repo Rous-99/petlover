@@ -9,15 +9,15 @@ Dentro de la própia página podemos consultar todos los perros disponibles para
 
 ### COMPLETADOS
 
--Interacción con la API para obtener los perros (PetFinder)
--Manipular los datos recibidos para mostrar los deseados
--Crear un filtro combinado según raza, tamaño, edad... 
--Obtener los perros filtrados y mostrarlos
--Uso de LocalStorage para reducir peticiones y mostrar las opciones de raza en los filtros a través del item guardado
--Mostrar más información sobre el perro que interese a través de un botón que ejecute el evento
--Creación de un formulario con validaciones y envio de datos a la API de Firebase
--Carrusel de algunos perros en la página inicial
--Diseño para ordenador limpio y sin errores
+- Interacción con la API para obtener los perros (PetFinder)
+- Manipular los datos recibidos para mostrar los deseados
+- Crear un filtro combinado según raza, tamaño, edad... 
+- Obtener los perros filtrados y mostrarlos
+- Uso de LocalStorage para reducir peticiones y mostrar las opciones de raza en los filtros a través del item guardado
+- Mostrar más información sobre el perro que interese a través de un botón que ejecute el evento
+- Creación de un formulario con validaciones y envio de datos a la API de Firebase
+- Carrusel de algunos perros en la página inicial
+- Diseño para ordenador limpio y sin errores
 
 ### POR HACER
 
@@ -29,8 +29,8 @@ Dentro de la própia página podemos consultar todos los perros disponibles para
 
 ## RECURSOS UTILIZADOS
 
--API para obtener los perros (PetFinder)
--LocalStorage 
--API de FireBase (base de datos de formularios de adopción)
+- API para obtener los perros (PetFinder)
+- LocalStorage 
+- API de FireBase (base de datos de formularios de adopción)
 
 
