@@ -33,4 +33,6 @@ Dentro de la própia página podemos consultar todos los perros disponibles para
 - LocalStorage 
 - API de FireBase (base de datos de formularios de adopción)
 
+## ESTADO DEL PROYECTO
 
+En desarrollo
