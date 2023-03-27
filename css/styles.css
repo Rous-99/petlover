@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300;1,400&family=Poppins:wght@400;600;700&family=Raleway:wght@400;600;700&display=swap');
 
 :root{
+    --var-color1:#68c0c3;
+    --color-card-dog:#abe0d3;
     --var-color3:#061d21;
+    --var-color4:#727b7b;
     --var-color5:#e5e5e5;
     --yellow-color: #d4d926;
     --cyan-color:#6fc6a5;
