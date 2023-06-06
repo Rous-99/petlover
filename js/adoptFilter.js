@@ -161,31 +161,31 @@ const filterDog=async(dog) =>{ //recibe el objeto perro que buscamos
     let dogFilter=dogtoFilter.filter(function([key,value]){
         return value!=="np"; //filtramos para dejar solo los parametros de busqueda que no tengan el valor np, es decir, los que SÍ necesito para filtrar que han sido seleccionados
     })
-    // console.log(dogFilter);
+    console.log(dogFilter);
     let dogFilterObj=Object.fromEntries(dogFilter); //vuelvo a obtener un objeto perro
-    // console.log(dogFilterObj);
+    console.log(dogFilterObj);
     let paramsFetch=Object.keys(dogFilterObj).length; //busco cuántos parámetros de búsqueda tendré que pasarle a la URL del fetch
-    // console.log(paramsFetch);
+    console.log(paramsFetch);
     let paramkeys=Object.entries(dogFilterObj); //obtengo el nombre de los parámetros de búsqueda
-    // console.log(paramkeys);
+    console.log(paramkeys);
     let toSearch=[]; //array para guardar key-value y pasarlo a la URL del fetch
     paramkeys.forEach(param => {
         let paramKey=`${param[0]}=${param[1]}&`;
         toSearch.push(paramKey);
-        // console.log(paramKey);
+        console.log(paramKey);
     })
     let urlFetch=`https://api.petfinder.com/v2/animals?type=${animalType}&`; //url base del fetch
-    // console.log(toSearch);
+    console.log(toSearch);
     let toInsert="";//cadena final que va a unir todos los param Key-Value del array toSearch
     for(let i=0;i<toSearch.length;i++){
         toInsert=toInsert.concat(toSearch[i]);
     }
-    // console.log(toInsert);
+    console.log(toInsert);
     urlFetch=urlFetch.concat(toInsert); //insertamos esa cadena con los parametros de busqueda a la URL base
-    // console.log(urlFetch);
+    console.log(urlFetch);
     let finalFetch=`location=texas&distance=50&page=1`;
     urlFetch=urlFetch.concat(finalFetch);
-    // console.log(urlFetch);
+    console.log(urlFetch);
 
     //PETICIÓN DEL PERRO FILTRADO
     const dogsReponse= await fetch(urlFetch,{ //devuelve un array de objetos
