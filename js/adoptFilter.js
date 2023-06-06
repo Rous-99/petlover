@@ -157,7 +157,7 @@ const filterDog=async(dog) =>{ //recibe el objeto perro que buscamos
     let dataToken=await getToken();
     let dogtoFilter=Object.entries(dog); //obtengo las llaves del objeto perro
     let page=1;
-    // console.log(dogtoFilter);
+    console.log(dogtoFilter);
     let dogFilter=dogtoFilter.filter(function([key,value]){
         return value!=="np"; //filtramos para dejar solo los parametros de busqueda que no tengan el valor np, es decir, los que SÍ necesito para filtrar que han sido seleccionados
     })
@@ -232,7 +232,7 @@ btnFilter.addEventListener("click", () => {
     cleanDogs();
     let loadingInput=document.querySelector('.loading__text').innerText='Loading...'; //muestro el mensaje de loading
     let dog=changeDogByFilters(); //obtengo los datos de los filtros para buscar los perros filtrados
-    // console.log(dog);
+    console.log(dog);
     filterDog(dog); //paso el objeto perro a la función de filtrado
 })
 
